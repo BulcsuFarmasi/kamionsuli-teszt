@@ -1,0 +1,9 @@
+@import  '~src/sass/variables';
+
+app-root {
+	display:block;
+	width:80%;
+	margin:0 auto;
+	background-color:$color-white;
+	padding:2%;
+}

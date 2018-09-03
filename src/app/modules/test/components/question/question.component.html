@@ -1,0 +1,9 @@
+<p class="question">{{question.text}}</p>
+<p>
+	<span *ngFor="let image of question.images">
+		<img [src]="image.path" [style.width.%]="image.size" [style.left.%]="image.position" />
+	</span>
+</p>
+<p *ngFor="let answer of question.answers">
+	<label [htmlFor]="'question'+question.id"><input [type]="question.type" [name]="'question'+question.id" (change)="changeAnswer(question.id,answer.id)" /><span class="answer">{{answer.text}}</span></label>
+</p> 

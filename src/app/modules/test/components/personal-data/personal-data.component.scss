@@ -1,0 +1,16 @@
+@import '~src/sass/variables';
+
+personal-data {
+    p {
+        margin:40px 0;
+        .question{
+            font-family:'HHelvetica Condensed Bold';
+        }
+        input{
+            width:45%;
+            padding:.6%;
+            margin-top:15px;
+            border: 3px solid $color-gallery;
+        }
+    }
+}

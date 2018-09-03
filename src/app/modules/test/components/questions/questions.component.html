@@ -1,0 +1,9 @@
+<p>{{ currentPage }}/{{ pageNumber }}</p>
+<page *ngFor="let page of pages; let i=index" [page]="page" [hidden]="i + 1 != currentPage"
+	  (timeexpired)="timeExpired()"></page>
+<div class="buttons">
+	<!--<button [hidden]="currentPage != 1" (click)="backToStart()" class="btn">Vissza a kezdőlapra</button>
+	<button [hidden]="currentPage == 1"  (click)="prevPage()" class="btn">Előző lap</button>-->
+	<button [hidden]="currentPage == pageNumber" (click)="nextPage()" class="btn">Következő lap &raquo;</button>
+	<button [hidden]="currentPage != pageNumber" (click)="goToValuation()" class="btn">A teszt befejezése</button>
+</div>

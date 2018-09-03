@@ -1,0 +1,15 @@
+@import '~src/sass/variables';
+
+start{
+	h1{
+		color:$color-red;
+		text-align:center;
+		font-family:'HHelvetica Condensed Bold';
+	}
+	.desc{
+		font-size:14px;
+	}
+	.warning{
+		color:$color-red;
+	}
+}

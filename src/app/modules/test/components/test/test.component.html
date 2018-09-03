@@ -1,0 +1,3 @@
+<start [hidden]="currentState != 'start'" (onStartTest)="onStartTest()"></start>
+<questions [hidden]="currentState != 'questions'" (onBackToStart)="onBackToStart()" (onGoToValuation)="onGoToValuation()"></questions>
+<valuation [hidden]="currentState != 'valuation'" (onBackToTest)="onBackToTest()"></valuation>

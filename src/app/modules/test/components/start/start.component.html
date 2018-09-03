@@ -1,0 +1,9 @@
+<h1>{{test.name}}</h1>
+<div [innerHTML]="test.description" class="desc"></div>
+<personal-data (onValidity)="onValidity($event)" *ngIf="test.fillable"></personal-data>
+<div *ngIf="!test.fillable">
+	A teszt jelenleg nem elérhető
+</div>
+<div class="buttons">
+	<button (click)="startTest()" class="btn" [disabled]="!validPersonalData" *ngIf="test.fillable">A teszt indítása</button>
+</div>

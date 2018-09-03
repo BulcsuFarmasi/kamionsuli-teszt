@@ -1,0 +1,27 @@
+@import '~src/sass/variables';
+
+result-question{
+	.answer{
+		margin-left:3%;
+		&.marked{
+			font-weight:bold;
+		}
+		&.right{
+			color:$color-green;
+		}
+		&.wrong{
+			color:$color-red;
+		}
+	}
+	.question{
+		font:{
+			size:24px;
+			family:'HHelvetica Condensed Bold';
+		};
+		color:$color-dove-gray;
+	}
+	img{
+		position: relative;
+	}
+
+}

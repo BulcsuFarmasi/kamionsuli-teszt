@@ -1,0 +1,26 @@
+@import '~src/sass/variables';
+
+valuation{
+	.buttons{
+		p{
+			margin-bottom:20px;
+		}
+	}
+	.scores{
+		font-size:20px;
+		background-color:$color-red;
+		color:$color-white;
+		width:5%;
+		padding:1%;
+		text-align:center;
+	}
+	h2{
+		color:$color-red;
+		font-weight:normal;
+	}
+
+	h3 {
+		font-weight:normal;
+		color: $color-green;
+	}
+}

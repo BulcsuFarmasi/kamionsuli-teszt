@@ -1,0 +1,18 @@
+<div class="buttons" [hidden]="valued">
+	<p>A következő oldalon megnézheted, hány pontot értél el az eheti gyakorló teszten.</p>
+	<p>Hogy még többet tanulj, az egyes kérdésekre a helyes válaszokat zölddel jelöltük, ha rossz választ adtál, azt pirossal emeltük ki.</p>
+	<button [hidden]="valuing" (click)="sendTest()" class="btn">Kérem a teszt kiértékelését</button>
+	<img src="images/site-content/load.gif" [hidden]="!valuing" />
+</div>
+<section class="result" [hidden]="!valued">
+	<h2>A teszten az alábbi pontszámot érted el:</h2>
+	<p class="scores">{{testService.test.score}} / {{testService.test.totalScore}}</p>
+	<h2>És ennyi idő alatt töltötted ki:</h2>
+	<p>{{testService.test.time}}</p>
+	<h3>A kérdésekre adott helyes válaszok:</h3>
+	<div *ngFor="let question of testService.test.questions; let i=index">
+		<p class="question">{{ i + 1 }}.</p>
+		<result-question [question]="question"></result-question>
+	</div>
+</section>
+<!--<button (click)="backToTest()"[hidden]="valued" class="btn">Vissza a teszthez</button>-->
