@@ -1,4 +1,4 @@
- import { Question } from './question.service'
+ import { Question } from './question'
 
 export class Page{
 	public questions:Question[];

@@ -2,33 +2,15 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
 import { JwtService } from './jwt-service'
-import { PersonalQuestion } from './personal-data.service';
-import { Question } from './question.service';
-
-export class Test{
-	public id:number;
-	public name:string;
-	public description:string;
-	public fillable:boolean;
-	public startTime:Date;
-	public endTime:Date;
-	public time:string;
-	public remainingSeconds:number;
-	public personalQuestions: PersonalQuestion[];
-	public questions:Question[];
-	public score:number;
-	public totalScore:number;
-	public pageQuestionNumber:number;
-	public pageTime:string;
-}
+import { PersonalQuestion } from '../models/personal-question';
+import { Question } from '../models/question';
+import { Test } from '../models/test';
 
 @Injectable()
 export class TestService{
 	public test:Test;
 	public tests:Test[];
-	constructor(private http:Http, private jwtService:JwtService){
-		this.test=new Test();
-	}
+	constructor(private http:Http, private jwtService:JwtService){}
 
 	addTest () {
 		return this.jwtService.get('../api/public/test/addTest').toPromise()
@@ -42,9 +24,10 @@ export class TestService{
 		return this.jwtService.post('../api/public/test/copyTest', {id: id}).toPromise()
 			.then(respone => {
 				let json = respone.json();
-				let test = new Test();
-				test.id = json.id;
-				test.name = json.name;
+				let test:Test = {
+					id : json.id,
+					name : json.name
+				};
 				return test;
 			});
 	}

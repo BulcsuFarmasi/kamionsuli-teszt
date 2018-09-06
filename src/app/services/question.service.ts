@@ -2,16 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import { JwtService } from './jwt-service'
 
-import { Answer } from './answer';
-
-export class Question{
-	public id:number;
-	public text:string;
-	public answers:Answer[];
-	public time:string
-	public type:string;
-	public images:any;
-}
+import { Answer } from '../models/answer';
+import { Question } from '../models/question';
 
 @Injectable()
 export class QuestionService{
@@ -29,17 +21,17 @@ export class QuestionService{
 			let questionsObject = [];
 			let questions = [];
 			for (let responseQuestion of json.questions) {
-				let question = new Question();
-				question.id = responseQuestion.id;
-				question.text = responseQuestion.text;
-				question.images = responseQuestion.images;
-				question.type = responseQuestion.type;
-				question.answers = responseQuestion.answers;
+				let question:Question = {
+					id: responseQuestion.id,
+					text : responseQuestion.text,
+					images : responseQuestion.images,
+					type : responseQuestion.type,
+					answers : responseQuestion.answers
+				};
 				questions.push(question);
-			}
-			questionsObject['questions'] = questions;
-			questionsObject['pageQuestionNumber'] = json.pageQuestionNumber;
-			questionsObject['pageTime'] = json.pageTime;
+				questionsObject['questions'] = questions;
+				questionsObject['pageQuestionNumber'] = json.pageQuestionNumber;
+				questionsObject['pageTime'] = json.pageTime;
 
 			return questionsObject;
 		})

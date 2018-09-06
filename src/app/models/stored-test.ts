@@ -1,4 +1,4 @@
-import { Test } from './test.service'
+import { Test } from './test'
 import { Page } from './page'
 
 export class StoredTest extends Test {

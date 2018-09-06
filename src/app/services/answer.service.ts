@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core'
 import { JwtService } from './jwt-service';
-import { Answer } from './answer';
+import { Answer } from '../models/answer';
 
 @Injectable()
 export class AnswerService {
@@ -10,11 +10,12 @@ export class AnswerService {
        return this.jwtService.post('../api/public/answer/addAnswer',{questionId: questionId})
            .toPromise()
            .then(response => {
-               let answer = new Answer();
                let json = response.json();
-               answer.id = json.id
-               answer.text = json.text
-               answer.score = json.score;
+               let answer:Answer = {
+                    id: json.id,
+                    text: json.text,
+                    score: json.score
+               }
                return answer;
            })
     }

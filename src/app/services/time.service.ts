@@ -1,6 +1,3 @@
-import { Injectable } from '@angular/core'
-
-Injectable()
 export class TimeService{
     stringToSeconds(timeString:string) {
         let seconds:number = 0;
@@ -18,7 +15,7 @@ export class TimeService{
         return this.addZero(minutes) + ':' + this.addZero(seconds);
     }
 
-    addZero(number:number|string) {
+    private addZero(number:number|string) {
         if (number < 10) {
             number = '0' + number;
         }

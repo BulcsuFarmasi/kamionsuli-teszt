@@ -3,19 +3,8 @@ import { Http } from '@angular/http';
 
 import { JwtService } from './jwt-service';
 
-export class PersonalQuestion{
-	public id:number;
-	public name:string;
-	public type:PersonalType;
-	public answer:string; 
-}
-
-export class PersonalType{
-	public id:number;
-	public name:string;
-	public type:string;
-	public regexp:string;
-}
+import { PersonalQuestion } from '../models/personal-question';
+import { PersonalType } from '../models/personal-type';
 
 @Injectable()
 export class PersonalDataService{
@@ -31,10 +20,11 @@ export class PersonalDataService{
 		.toPromise()
 		.then(response => {
 			for(let question of response.json()){
-				let personalQuestion=new PersonalQuestion();
-				personalQuestion.id=question.id;
-				personalQuestion.name=question.text;
-				personalQuestion.type=question.type;
+				let personalQuestion:PersonalQuestion = {
+					id:question.id,
+					name:question.text,
+					type:question.type
+				}
 				this.personalQuestions.push(personalQuestion);
 			}
 			return this.personalQuestions;
@@ -49,9 +39,10 @@ export class PersonalDataService{
 		.toPromise()
 		.then(response => {
 			for(let type of response.json()){
-				let personalType=new PersonalType();
-				personalType.id=type.id;
-				personalType.name=type.name
+				let personalType:PersonalType = {
+					id:type.id,
+					name:type.name
+				};
 				this.personalTypes.push(personalType);
 			}
 			return this.personalTypes;

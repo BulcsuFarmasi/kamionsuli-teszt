@@ -1,31 +1,17 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http'
 
-import { Answer } from './answer';
+import { Answer } from '../models/answer';
+import { Fill } from  '../models/fill';
 import { JwtService } from './jwt-service'
-import { PersonalQuestion, PersonalType } from './personal-data.service';
-import { Question } from "./question.service";
-
-export class Fill{
-	public id:number;
-	public score:number;
-	public answers:Answer[];
-	public questions:Question[];
-	public personalQuestions:PersonalQuestion[];
-	public date:string;
-	public time:string;
-	public consent:boolean;
-}
-
-class PersonalData{
-	public types:PersonalQuestion[];
-	public typeNames:string[];
-	public fills:Fill[];
-}
+import { PersonalData } from '../models/personal-data';
+import { PersonalQuestion } from '../models/personal-question';
+import { PersonalType } from '../models/personal-type';
+import { Question } from "../models/question";
 
 @Injectable()
 export class FillService{
-	public fill:Fill = new Fill();
+	public fill:Fill;
 	constructor(private jwtService:JwtService, private http:Http){}
 
 	getFills(testId:number){
@@ -33,27 +19,30 @@ export class FillService{
 		.toPromise()
 		.then(response => {
 			var body=response.json();
-			var personalData=new PersonalData();
-
-		
-			personalData.types=[];
-			personalData.typeNames=[];
+			var personalData:PersonalData = {
+				types:[],
+				typeNames:[]
+			};
 			for(let responseQuestion of body.personalDataTypes){
-				var question=new PersonalQuestion();
-				question.id=parseInt(responseQuestion.id);
-				question.name=responseQuestion.text;
-				question.type = new PersonalType();
-				question.type.name=responseQuestion.order_name;
+				var type:PersonalType = {
+					name:responseQuestion.order_name
+				}
+				var question:PersonalQuestion = {
+					id:parseInt(responseQuestion.id),
+					name:responseQuestion.text,
+					type: type
+				};
 				personalData.types.push(question);
 			}
 			
 			personalData.fills=[];
 			for(let responseFill of body.fills){
-				var fill=new Fill();
-				fill.id=parseInt(responseFill.id);
-				fill.score=parseFloat(responseFill.score);
-				fill.date=responseFill.created_at;
-				fill.time=responseFill.time;
+				var fill:Fill = {
+					id:parseInt(responseFill.id),
+					score:parseFloat(responseFill.score),
+					date:responseFill.created_at,
+					time:responseFill.time
+				}
 				for(let personalDataType of personalData.types){
 					fill[personalDataType.type.name]=responseFill[personalDataType.type.name];
 				}
@@ -70,9 +59,10 @@ export class FillService{
 		.toPromise()
 		.then(response => {
 			let json = response.json();
-			let fill = new Fill();
-			fill.personalQuestions = json.personalQuestions;
-			fill.questions = json.questions;
+			let fill:Fill = {
+				personalQuestions: json.personalQuestions,
+				questions: json.questions
+			};
 			return fill;
 		})
 	}

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers} from '@angular/http';
 
-import { JwtPayload } from './jwt-payload'
+import { JwtPayload } from '../models/jwt-payload'
 
 @Injectable()
 export class JwtService{
@@ -15,9 +15,10 @@ export class JwtService{
         var parts=this.token.split(/\./);
         var payloadJson=JSON.parse(atob(parts[1]));
 
-        var payload=new JwtPayload();
-        payload.name=payloadJson.name;
-        payload.expire=new Date(0);
+        var payload:JwtPayload = {
+            name:payloadJson.name,
+            expire: new Date(0)
+        };
         payload.expire.setUTCSeconds(payloadJson.exp);
 
         return payload

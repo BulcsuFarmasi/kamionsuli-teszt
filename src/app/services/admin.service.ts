@@ -1,21 +1,15 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+import { Http } from '@angular/http'
 
-import { JwtService } from './jwt-service';
 
-export class Admin{
-	public id:number;
-	public name:string;
-	public email:string;
-	public password:string;
-	public loggedIn:boolean;
-}
+import { JwtService } from './jwt-service'
+
+import { Admin } from '../models/admin'
 
 @Injectable()
 export class AdminService{
 	public admin:Admin;
 	constructor(private http:Http, private jwtService:JwtService){
-		this.admin=new Admin();
 		this.admin.loggedIn=false;
 	}
 	authenticate(){
