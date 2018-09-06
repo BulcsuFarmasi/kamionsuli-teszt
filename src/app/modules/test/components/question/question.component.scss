@@ -16,3 +16,28 @@ question {
 		position: relative;
 	}
 }
+
+@media only screen and (max-width:1024px) {
+    question {
+		.question {
+			line-height: 26px;
+		}
+		img{
+			left:25% !important;
+			width:50% !important;
+		}
+		input[type='radio']{
+			width:30px;
+			height: 30px;
+		}
+	}
+}
+
+@media only screen and (max-width:1024px) {
+    question {
+		img{
+			left:0 !important;
+			width:100% !important;
+		}
+	}
+}

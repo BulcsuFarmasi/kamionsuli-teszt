@@ -28,3 +28,18 @@
 body{
 	background-color:$color-mercury;
 }
+
+@media only screen and (max-width:1024px) {
+	.btn {
+		width:75%;
+		padding:3% 5%;
+		line-height: 26px;
+	}
+}
+
+@media only screen and (max-width:480px) {
+	.btn {
+		width:90%;
+		padding:6% 5%;
+	}
+}

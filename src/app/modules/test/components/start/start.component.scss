@@ -13,3 +13,11 @@ start{
 		color:$color-red;
 	}
 }
+
+@media screen and (max-width:480px) {
+	start {
+		h1 {
+			line-height: 40px;
+		}
+	}
+}
