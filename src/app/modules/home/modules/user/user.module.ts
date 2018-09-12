@@ -9,6 +9,7 @@ import { RouterModule } from '@angular/router';
 
 import { NetworkService } from '../../../../services/network.service';
 import { UserService } from '../../../../services/user.service';
+import { ProfileComponent } from './components/profile/profile.component';
 
 
 @NgModule({
@@ -22,7 +23,7 @@ import { UserService } from '../../../../services/user.service';
     NetworkService,
     UserService
   ],
-  declarations: [...components],
+  declarations: [...components, ProfileComponent],
   exports: [...components]
 })
 export class UserModule { }
