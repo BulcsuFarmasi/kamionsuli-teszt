@@ -1,0 +1,7 @@
+<header>
+    <h1>Testr</h1>
+    <div class="admin" *ngIf="adminService.loggedIn()">
+        <p>{{adminService.admin.name}} <a href="#" (click)="logout()" class="btn btn-delete">Kilépés</a></p>
+    </div>
+</header>
+<router-outlet></router-outlet>

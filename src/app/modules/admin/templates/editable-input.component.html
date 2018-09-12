@@ -1,0 +1,3 @@
+<span *ngIf="!editing">{{value}}</span><input [type]="inputType" [(ngModel)]="value" [placeholder]="placeholder" *ngIf="editing" />
+<button *ngIf="!editing" (click)="startEditing()" class="btn btn-edit">Szerkesztés</button>
+<button *ngIf="editing" (click)="stopEditing()" class="btn btn-new">OK</button>

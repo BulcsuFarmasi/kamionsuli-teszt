@@ -1,0 +1,20 @@
+<div>
+	<h3>
+		<editable-input [value]="question.text" [inputType]="'text'" [type]="'questionText'" [id]="question.id" (onStopEditing)="onStopEditing($event)"></editable-input>
+	</h3>
+	<images [images]="question.images" (imagedelete)="deleteImage($event)"></images>
+	<image-upload (sendfile)="getFile($event)"></image-upload>
+	<p>Típus:<br />
+		<select [(ngModel)]="question.type" (ngModelChange)="onStopEditing({id:question.id,value:question.type,type:'questionType'})">
+			<option value="radio" [selected]="question.type=='radio'">Egyválasztós</option>
+			<option value="checkbox" [selected]="question.type=='checkbox'">Többválasztós</option>
+		</select>
+	</p>
+	<h4>Válaszok</h4>
+	<p *ngFor="let answer of question.answers" class="answer">
+		<b><editable-input [value]="answer.text" [inputType]="'text'" [type]="'answerText'" [id]="answer.id" (onStopEditing)="onStopEditing($event)"></editable-input></b><br />
+		Pontszám:<editable-input [value]="answer.score" [inputType]="'number'" [type]="'answerScore'" [id]="answer.id" (onStopEditing)="onStopEditing($event)"></editable-input><br />
+		<button (click)="deleteAnswer(answer.id)" class="btn btn-delete">Válasz törlése</button>
+	</p>
+	<button (click)="addAnswer()" class="btn btn-new">Új válasz</button>
+</div>

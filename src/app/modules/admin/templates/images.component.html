@@ -1,0 +1,4 @@
+<div class="image" *ngFor="let image of images">
+    <img [src]="image.path" [ngStyle]="{left:image.position+'%', width:image.size+'%'}" /><br />
+    <button (click)="delete(image.id)" class="btn btn-delete">Kép törlése</button>
+</div>

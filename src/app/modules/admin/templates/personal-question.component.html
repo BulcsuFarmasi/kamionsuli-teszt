@@ -1,0 +1,5 @@
+<editable-input [value]="personalQuestion.name" [inputType]="'text'" [type]="'personalQuestionName'" [id]="personalQuestion.id" (onStopEditing)="onStopEditing($event)"></editable-input>
+<span>Típus:</span>
+<select [(ngModel)]="personalQuestion.type.id" (ngModelChange)="getPersonalType($event)">
+	<option *ngFor="let personalType of personalTypes" [value]="personalType.id">{{personalType.name}}</option>
+</select>

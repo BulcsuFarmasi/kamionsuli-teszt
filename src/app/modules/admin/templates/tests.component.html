@@ -1,0 +1,12 @@
+<section class="tests">
+	<h2>Tesztek</h2>
+	<button (click)="addTest()" class="btn btn-new">Új teszt</button>
+	<div class="test" *ngFor="let test of tests">
+		<p>{{test.name}}
+			<a [routerLink]="['/edit',test.id]">Szerkesztés</a>
+			<a [routerLink]="['/fills',test.id]">Kitöltések</a>
+			<button (click)="copyTest(test.id)" class="btn btn-new">Másolás</button>
+			<button (click)="trashTest(test.id)" class="btn btn-delete">Kukába</button>
+	</div>
+	<a [routerLink]="['/trash']">Kuka</a>
+</section>

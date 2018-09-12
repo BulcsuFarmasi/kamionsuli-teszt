@@ -1,0 +1,34 @@
+<section class="fills">
+<h1>Kitöltések</h1>
+	<table>
+		<tr>
+			<th>
+				Azonosító
+				<span (click)="orderDesc('id')">▼</span>
+				<span (click)="orderAsc('id')">▲</span>
+			</th>
+			<th>
+				Pontszám
+				<span (click)="orderDesc('score')">▼</span>
+				<span (click)="orderAsc('score')">▲</span>
+			</th>
+			<th>Kitöltés időpontja</th>
+			<th>Kitöltési idő</th>
+			<th *ngFor="let type of personalDataTypes">
+				{{type.name}}
+				<span (click)="orderDesc(type.type)">▼</span>
+				<span (click)="orderAsc(type.type)">▲</span>
+			</th>
+			<th>Megtekintés</th>
+		</tr>
+		<tr *ngFor="let fill of fills">
+			<td>{{fill.id}}</td>
+			<td>{{fill.score}}</td>
+			<td>{{fill.date}}</td>
+			<td>{{fill.time}}</td>
+			<td *ngFor="let type of personalDataTypes"> {{ fill[type.type.name] }}</td>
+			<td><a [routerLink]="['/fill', fill.id]">Megtekintés</a></td>
+		</tr>
+	</table>
+	<a href="../api/public/fill/{{testId}}/getCsv">Export</a>
+</section>

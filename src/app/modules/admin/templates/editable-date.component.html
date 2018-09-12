@@ -1,0 +1,4 @@
+<span *ngIf="!editing">{{value|date:'y.MM.dd HH:mm'}}</span>
+<input type="text" [ngModel]="value|date:'y.MM.dd HH:mm'" (ngModelChange)="value=$event" *ngIf="editing" placeholder="ÉÉÉÉ.HH.NN ÓÓ:PP" />
+<button *ngIf="!editing" (click)="startEditing()" class="btn btn-edit">Szerkesztés</button>
+<button *ngIf="editing" (click)="stopEditing()" class="btn btn-new">OK</button>
