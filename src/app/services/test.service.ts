@@ -101,9 +101,10 @@ export class TestService{
 		.then(response => {
 			var tests=response.json();
 			for(let i=0;i<tests.length;i++){
-				var test=new Test();
-				test.id=tests[i].id;
-				test.name=tests[i].name;
+				var test:Test = {
+					id:tests[i].id,
+					name:tests[i].name
+				}
 				this.tests.push(test);
 			}
 			return this.tests;

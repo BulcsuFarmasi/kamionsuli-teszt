@@ -5,7 +5,6 @@ import { Injectable } from "@angular/core";
 
 import { Image } from "../models/image";
 import { JwtService } from './jwt-service';
-import { Question } from './question.service'
 
 @Injectable()
 export class ImageService{

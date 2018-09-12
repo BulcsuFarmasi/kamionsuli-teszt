@@ -1,7 +1,7 @@
 import { Component, Output, EventEmitter, OnInit, ViewEncapsulation } from '@angular/core';
 
-import { FillService } from '../../../../services/fill.service';
-import { TestService } from '../../../../services/test.service';
+import { FillService } from '../../../../../../services/fill.service';
+import { TestService } from '../../../../../../services/test.service';
 
 @Component({
 	selector:'valuation',

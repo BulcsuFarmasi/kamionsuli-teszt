@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 @Injectable()
 export class NetworkService {
 
-  private url = 'http://kamionsuli-teszt.farmasibulcsu.hu/api/public'
+  private url = 'https://kamionsuli-teszt.farmasibulcsu.hu/api/public/'
   
   constructor(private httpClient:HttpClient) {}
 
@@ -13,6 +13,6 @@ export class NetworkService {
   }
 
   post (url:string, body) {
-    return this.httpClient.get(this.url + url, body);
+    return this.httpClient.post(this.url + url, body);
   }
 }

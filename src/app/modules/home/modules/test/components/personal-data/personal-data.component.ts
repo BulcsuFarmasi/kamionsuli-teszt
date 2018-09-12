@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
-import { FillService } from '../../../../services/fill.service';
-import { TestService } from '../../../../services/test.service';
-import { PersonalDataService, PersonalQuestion } from '../../../../services/personal-data.service';
+import { FillService } from '../../../../../../services/fill.service';
+import { TestService } from '../../../../../../services/test.service';
+import { PersonalDataService } from '../../../../../../services/personal-data.service';
+import { PersonalQuestion } from '../../../../../../models/personal-question';
 
 
 @Component({

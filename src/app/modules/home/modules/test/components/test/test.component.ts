@@ -4,8 +4,8 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { QuestionsComponent } from '../questions/questions.component';
 import { StartComponent } from '../start/start.component';
 
-import { TestService } from '../../../../services/test.service';
-import {FillService} from "../../../../services/fill.service";
+import { TestService } from '../../../../../../services/test.service';
+import { FillService } from "../../../../../../services/fill.service";
 
 
 @Component({

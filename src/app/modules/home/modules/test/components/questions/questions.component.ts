@@ -2,10 +2,10 @@ import {Component, OnInit, Output, EventEmitter, AfterViewInit, ViewChildren, Qu
 
 import { PageComponent } from '../page/page.component';
 
-import { FillService } from "../../../../services/fill.service";
-import { TestService } from '../../../../services/test.service';
-import { QuestionService } from '../../../../services/question.service';
-import { Page } from '../../../../models/page'
+import { FillService } from "../../../../../../services/fill.service";
+import { TestService } from '../../../../../../services/test.service';
+import { QuestionService } from '../../../../../../services/question.service';
+import { Page } from '../../../../../../models/page'
 
 @Component({
 	selector:'questions',

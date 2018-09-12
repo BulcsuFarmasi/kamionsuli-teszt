@@ -78,14 +78,17 @@ export class PersonalDataService{
 	addPersonalQuestion (testId: number) {
 		return this.jwtService.post('../api/public/personalData/addPersonalQuestion', {testId: testId}).toPromise()
 			.then(response => {
-				let personalQuestion = new PersonalQuestion();
 				let json = response.json();
-				personalQuestion.id = json.id;
-				personalQuestion.name = json.text;
-				personalQuestion.type = new PersonalType();
-				personalQuestion.type.id = json.type_id;
-				personalQuestion.type.name = this.getTypeNameById(personalQuestion.type.id);
-
+				let personalType:PersonalType = {
+					id: json.type_id,
+					name: this.getTypeNameById(json.type_id)
+				} 
+				let personalQuestion:PersonalQuestion = {
+					id: json.id,
+					name: json.text,
+					type: personalType
+				};
+				
 				this.personalQuestions.push(personalQuestion);
 			});
 	}

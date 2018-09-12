@@ -1,8 +1,8 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { TimeService } from '../../../../services/time.service'
-import { Page } from '../../../../models/page';
-import { QuestionService } from "../../../../services/question.service";
+import { TimeService } from '../../../../../../services/time.service'
+import { Page } from '../../../../../../models/page';
+import { QuestionService } from "../../../../../../services/question.service";
 
 @Component({
 	selector:'page',

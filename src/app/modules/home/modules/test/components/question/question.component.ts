@@ -1,6 +1,7 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
-import { QuestionService, Question } from '../../../../services/question.service';
+import { QuestionService } from '../../../../../../services/question.service';
+import { Question } from '../../../../../../models/question';
 
 
 @Component({

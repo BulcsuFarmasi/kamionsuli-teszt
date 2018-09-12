@@ -1,8 +1,9 @@
 import { Component, OnInit, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
-import { TestService, Test } from '../../../../services/test.service';
-import { PersonalDataService } from '../../../../services/personal-data.service';
-import { FillService } from "../../../../services/fill.service";
+import { TestService } from '../../../../../../services/test.service';
+import { PersonalDataService } from '../../../../../../services/personal-data.service';
+import { FillService } from "../../../../../../services/fill.service";
+import { Test } from "../../../../../../models/test";
 
 @Component({
 	selector:'start',
@@ -14,7 +15,7 @@ import { FillService } from "../../../../services/fill.service";
 
 export class StartComponent implements OnInit{
 	public validPersonalData:boolean
-	public test:Test=new Test();
+	public test:Test;
 	@Output() onStartTest:EventEmitter<any>=new EventEmitter();
 	constructor(private testService:TestService,private personalDataService:PersonalDataService,
 	private fillService:FillService){};

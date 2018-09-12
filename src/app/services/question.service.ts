@@ -29,9 +29,10 @@ export class QuestionService{
 					answers : responseQuestion.answers
 				};
 				questions.push(question);
-				questionsObject['questions'] = questions;
-				questionsObject['pageQuestionNumber'] = json.pageQuestionNumber;
-				questionsObject['pageTime'] = json.pageTime;
+			}
+			questionsObject['questions'] = questions;
+			questionsObject['pageQuestionNumber'] = json.pageQuestionNumber;
+			questionsObject['pageTime'] = json.pageTime;
 
 			return questionsObject;
 		})
@@ -63,12 +64,13 @@ export class QuestionService{
 		return this.jwtService.post('../api/public/question/addQuestion', {testId: testId})
 			.toPromise()
 			.then(response => {
-				let question = new Question();
 				let json = response.json();
-				question.id = json.id;
-				question.text = json.text;
-				question.type = json.type;
-				question.images = [];
+				let question:Question = {
+					id : json.id,
+					text : json.text,
+					type : json.type,
+					images : [],
+				}
 				return question;
 			})
 	}

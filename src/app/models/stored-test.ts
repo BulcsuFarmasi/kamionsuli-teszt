@@ -1,7 +1,7 @@
 import { Test } from './test'
 import { Page } from './page'
 
-export class StoredTest extends Test {
+export interface StoredTest  {
     currentPage:number;
     pages:Page[]
 }
