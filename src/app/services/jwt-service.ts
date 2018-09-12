@@ -16,12 +16,12 @@ export class JwtService{
         var payloadJson=JSON.parse(atob(parts[1]));
 
         var payload:JwtPayload = {
-            name:payloadJson.name,
+            id: payloadJson.sub,
             expire: new Date(0)
         };
         payload.expire.setUTCSeconds(payloadJson.exp);
 
-        return payload
+        return payload;
     }
 
     get(url:string){

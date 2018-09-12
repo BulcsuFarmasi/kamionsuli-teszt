@@ -37,9 +37,18 @@ export class UserService{
 	}
 
 	logIn(){
-		this.user.loggedIn=true;
-		this.user.name=this.jwtService.decode().name;
-		this.userSubject.next(this.user);
+		let payload = this.jwtService.decode();
+		this.networkService.get(`user/${payload.id}/getUser`).subscribe((user:User) => {
+			this.user = {
+				id: user.id,
+				name: user.name,
+				email: user.email,
+				accessFrom: new Date(user.accessFrom),
+				accessTo: new Date(user.accessTo),
+				loggedIn: true
+			}
+			this.userSubject.next(this.user);
+		})
 	}
 
 	logOut(){

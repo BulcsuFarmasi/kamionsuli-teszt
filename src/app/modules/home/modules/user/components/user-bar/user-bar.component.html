@@ -1,4 +1,4 @@
 <div *ngIf="user.loggedIn">
-  {{ user.name }}
+  {{ user.name }} - Érvényes {{ user.accessTo | date:'y.MM.dd' }}-ig
   <button class="btn" (click)="logOut()">Kilépés</button>
 </div>
