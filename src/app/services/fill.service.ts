@@ -3,7 +3,7 @@ import { Http } from '@angular/http'
 
 import { Answer } from '../models/answer';
 import { Fill } from  '../models/fill';
-import { JwtService } from './jwt-service'
+import { JwtService } from './jwt.service'
 import { PersonalData } from '../models/personal-data';
 import { PersonalQuestion } from '../models/personal-question';
 import { PersonalType } from '../models/personal-type';
@@ -15,7 +15,7 @@ export class FillService{
 	constructor(private jwtService:JwtService, private http:Http){}
 
 	getFills(testId:number){
-		return this.jwtService.get(`../api/public/fill/${testId}/getFills`)
+		/*return this.jwtService.get(`../api/public/fill/${testId}/getFills`)
 		.toPromise()
 		.then(response => {
 			var body=response.json();
@@ -51,11 +51,11 @@ export class FillService{
 			}
 
 			return personalData;
-		})
+		})*/
 	}
 
 	getFill(id:number){
-		return this.jwtService.post('../api/public/fill/getFill', {id: id})
+		/*return this.jwtService.post('../api/public/fill/getFill', {id: id})
 		.toPromise()
 		.then(response => {
 			let json = response.json();
@@ -64,7 +64,7 @@ export class FillService{
 				questions: json.questions
 			};
 			return fill;
-		})
+		})*/
 	}
 
 	getId ():number {

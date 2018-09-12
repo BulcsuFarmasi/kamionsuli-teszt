@@ -6,7 +6,7 @@ import { tap } from 'rxjs/operators';
 
 import { User } from '../models/user'
 
-import { JwtService } from './jwt-service'
+import { JwtService } from './jwt.service'
 import { NetworkService } from './network.service';
 
 @Injectable()

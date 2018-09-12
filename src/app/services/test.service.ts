@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { JwtService } from './jwt-service'
+import { tap } from 'rxjs/operators';
+
+import { JwtService } from './jwt.service'
 import { PersonalQuestion } from '../models/personal-question';
 import { Question } from '../models/question';
 import { Test } from '../models/test';
@@ -13,15 +15,15 @@ export class TestService{
 	constructor(private http:Http, private jwtService:JwtService){}
 
 	addTest () {
-		return this.jwtService.get('../api/public/test/addTest').toPromise()
+		/*return this.jwtService.get('../api/public/test/addTest').toPromise()
 			.then(response => {
 				let json = response.json();
 				return json.id;
-			});
+			});*/
 	}
 
 	copyTest (id) {
-		return this.jwtService.post('../api/public/test/copyTest', {id: id}).toPromise()
+		/*return this.jwtService.post('../api/public/test/copyTest', {id: id}).toPromise()
 			.then(respone => {
 				let json = respone.json();
 				let test:Test = {
@@ -29,7 +31,7 @@ export class TestService{
 					name : json.name
 				};
 				return test;
-			});
+			});*/
 	}
 
 	deleteTest (id) {
@@ -96,19 +98,10 @@ export class TestService{
 
 	getTests(trash:boolean){
 		this.tests=[];
-		return this.jwtService.post('../api/public/test/getTests', {trash: trash})
-		.toPromise()
-		.then(response => {
-			var tests=response.json();
-			for(let i=0;i<tests.length;i++){
-				var test:Test = {
-					id:tests[i].id,
-					name:tests[i].name
-				}
-				this.tests.push(test);
-			}
-			return this.tests;
-		})
+		return this.jwtService.post('../api/public/test/getTests', {trash})
+		.pipe(
+			tap((tests:Test[]) => {this.tests = tests})
+		)
 	}
 
     saveDescription(){

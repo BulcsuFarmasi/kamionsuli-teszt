@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
-import {Http, Headers} from '@angular/http';
 
 import { JwtPayload } from '../models/jwt-payload'
+
+import { NetworkService } from './network.service';
 
 @Injectable()
 export class JwtService{
     private tokenName:string;
     private token:string;
-    constructor(private http:Http){
+    constructor(private networkService:NetworkService){
         this.tokenName='id_token'
     };
 
@@ -25,16 +26,9 @@ export class JwtService{
     }
 
     get(url:string){
-        return this.http.get(url,{
-            headers:this.getHeader()
-        });
+        this.networkService.setAuthorizationHeader(this.token);
+        return this.networkService.get(url);
     };
-
-    getHeader():Headers{
-        var headers=new Headers();
-        headers.set('Authorization',`Bearer ${this.token}`);
-        return headers
-    }
 
     getToken(){
         if(!this.token){
@@ -43,9 +37,8 @@ export class JwtService{
     }
 
     post(url:string,data?){
-        return this.http.post(url,data,{
-            headers:this.getHeader()
-        });
+        this.networkService.setAuthorizationHeader(this.token);
+        return this.networkService.post(url,data)
     };
 
     isExpired():boolean{

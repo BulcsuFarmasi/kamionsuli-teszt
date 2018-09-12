@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core'
-import { JwtService } from './jwt-service';
+import { JwtService } from './jwt.service';
 import { Answer } from '../models/answer';
 
 @Injectable()
@@ -7,7 +7,7 @@ export class AnswerService {
     constructor(private jwtService:JwtService){}
 
     addAnswer(questionId:number) {
-       return this.jwtService.post('../api/public/answer/addAnswer',{questionId: questionId})
+       /*return this.jwtService.post('../api/public/answer/addAnswer',{questionId: questionId})
            .toPromise()
            .then(response => {
                let json = response.json();
@@ -17,7 +17,7 @@ export class AnswerService {
                     score: json.score
                }
                return answer;
-           })
+           })*/
     }
 
     getAnswerIndexById(id:number, answers:Answer[]) {

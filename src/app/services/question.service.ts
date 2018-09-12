@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
-import { JwtService } from './jwt-service'
+import { JwtService } from './jwt.service'
 
 import { Answer } from '../models/answer';
 import { Question } from '../models/question';
@@ -61,7 +61,7 @@ export class QuestionService{
 	}
 
 	addQuestion(testId:number) {
-		return this.jwtService.post('../api/public/question/addQuestion', {testId: testId})
+		/*return this.jwtService.post('../api/public/question/addQuestion', {testId: testId})
 			.toPromise()
 			.then(response => {
 				let json = response.json();
@@ -72,7 +72,7 @@ export class QuestionService{
 					images : [],
 				}
 				return question;
-			})
+			})*/
 	}
 
 	getQuestionById(id:number,questions:Question[]){

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { JwtService } from './jwt-service';
+import { JwtService } from './jwt.service';
 
 import { PersonalQuestion } from '../models/personal-question';
 import { PersonalType } from '../models/personal-type';
@@ -76,7 +76,7 @@ export class PersonalDataService{
 	}
 
 	addPersonalQuestion (testId: number) {
-		return this.jwtService.post('../api/public/personalData/addPersonalQuestion', {testId: testId}).toPromise()
+		/*return this.jwtService.post('../api/public/personalData/addPersonalQuestion', {testId: testId}).toPromise()
 			.then(response => {
 				let json = response.json();
 				let personalType:PersonalType = {
@@ -90,6 +90,6 @@ export class PersonalDataService{
 				};
 				
 				this.personalQuestions.push(personalQuestion);
-			});
+			});*/
 	}
 }

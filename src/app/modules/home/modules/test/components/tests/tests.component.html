@@ -1,0 +1,4 @@
+<h2>Tesztek</h2>
+<div class="test" *ngFor="let test of tests | async">
+		<a [routerLink]="['/test',test.id]">{{ test.name }}</a>
+</div>
