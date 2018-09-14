@@ -10,21 +10,21 @@ import { Image } from '../services/image';
 import { AnswerService } from '../services/answer.service';
 
 @Component({
-    templateUrl:'templates/edit.component.html',
+	templateUrl:'./edit.component.html',
+	styleUrls: ['./edit.component.scss'],
     providers:[QuestionService,PersonalDataService,ImageService,AnswerService]
 })
 export class EditComponent implements OnInit{
-	public test:Test=new Test();
-	public personalTypes:PersonalType[]
+	public test:Test;
+	public personalTypes:PersonalType[];
 	constructor(private testService:TestService, private router:Router, private route:ActivatedRoute,
 				private questionService:QuestionService, private personalDataService:PersonalDataService,
 				private imageService:ImageService){}
 
 	ngOnInit(){
-		var testId;
-		this.route.params.forEach((params:Params) => {
-			this.test.id=parseInt(params['testId'])
-		})
+		this.test = {
+			id: this.route.snapshot.paramMap.get('id')
+		} 
 
 		this.testService.setId(this.test.id);
 		this.testService.getStartData(true).then(test => this.test=test);

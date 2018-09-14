@@ -5,8 +5,7 @@ import { TestModule } from './modules/test/test.module';
 import { HomeRoutingModule } from './modules/home-routing/home-routing.module';
 
 import { HomeComponent } from './components/home/home.component';
-import { UserModule } from './modules/user/user.module';
-import { MainComponent } from './components/main/main.component';
+import { UserModule } from '../user/user.module';
 
 @NgModule({
   imports: [
@@ -16,8 +15,7 @@ import { MainComponent } from './components/main/main.component';
     HomeRoutingModule
   ],
   declarations: [
-      HomeComponent,
-      MainComponent
+      HomeComponent
   ],
   exports:[
     HomeComponent

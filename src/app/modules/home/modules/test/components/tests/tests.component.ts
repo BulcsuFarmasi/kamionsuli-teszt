@@ -14,7 +14,7 @@ export class TestsComponent implements OnInit {
   constructor(private jwtService:JwtService) { }
 
   ngOnInit() {
-      this.tests = <Observable<Test[]>> this.jwtService.post('test/getTests');
+      this.tests = <Observable<Test[]>> this.jwtService.get('test/getTests');
   }
 
 }

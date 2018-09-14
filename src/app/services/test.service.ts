@@ -1,41 +1,31 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
+
 
 import { tap } from 'rxjs/operators';
 
-import { JwtService } from './jwt.service'
+
 import { PersonalQuestion } from '../models/personal-question';
 import { Question } from '../models/question';
 import { Test } from '../models/test';
+
+import { NetworkService } from './network.service';
 
 @Injectable()
 export class TestService{
 	public test:Test;
 	public tests:Test[];
-	constructor(private http:Http, private jwtService:JwtService){}
+	constructor(private networkService:NetworkService){}
 
 	addTest () {
-		/*return this.jwtService.get('../api/public/test/addTest').toPromise()
-			.then(response => {
-				let json = response.json();
-				return json.id;
-			});*/
+		return this.networkService.post('test/addTest', {});
 	}
 
 	copyTest (id) {
-		/*return this.jwtService.post('../api/public/test/copyTest', {id: id}).toPromise()
-			.then(respone => {
-				let json = respone.json();
-				let test:Test = {
-					id : json.id,
-					name : json.name
-				};
-				return test;
-			});*/
+		return this.networkService.post('../api/public/test/copyTest', {id: id});
 	}
 
 	deleteTest (id) {
-		return this.jwtService.post('../api/public/test/deleteTest', {id: id}).toPromise();
+		return this.networkService.delete('test/' + id);
 	}
 
 	getAnswerById(id:number,questions:Question[]){
@@ -98,7 +88,7 @@ export class TestService{
 
 	getTests(trash:boolean){
 		this.tests=[];
-		return this.jwtService.post('../api/public/test/getTests', {trash})
+		return this.networkService.get('test/getTests/' + trash)
 		.pipe(
 			tap((tests:Test[]) => {this.tests = tests})
 		)
@@ -192,7 +182,7 @@ export class TestService{
 	}
 
 	untrashTest (id:number){
-		return this.jwtService.post('../api/public/test/untrashTest', {id: id}).toPromise();
+		return this.networkService.patch('../api/public/test/untrashTest', {id: id}).toPromise();
 	}
 
 	valuate(fillId:number){

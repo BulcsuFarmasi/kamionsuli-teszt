@@ -1,10 +1,10 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
-import { Edited } from '../services/edited';
+import { Edited } from '../../../../../../models/edited';
 
 @Component({
     selector:'editable-date',
-    templateUrl:'templates/editable-date.component.html'
+    templateUrl:'./editable-date.component.html',
 })
 
 export class EditableDateComponent{

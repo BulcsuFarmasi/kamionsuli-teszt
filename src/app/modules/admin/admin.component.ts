@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 
 import { UserService } from '../../services/user.service';
 
-import '../rxjs-op/rxjs-operators';
 
 @Component({
 	selector:'testr-admin',
@@ -11,10 +10,10 @@ import '../rxjs-op/rxjs-operators';
 
 })
 
-export class AppComponent{
-	constructor(public adminService:AdminService, private router:Router){}
+export class AdminComponent{
+	constructor(public adminService:UserService, private router:Router){}
 	logout(){
-		this.adminService.logout();
+		this.adminService.logOut();
 		this.router.navigate(['/login']);
 	}
 };

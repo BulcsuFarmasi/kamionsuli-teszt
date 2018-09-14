@@ -20,7 +20,6 @@ export class LogInComponent implements OnDestroy  {
         ...form.value,
         roleId: 2
       }
-      console.log(creditentals);
       this.subscription = this.userService.authenticate(creditentals).subscribe(
         (response:any) => {
             if (response.errorCode) {

@@ -2,7 +2,7 @@ import { Component, HostListener } from '@angular/core';
 
 @Component({
     selector:'go-to-top',
-    templateUrl: 'templates/go-to-top.component.html'
+    templateUrl: './go-to-top.component.html'
 })
 export class GoToTopComponent {
     private timer:any;

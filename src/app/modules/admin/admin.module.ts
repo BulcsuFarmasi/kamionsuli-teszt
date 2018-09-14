@@ -1,20 +1,17 @@
 import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
+import { CommonModule } from '@angular/common';
 
-import { routing } from './app.routing';
-import { components } from './declarations';
-import { AppComponent } from './app.component';
-import { AdminProviders } from '../services/admin-providers';
-import { JwtService } from '../services/jwt-service'
-import { TestService } from "../services/test.service";
+
+import { AdminComponent } from './admin.component';
+
+import { AdminRoutingModule } from './modules/admin-routing/admin-routing.module';
+import { TestModule } from './modules/test/test.module';
 
  
 @NgModule({
-	imports:[BrowserModule, FormsModule, HttpModule, routing],
-	declarations:[...components],
-	providers:[AdminProviders,JwtService, TestService],
-	bootstrap:[AppComponent]
+	imports:[CommonModule, AdminRoutingModule, TestModule],
+	declarations:[AdminComponent],
+	exports: [AdminModule]
+
 })
 export class AppModule{}

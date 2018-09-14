@@ -1,0 +1,9 @@
+<section class="tests">
+    <h2>Kuka</h2>
+    <a [routerLink]="['/tests']">Tesztek</a>
+    <div class="test" *ngFor="let test of tests">
+        <p>{{test.name}}
+            <button (click)="untrashTest(test)" class="btn btn-edit">Visszaállítás</button>
+            <button (click)="deleteTest(test)" class="btn btn-delete">Törlés</button>
+    </div>
+</section>

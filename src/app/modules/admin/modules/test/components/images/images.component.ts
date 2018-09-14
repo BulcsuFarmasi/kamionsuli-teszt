@@ -5,7 +5,7 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
     selector:'images',
-    templateUrl:'./templates/images.component.html'
+    templateUrl:'./images.component.html'
 })
 
 export class ImagesComponent implements OnInit{
