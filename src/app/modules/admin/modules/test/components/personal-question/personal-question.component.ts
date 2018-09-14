@@ -1,11 +1,14 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
-import { Edited } from '../services/edited';
-import { PersonalQuestion, PersonalType, PersonalDataService } from '../services/personal-data.service';
+import { Edited } from '../../../../../../models/edited';
+import { PersonalQuestion } from '../../../../../../models/personal-question';
+import { PersonalType } from '../../../../../../models/personal-type';
+import { PersonalDataService } from '../../../../../../services/personal-data.service';
 
 @Component({
 	selector:'personal-question',
-	templateUrl:'templates/personal-question.component.html'
+	templateUrl:'./personal-question.component.html',
+	encapsulation: ViewEncapsulation.None
 })
 
 export class PersonalQuestionComponent{

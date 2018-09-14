@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router, ActivatedRoute, Params} from '@angular/router';
 import { FillService, Fill } from '../services/fill.service';
 
 @Component({
-	templateUrl:'templates/fill.component.html',
-	providers:[FillService]
+	templateUrl:'./fill.component.html',
+	styleUrls:['./fill.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 
 export class FillComponent implements OnInit{

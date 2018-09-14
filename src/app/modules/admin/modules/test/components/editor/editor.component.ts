@@ -2,7 +2,8 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
 	selector:'editor',
-	templateUrl:'./editor.component.html'
+	templateUrl:'./editor.component.html',
+	styleUrls:['./editor.component.scss']
 })
 
 export class EditorComponent implements OnInit{

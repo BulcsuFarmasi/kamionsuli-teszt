@@ -1,0 +1,58 @@
+@import 'fonts';
+@import 'variables';
+
+*{
+	font-family:'Open Sans';
+}
+
+.btn{
+	color:$color-white;
+	background-color:$color-red;
+	font-family:'HHelvetica Condensed Bold';
+	border:none;
+	font-size:20px;
+	padding:1% 5%;
+	&:disabled{
+		background-color:$color-mercury;
+	}
+}
+
+.buttons{
+	text-align:center;
+	margin:{
+		top:40px;
+		bottom:40px;
+	}
+}
+
+body{
+	background-color:$color-mercury;
+}
+
+home {
+	display:block;
+	width:80%;
+	margin:0 auto;
+	background-color:$color-white;
+	padding:2%;
+}
+
+
+@media only screen and (max-width:1024px) {
+	.btn {
+		width:75%;
+		padding:3% 5%;
+		line-height: 26px;
+	}
+}
+
+@media only screen and (max-width:480px) {
+	.btn {
+		width:90%;
+		padding:6% 5%;
+    }
+    
+    home {
+		width:90%;
+	}
+}

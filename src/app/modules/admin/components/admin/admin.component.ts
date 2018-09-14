@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { UserService } from '../../services/user.service';
+import { UserService } from '../../../../services/user.service';
 
 
 @Component({
 	selector:'testr-admin',
-	templateUrl:'templates/app.component.html',
-
+	templateUrl:'./app.component.html',
+	styleUrls:['./admin.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 
 export class AdminComponent{

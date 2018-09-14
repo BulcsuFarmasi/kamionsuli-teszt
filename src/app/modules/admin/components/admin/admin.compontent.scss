@@ -1,0 +1,94 @@
+@import 'fonts';
+@import 'variables';
+
+* {
+	font-family: 'Open Sans', sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+.btn {
+	border-radius: 20px;
+	border: 3px solid $color-bg-1;
+	color: $color-bg-1;
+	text-decoration: none;
+	padding: 5px 10px;
+}
+
+.btn-edit {
+	background-color: $color-edit;
+}
+
+.btn-delete {
+	background-color: $color-delete;
+}
+
+.btn-new {
+	background-color: $color-new;
+}
+
+.block {
+	width: 90%;
+	background-color: $color-bg-1;
+	margin:40px auto;
+	article {
+		padding:10px;
+	}
+	h2 {
+		background-color: $color-edit;
+		color: $color-bg-1;
+		padding: 10px;
+		margin-left:0
+	}
+}
+
+body {
+	background-color: $color-bg-3;
+}
+
+editable-input {
+	display:flex;
+	align-items: flex-start;
+	* {
+		width: 20%;
+		margin-right:2%;
+	}
+
+}
+
+editor {
+	margin: 20px 0;
+	display:block;
+}
+
+h2 {
+	margin:{
+		left: 5%;
+		top: 40px;
+	}
+}
+
+header {
+	background-color: $color-new;
+	color: $color-bg-1;
+	display:flex;
+	justify-content: space-between;
+	padding:20px 5%;
+	.admin {
+		padding-top:10px;
+	}
+}
+
+go-to-top {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	width: 54px;
+	img {
+		width:100%;
+		&.disabled {
+			display: none;
+		}
+	}
+}
+

@@ -1,10 +1,12 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
 
-import { Edited } from '../services/edited';
+import { Edited } from '../../../../../../models/edited';
 
 @Component({
 	selector:'editable-input',
-	templateUrl:'templates/editable-input.component.html'
+	templateUrl:'./editable-input.component.html',
+	styleUrls:['./editable-input.component.scss'],
+	encapsulation: ViewEncapsulation.None,
 })
 
 export class EditableInputComponent{

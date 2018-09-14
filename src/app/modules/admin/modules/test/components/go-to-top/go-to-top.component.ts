@@ -1,8 +1,10 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector:'go-to-top',
-    templateUrl: './go-to-top.component.html'
+    templateUrl: './go-to-top.component.html',
+    styleUrls: ['./go-to-top.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class GoToTopComponent {
     private timer:any;

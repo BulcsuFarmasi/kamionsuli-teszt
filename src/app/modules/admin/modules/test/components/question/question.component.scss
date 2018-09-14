@@ -1,0 +1,55 @@
+.question {
+	background-color:$color-bg-3;
+	border: 2px solid $color-edit;
+	margin:20px 0;
+	padding:10px;
+	position: relative;
+	> h3 {
+		background-color: $color-edit;
+		color: $color-bg-1;
+		position: relative;
+		top: -10px;
+		left: -10px;
+		width: 100.1%;
+		padding: 10px;
+	}
+}
+
+question{
+	position:relative;
+	.answer {
+		background-color:$color-bg-1;
+		margin:10px 0;
+		line-height: 20px;
+		padding: 10px;
+		editable-input {
+			input, span {
+				width: 70%;
+				margin-right:2%;
+			}
+			button {
+				width:15%;
+			}
+		}
+	}
+	img{
+		position:relative;
+	}
+	h3 {
+		font-family: 'HHelvetica Condensed Bold',serif;
+		editable-input {
+			input, span {
+				width: 70%;
+				margin-right:2%;
+			}
+			button {
+				width:15%;
+			}
+		}
+	}
+	h4 {
+		background-color: $color-edit;
+		color: $color-bg-1;
+		margin:10px 0;
+	}
+}
