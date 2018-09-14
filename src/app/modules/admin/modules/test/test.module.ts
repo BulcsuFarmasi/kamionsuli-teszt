@@ -7,6 +7,6 @@ import { components } from './declarations';
     CommonModule
   ],
   declarations: [...components],
-  export: [...components]
+  exports: [...components]
 })
 export class TestModule { }

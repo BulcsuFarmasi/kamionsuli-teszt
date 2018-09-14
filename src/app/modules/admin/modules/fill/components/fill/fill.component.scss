@@ -1,0 +1,11 @@
+.fill {
+	.marked {
+		font-weight: bold;
+	}
+	.right {
+		color: $color-new;
+	}
+	.wrong {
+		color: $color-delete;
+	}
+}

@@ -6,7 +6,7 @@ import { AnswerService } from "../services/answer.service";
 
 @Component({
 	selector:'question',
-	templateUrl:'templates/question.component.html'
+	templateUrl:'./question.component.html'
 })
 
 export class QuestionComponent{

@@ -1,0 +1,12 @@
+go-to-top {
+	position: fixed;
+	bottom: 10px;
+	right: 10px;
+	width: 54px;
+	img {
+		width:100%;
+		&.disabled {
+			display: none;
+		}
+	}
+}

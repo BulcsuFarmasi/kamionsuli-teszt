@@ -5,8 +5,7 @@ import { FillService, Fill } from '../services/fill.service';
 import { PersonalQuestion } from '../services/personal-data.service';
 
 @Component({
-	templateUrl:'templates/fills.component.html',
-	providers:[FillService],
+	templateUrl:'./fills.component.html',
 })
 
 export class FillsComponent implements OnInit{
