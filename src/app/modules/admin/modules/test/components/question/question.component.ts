@@ -1,42 +1,46 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 
-import { Edited } from  '../services/edited'
-import { Question } from '../services/question.service';
-import { AnswerService } from "../services/answer.service";
+
+import { Subscription } from 'rxjs';
+
+
+import { Answer } from '../../../../../../models/answer';
+import { Edited } from  '../../../../../../models/edited'
+import { Question } from '../../../../../../models/question';
+
+import { AnswerService } from "../../../../../../services/answer.service";
+import { QuestionService } from '../../../../../../services/question.service';
 
 @Component({
 	selector:'question',
 	templateUrl:'./question.component.html'
 })
 
-export class QuestionComponent{
+export class QuestionComponent implements OnDestroy {
+
+
+	addAnswerSubscription:Subscription;
+	deleteAnswerSubscription:Subscription;
+	saveTextSubscription:Subscription;
+	saveTypeSubscription:Subscription;
+	saveAnswerTextSubscription:Subscription;
+	saveAnswerScoreSubscription:Subscription;
 	@Input() question:Question;
-	@Output() onTransferEditing:EventEmitter<Edited> = new EventEmitter();
 
-	constructor(private answerService:AnswerService){};
+	constructor(private answerService:AnswerService, private questionService:QuestionService){};
 
-	onStopEditing(edited){
-		this.onTransferEditing.emit(edited);
-	}
-
-	getFile(image){
-		var edited=new Edited();
-		edited.id=this.question.id;
-		edited.type='image';
-		edited.value=image;
-		this.onStopEditing(edited);
-    }
-
-    deleteImage(imageId){
-		var edited=new Edited();
-		edited.id=imageId;
-		edited.type='deleteImage';
-		this.onStopEditing(edited);
+	ngOnDestroy () {
+		this.addAnswerSubscription.unsubscribe();
+		this.deleteAnswerSubscription.unsubscribe();
+		this.saveTextSubscription.unsubscribe();
+		this.saveTypeSubscription.unsubscribe();
+		this.saveAnswerTextSubscription.unsubscribe();
+		this.saveAnswerScoreSubscription.unsubscribe();
 	}
 
 	addAnswer() {
-		this.answerService.addAnswer(this.question.id)
-			.then(answer => {
+		this.addAnswerSubscription = this.answerService.addAnswer(this.question.id)
+			.subscribe((answer:Answer) => {
 				this.question.answers.push(answer);
 			})
 	}
@@ -44,7 +48,27 @@ export class QuestionComponent{
     	if (confirm('Biztosan törlni akarod a választ?')) {
 			let answerIndex = this.answerService.getAnswerIndexById(answerId, this.question.answers);
 			this.question.answers.splice(answerIndex, 1);
-			this.answerService.deleteAnswer(answerId);
+			this.deleteAnswerSubscription = this.answerService.deleteAnswer(answerId).subscribe();
 		}
+	}
+
+	saveText(text) {
+		this.question.text = text;
+		this.questionService.saveText(this.question.id, text).subscribe();
+	}
+
+	saveType(type:string){
+		this.question.type=type;
+		this.questionService.saveType(this.question.id,type).subscribe();
+	}
+
+	saveAnswerText(text:string, index:number){
+		this.question.answers[index].text=text;
+		this.answerService.saveText(this.question.answers[index].id, text).subscribe();
+	}
+
+	saveAnswerScore(score:number, index:number){
+		this.question.answers[index].score=score;
+		this.answerService.saveScore(this.question.answers[index].id, score).subscribe();
 	}
 }

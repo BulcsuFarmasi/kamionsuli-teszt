@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ViewEncapsulation, OnDestroy } from '@angular/core';
+
+import { Subscription } from 'rxjs';
 
 import { Edited } from '../../../../../../models/edited';
 import { PersonalQuestion } from '../../../../../../models/personal-question';
@@ -11,24 +13,28 @@ import { PersonalDataService } from '../../../../../../services/personal-data.se
 	encapsulation: ViewEncapsulation.None
 })
 
-export class PersonalQuestionComponent{
+export class PersonalQuestionComponent implements OnDestroy {
 	@Input() personalQuestion:PersonalQuestion;
 	@Output() onTransferEditing:EventEmitter<Edited>= new EventEmitter();
 	@Input() personalTypes:PersonalType[];
 
+	private saveNameSubscription:Subscription;
+	private saveTypeSubscription:Subscription;
+
 	constructor(private personalDataService:PersonalDataService){}
 
-	onStopEditing(edited:Edited){
-		this.onTransferEditing.emit(edited);
+	ngOnDestroy () {
+		this.saveNameSubscription.unsubscribe();
+		this.saveTypeSubscription.unsubscribe();
 	}
 
-	getPersonalType(id:number){
-		this.personalQuestion.type.name=this.personalDataService.getTypeNameById(id);
-		let edited=new Edited();
-		edited.id=this.personalQuestion.id;
-		edited.value=this.personalQuestion.type;
-		edited.type='personalQuestionType';
-		this.onStopEditing(edited);
+	saveName(name:string){
+		this.personalQuestion.name=name;
+		this.saveNameSubscription = this.personalDataService.savePersonalQuestionName(this.personalQuestion.id,name).subscribe();
+	}
+
+	saveType(typeId:number){
+		this.personalDataService.savePersonalQuestionType(this.personalQuestion.id,typeId);
 	}
 
 }

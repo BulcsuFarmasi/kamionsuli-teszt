@@ -1,4 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewEncapsulation } from '@angular/core';
+
+
+import { Subscription } from 'rxjs';
+
 
 import { FillService } from '../../../../../../services/fill.service';
 import { TestService } from '../../../../../../services/test.service';
@@ -13,21 +17,27 @@ import { PersonalQuestion } from '../../../../../../models/personal-question';
 	encapsulation: ViewEncapsulation.None
 })
 
-export class PersonalDataComponent implements OnInit{
+export class PersonalDataComponent implements OnInit, OnDestroy {
 	public personalQuestions:PersonalQuestion[] = [];
 	public consent:boolean;
-	
 	@Output() onValidity:EventEmitter<boolean>=new EventEmitter();
+
+	private getPersonalDataSubscription:Subscription; 
 	
 	constructor(private testService:TestService, private personalDataService:PersonalDataService, 
 		private fillService:FillService){};
 	
 	ngOnInit(){
-		this.personalDataService.getPersonalData(this.testService.getId())
-		.then(function(questions){
-			this.personalQuestions=questions;
-		}.bind(this));
+		let test = this.testService.getTest()
+		this.getPersonalDataSubscription = this.personalDataService.getPersonalData(test.id)
+		.subscribe((personalQuestions:PersonalQuestion[]) => {
+			this.personalQuestions = personalQuestions;
+		})
 	};
+
+	ngOnDestroy () {
+		this.getPersonalDataSubscription.unsubscribe();
+	}
 	
 	checkValidity(){
 		let valid=true;

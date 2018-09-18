@@ -1,13 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
+
+import { JwtService } from './jwt.service';
+
 @Injectable()
 export class NetworkService {
 
   private url = 'https://kamionsuli-teszt.farmasibulcsu.hu/api/public/';
   private headers:HttpHeaders = new HttpHeaders();
   
-  constructor(private httpClient:HttpClient, private jwtService) {}
+  constructor(private httpClient:HttpClient, private jwtService:JwtService) {}
 
   delete (urlPart:string) {
     this.setAuthorizationHeader();
@@ -22,6 +25,11 @@ export class NetworkService {
   patch (urlPart:string, body:any) {
     this.setAuthorizationHeader();
     return this.httpClient.patch(this.url + urlPart, body, { headers: this.headers });
+  }
+
+  put (urlPart:string, body:any) {
+    this.setAuthorizationHeader();
+    return this.httpClient.put(this.url + urlPart, body, { headers: this.headers });
   }
 
   post (urlPart:string, body:any) {

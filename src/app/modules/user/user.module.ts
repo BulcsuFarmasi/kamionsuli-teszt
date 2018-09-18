@@ -7,8 +7,9 @@ import { components } from './user.declarations';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { NetworkService } from '../../../../services/network.service';
-import { UserService } from '../../../../services/user.service';
+import { JwtService } from '../../services/jwt.service';
+import { NetworkService } from '../../services/network.service';
+import { UserService } from '../../services/user.service';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import { UserService } from '../../../../services/user.service';
     RouterModule
   ],
   providers: [
+    JwtService,
     NetworkService,
     UserService
   ],

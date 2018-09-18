@@ -1,16 +1,16 @@
 import { Component, Output, EventEmitter } from  '@angular/core';
 
-import { Image } from '../services/image';
+import { Image } from '../../../../../../models/image';
 
 @Component({
     selector:'image-upload',
-    templateUrl:'templates/image-upload.component.html'
+    templateUrl:'./image-upload.component.html'
 })
 
 export class ImageUploadComponent{
     @Output() sendfile:EventEmitter<Image>=new EventEmitter();
     private fileReader:FileReader=new FileReader();
-    private image:Image=new Image();
+    private image:Image;
 
     getFile(event){
         var file=event.srcElement.files[0];

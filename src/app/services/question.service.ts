@@ -1,26 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Http } from '@angular/http';
-import { JwtService } from './jwt.service'
 
-import { Answer } from '../models/answer';
+
+import { map } from 'rxjs/operators';
+
+
 import { Question } from '../models/question';
+
+import { NetworkService } from './network.service';
 
 @Injectable()
 export class QuestionService{
 	private questions:Question[];
-	constructor(private http:Http, private jwtService:JwtService){};
+	constructor(private networkService:NetworkService){};
 	getQuestions(){
 		return this.questions;
 	}
-	getQuestionsObject(testId:number,admin:boolean,getScores:boolean){
-		var up:string=(admin) ? '../' : '';
-		return this.http.post(`${up}api/public/question/${testId}/getQuestions`,{getScores:getScores})
-		.toPromise()
-		.then(response => {
-			let json = response.json();
+	getQuestionsObject(testId:number,getScores:boolean) {
+		return this.networkService.get(`question/${testId}/getQuestions/${getScores}`)
+		.pipe(
+			map((response:any) => {
 			let questionsObject = [];
 			let questions = [];
-			for (let responseQuestion of json.questions) {
+			for (let responseQuestion of response.questions) {
 				let question:Question = {
 					id: responseQuestion.id,
 					text : responseQuestion.text,
@@ -31,11 +32,13 @@ export class QuestionService{
 				questions.push(question);
 			}
 			questionsObject['questions'] = questions;
-			questionsObject['pageQuestionNumber'] = json.pageQuestionNumber;
-			questionsObject['pageTime'] = json.pageTime;
+			questionsObject['pageQuestionNumber'] = response.pageQuestionNumber;
+			questionsObject['pageTime'] = response.pageTime;
 
 			return questionsObject;
-		})
+			})
+
+		)
 	}
 	setQuestions(questions:Question[]){
 		this.questions=questions;
@@ -61,18 +64,13 @@ export class QuestionService{
 	}
 
 	addQuestion(testId:number) {
-		/*return this.jwtService.post('../api/public/question/addQuestion', {testId: testId})
-			.toPromise()
-			.then(response => {
-				let json = response.json();
-				let question:Question = {
-					id : json.id,
-					text : json.text,
-					type : json.type,
-					images : [],
-				}
-				return question;
-			})*/
+		return this.networkService.post('../api/public/question/addQuestion', {testId: testId})
+			.pipe(
+				map((question:Question) =>  {
+					question.images = [];
+					return question;
+				})
+			)
 	}
 
 	getQuestionById(id:number,questions:Question[]){
@@ -92,12 +90,14 @@ export class QuestionService{
 	}
 
 	deleteQuestion(id:number){
-		this.jwtService.post('../api/public/question/deleteQuestion', {id: id})
-			.toPromise();
+		return this.networkService.delete('question/' + id)
 	}
-	
-	saveAnswers(fillId:number, questions:Question[]) {
-		this.http.post('api/public/answer/saveAnswers', {fillId:fillId, questions:questions})
-			.toPromise()
+
+	saveText(id:number, text:string){
+		return this.networkService.patch('question/saveText',{id:id,text:text})
+	}
+
+	saveType(id:number, type:string){
+		return this.networkService.patch('question/saveType',{id:id,type:type})
 	}
 }

@@ -6,7 +6,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from '../../components/home/home.component';
 
 import { testRoutes } from '../test/test.routing';
-import { userRoutes } from '../user/user.routing';
+import { userRoutes } from '../../../user/user.routing';
 
 import { UserGuard } from '../../../../services/user-guard';
 import { UserService } from '../../../../services/user.service';

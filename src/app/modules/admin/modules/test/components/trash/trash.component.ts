@@ -45,7 +45,7 @@ export class TrashComponent implements OnInit, OnDestroy{
     }
 
     untrashTest (test:Test) {
-        this.testService.untrashTest(test.id).then(response => {
+        this.untrashSubscription = this.testService.untrashTest(test.id).subscribe(() => {
             this.removeTest(test);
         })
     }

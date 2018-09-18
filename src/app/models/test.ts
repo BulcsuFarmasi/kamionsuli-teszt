@@ -3,11 +3,11 @@ import { Question } from './question';
 
 export interface Test{
 	id:number;
-	name:string;
+	name?:string;
 	description?:string;
 	fillable?:boolean;
-	startTime?:Date;
-	endTime?:Date;
+	startTime?:Date|number;
+	endTime?:Date|number;
 	time?:string;
 	remainingSeconds?:number;
 	personalQuestions?: PersonalQuestion[]

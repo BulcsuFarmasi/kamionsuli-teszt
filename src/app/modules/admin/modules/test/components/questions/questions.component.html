@@ -1,0 +1,11 @@
+<section class="block">
+  <h2>Kérdések</h2>
+  <article>
+      <div *ngFor="let question of questions; let i=index" class="question">
+          <h3>{{ i + 1 }}.</h3>
+          <question [question]="question"></question>
+          <button (click)="deleteQuestion(question.id)" class="btn btn-delete">Kérdés törlése</button>
+      </div>
+      <button (click)="addQuestion()" class="btn btn-new">Új Kérdés</button>
+  </article>
+</section>

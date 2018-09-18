@@ -1,4 +1,8 @@
-import {Component, OnInit, Output, EventEmitter, AfterViewInit, ViewChildren, QueryList} from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, AfterViewInit, ViewChildren, QueryList, OnDestroy } from '@angular/core';
+
+
+import { Subscription } from 'rxjs';
+
 
 import { PageComponent } from '../page/page.component';
 
@@ -13,17 +17,18 @@ import { Page } from '../../../../../../models/page'
 	providers:[QuestionService]
 })
 
-export class QuestionsComponent implements OnInit, AfterViewInit{
+export class QuestionsComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	public pageNumber:number;
 	public pages:Page[];
 	public currentPage:number
-	public questionsObject:Object;
+	public questionsObject:any;
 	public pageComponents:PageComponent[];
 	@Output() onBackToStart:EventEmitter<any>=new EventEmitter();
 	@Output() onGoToValuation:EventEmitter<any>=new EventEmitter();
 	@ViewChildren(PageComponent)
 	private pageComponentList:QueryList<PageComponent>;
+	private getQuestionsObjectSubscription:Subscription
 
 	constructor(private testService:TestService, private questionService:QuestionService,
 				private fillService:FillService){
@@ -32,7 +37,9 @@ export class QuestionsComponent implements OnInit, AfterViewInit{
 	}
 	
 	ngOnInit(){
-		this.questionService.getQuestionsObject(this.testService.getId(),false,false).then(function(questions){
+		let test = this.testService.getTest();
+		this.questionService.getQuestionsObject(test.id,false)
+		.subscribe((questions:any[]) => {
 			this.questionsObject=questions;
 			this.pageNumber=this.questionsObject.questions.length/this.questionsObject.pageQuestionNumber;
 			this.questionService.setQuestions(this.questionsObject.questions);
@@ -43,7 +50,11 @@ export class QuestionsComponent implements OnInit, AfterViewInit{
 				page.questions.push(...this.questionsObject.questions.slice(i,i+this.questionsObject.pageQuestionNumber));
 				this.pages.push(page);
 			}
-		}.bind(this));
+		})
+	}
+
+	ngOnDestroy () {
+		this.getQuestionsObjectSubscription.unsubscribe();
 	}
 
 	ngAfterViewInit(){

@@ -1,6 +1,12 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { Router, ActivatedRoute, Params} from '@angular/router';
-import { FillService, Fill } from '../services/fill.service';
+import { Router, ActivatedRoute } from '@angular/router';
+
+
+import { Subscription } from 'rxjs';
+
+
+import { FillService } from '../../../../../../services/fill.service';
+import { Fill } from '../../../../../../models/fill';
 
 @Component({
 	templateUrl:'./fill.component.html',
@@ -9,19 +15,18 @@ import { FillService, Fill } from '../services/fill.service';
 })
 
 export class FillComponent implements OnInit{
-	public fill:Fill;
+	fill:Fill;
+	private getFillSubscription:Subscription 
 	constructor(private fillService:FillService, private router:Router, private route:ActivatedRoute){}
 
 	ngOnInit(){
-		this.fill = new Fill();
-		var fillId;
-		this.route.params.forEach((params:Params) => {
-			fillId=parseInt(params['fillId']);
-		})
-		this.fillService.getFill(fillId).then(fill => {
-			console.log(fill);
+		let fillId = +this.route.snapshot.paramMap.get('fillId');
+		this.getFillSubscription = this.fillService.getFill(fillId).subscribe(fill => {
 			this.fill = fill;
-			console.log(this.fill);
 		})
+	}
+
+	ngOnDestroy () {
+		this.getFillSubscription.unsubscribe();
 	}
 }

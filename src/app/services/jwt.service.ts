@@ -2,13 +2,11 @@ import { Injectable } from '@angular/core';
 
 import { JwtPayload } from '../models/jwt-payload'
 
-import { NetworkService } from './network.service';
-
 @Injectable()
 export class JwtService{
     private tokenName:string;
     private _token:string;
-    constructor(private networkService:NetworkService){
+    constructor(){
         this.tokenName='id_token'
     };
 

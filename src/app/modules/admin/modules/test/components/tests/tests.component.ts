@@ -48,7 +48,7 @@ export class TestsComponent implements OnInit, OnDestroy{
 
 	trashTest (id:number) {
 		if (confirm('Biztosan kukába akarod helyezni a tesztet?')) {
-			this.trashSubscription = this.testService.trashTest(id).then(response => {
+			this.trashSubscription = this.testService.trashTest(id).subscribe(() => {
 				let testIndex = this.testService.getIndexById(id, this.tests);
 				this.tests.splice(testIndex, 1);
 			})

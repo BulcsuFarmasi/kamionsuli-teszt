@@ -4,11 +4,11 @@
 import { Injectable } from "@angular/core";
 
 import { Image } from "../models/image";
-import { JwtService } from './jwt.service';
+import { NetworkService } from "./network.service";
 
 @Injectable()
 export class ImageService{
-    constructor(private jwtService:JwtService){};
+    constructor(private networkService:NetworkService){};
     saveImage(questionId:number,image:Image){
        /* return this.jwtService.post('../api/public/image/save',{questionId:questionId,image:image}).toPromise()
             .then(response =>
@@ -17,6 +17,6 @@ export class ImageService{
         */    
     }
     deleteImage(id:number){
-        this.jwtService.post('../api/public/image/delete',{id:id}).toPromise();
+        return this.networkService.delete('image/' + id );
     }
 }

@@ -15,4 +15,4 @@ import { FillModule } from './modules/fill/fill.module';
 	exports: [AdminComponent]
 
 })
-export class AppModule{}
+export class AdminModule{}

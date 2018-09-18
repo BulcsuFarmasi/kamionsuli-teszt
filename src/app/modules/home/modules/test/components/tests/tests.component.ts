@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Test } from '../../../../../../models/test';
+
+
 import { Observable } from 'rxjs';
-import { JwtService } from '../../../../../../services/jwt.service';
+
+
+import { TestService } from '../../../../../../services/test.service';
 
 @Component({
   selector: 'tests',
@@ -11,10 +15,10 @@ import { JwtService } from '../../../../../../services/jwt.service';
 export class TestsComponent implements OnInit {
 
   tests:Observable<Test[]>
-  constructor(private jwtService:JwtService) { }
+  constructor(private testService:TestService) { }
 
   ngOnInit() {
-      this.tests = <Observable<Test[]>> this.jwtService.get('test/getTests');
+      this.tests = this.testService.getTests(false);
   }
 
 }

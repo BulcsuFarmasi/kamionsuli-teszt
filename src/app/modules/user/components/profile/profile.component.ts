@@ -4,9 +4,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 
-import { User } from '../../../../../../models/user';
+import { User } from '../../../../models/user';
 
-import { UserService } from '../../../../../../services/user.service';
+import { UserService } from '../../../../services/user.service';
 
 @Component({
   selector: 'app-profile',

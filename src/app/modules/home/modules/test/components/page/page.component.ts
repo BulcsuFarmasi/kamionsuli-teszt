@@ -1,8 +1,13 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+
+
+import { Subscription } from 'rxjs';
+
+
+import { Page } from '../../../../../../models/page';
 
 import { TimeService } from '../../../../../../services/time.service'
-import { Page } from '../../../../../../models/page';
-import { QuestionService } from "../../../../../../services/question.service";
+import { AnswerService } from "../../../../../../services/answer.service";
 
 @Component({
 	selector:'page',
@@ -10,16 +15,21 @@ import { QuestionService } from "../../../../../../services/question.service";
 	providers:[TimeService]
 })
 
-export class PageComponent{
+export class PageComponent implements OnInit, OnDestroy{
 	@Input() page:Page;
 	@Output() timeexpired:EventEmitter<any> = new EventEmitter();
 	private timer:any;
-	private countUpSeconds
-	constructor(private timeService:TimeService, private questionService:QuestionService){}
+	private countUpSeconds;
+	private saveAnswerSubscription:Subscription
+	constructor(private timeService:TimeService, private answerService:AnswerService){}
 
 
 	ngOnInit(){
 		this.page.time=this.page.time.substring(3);
+	}
+
+	ngOnDestroy () {
+		this.saveAnswerSubscription.unsubscribe();
 	}
 
 	startCountdown(){
@@ -49,6 +59,6 @@ export class PageComponent{
 		this.page.questions.forEach((question) => {
 			question.time = averageTime;
 		})
-		this.questionService.saveAnswers(fillId, this.page.questions);
+		this.saveAnswerSubscription = this.answerService.saveAnswers(fillId, this.page.questions).subscribe();
 	}
 };

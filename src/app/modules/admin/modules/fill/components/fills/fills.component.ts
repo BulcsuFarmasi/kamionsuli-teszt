@@ -1,32 +1,40 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 
-import { FillService, Fill } from '../services/fill.service';
-import { PersonalQuestion } from '../services/personal-data.service';
+import { Subscription } from 'rxjs';
+
+import { FillService } from '../../../../../../services/fill.service';
+import { Fill } from '../../../../../../models/fill';
+import { PersonalQuestion } from '../../../../../../models/personal-question';
+
 
 @Component({
 	templateUrl:'./fills.component.html',
 })
 
-export class FillsComponent implements OnInit{
+export class FillsComponent implements OnInit, OnDestroy{
 	public testId:number;
 	public fills:Fill[];
 	public personalDataTypes:PersonalQuestion[];
 	private personalDataTypeNames:string[];
+	private getFillsSubscription:Subscription
 
 	constructor(private fillService:FillService, private router:Router, private route:ActivatedRoute){}
 
 	ngOnInit(){
-		this.route.params.forEach((params:Params) => {
-			this.fillService.getFills(parseInt(params['testId']))
-			.then(personalData => {
+		let testId = +this.route.snapshot.paramMap.get('testId');
+		this.testId = testId;
+		this.getFillsSubscription = this.fillService.getFills(testId)
+			.subscribe(personalData => {
 				this.fills=personalData.fills;
 				this.personalDataTypes=personalData.types;
-				console.log(this.fills, this.personalDataTypes);
 			});
-			this.testId = params['testId'];
-		})
 	}
+
+	ngOnDestroy () {
+		this.getFillsSubscription.unsubscribe();
+	}
+
 	orderAsc(type:string){
 		this.fills.sort(function(a,b){
 			if(a[type] < b[type]){

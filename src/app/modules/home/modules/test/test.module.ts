@@ -4,16 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
-import { JwtService } from '../../../../services/jwt.service'
+
 import { components } from './declarations'
+
+import { JwtService } from '../../../../services/jwt.service'
 import { TestService } from '../../../../services/test.service';
 import { FillService } from '../../../../services/fill.service';
-import { TestsComponent } from './components/tests/tests.component';
+import { NetworkService } from '../../../../services/network.service';
 
 @NgModule({
     imports:[ FormsModule, HttpClientModule, CommonModule, RouterModule ],
-    declarations:[...components, TestsComponent],
-    providers:[JwtService, TestService, FillService],
+    declarations:[...components],
+    providers:[FillService, JwtService, NetworkService, TestService],
     exports:[...components]
 })
 

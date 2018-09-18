@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 
-import { tap } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 
 
 import { PersonalQuestion } from '../models/personal-question';
@@ -28,16 +28,6 @@ export class TestService{
 		return this.networkService.delete('test/' + id);
 	}
 
-	getAnswerById(id:number,questions:Question[]){
-		for(let question of questions){
-			for(let answer of question.answers){
-				if(answer.id == id){
-					return answer;
-				}
-			}
-		}
-	}
-
 	getId():number {
 		return this.test.id;
 	}
@@ -51,23 +41,18 @@ export class TestService{
 	}
 
 	getStartData(admin:boolean = false){
-		var up=(admin) ? '../' : '';
-		return this.http.get(`${up}api/public/test/${this.test.id}/getStartData`)
-		.toPromise()
-		.then(response => {
-			var test=response.json();
-			this.test.name = test.name;
-			this.test.description = test.description;
-			this.test.fillable = test.fillable;
-			this.test.remainingSeconds = test.remainingSeconds;
-			this.test.startTime = new Date(test.startTime * 1000);
-			this.test.endTime = new Date(test.endTime * 1000);
+		return this.networkService.get(`test/${this.test.id}/getStartData`)
+		.pipe(
+			map((test:Test) => {
+				this.test.name = test.name;
+				this.test.description = test.description;
+				this.test.fillable = test.fillable;
+				this.test.remainingSeconds = test.remainingSeconds;
+				this.test.startTime = new Date(<number>test.startTime * 1000);
+				this.test.endTime = new Date(<number>test.endTime * 1000);
 			return this.test;
-		});
-	}
-
-	getPageQuestionNumber():number{
-		return this.test.pageQuestionNumber;
+			})
+		)
 	}
 
 	getPersonalQuestionById(id:number,personalQuestions:PersonalQuestion[]){
@@ -78,16 +63,13 @@ export class TestService{
 		}
 	}
 
-	getPersonalQuestions():PersonalQuestion[]{
-		return this.test.personalQuestions;
-	}
-
-	getQuestions():Question[]{
-		return this.test.questions;
+	getTest () {
+		return this.test;
 	}
 
 	getTests(trash:boolean){
 		this.tests=[];
+		console.log(trash, 'test/getTests/' + trash);
 		return this.networkService.get('test/getTests/' + trash)
 		.pipe(
 			tap((tests:Test[]) => {this.tests = tests})
@@ -95,52 +77,27 @@ export class TestService{
 	}
 
     saveDescription(){
-        this.jwtService.post('../api/public/test/saveDescription',{id:this.test.id,description:this.test.description}).toPromise();
+        this.networkService.patch('test/saveDescription',{id:this.test.id,description:this.test.description});
     }
 
 	saveName(){
-		this.jwtService.post('../api/public/test/saveName',{id:this.test.id,name:this.test.name}).toPromise();
+		this.networkService.patch('test/saveName',{id:this.test.id,name:this.test.name});
 	}
-
-	saveAnswerText(id:number, text:string){
-		this.jwtService.post('../api/public/answer/saveText',{id:id,text:text}).toPromise();
-	}
-
-	saveAnswerScore(id:number, score:number){
-		this.jwtService.post('../api/public/answer/saveScore',{id:id,score:score}).toPromise();
-	}
-
-
-	saveQuestionText(id:number, text:string){
-		this.jwtService.post('../api/public/question/saveText',{id:id,text:text}).toPromise();
-	}
-
-	saveQuestionType(id:number, type:string){
-		this.jwtService.post('../api/public/question/saveType',{id:id,type:type}).toPromise();
-	}
-
+	
 	savePageQuestionNumber(){
-		this.jwtService.post('../api/public/test/savePageQuestionNumber',{id:this.test.id,pageQuestionNumber:this.test.pageQuestionNumber}).toPromise();
+		this.networkService.patch('test/savePageQuestionNumber',{id:this.test.id,pageQuestionNumber:this.test.pageQuestionNumber}).toPromise();
 	}
 
 	savePageTime () {
-		this.jwtService.post('../api/public/test/savePageTime',{id:this.test.id,pageTime:'00:' + this.test.pageTime}).toPromise();
+		this.networkService.patch('test/savePageTime',{id:this.test.id,pageTime:'00:' + this.test.pageTime}).toPromise();
 	}
 
 	saveStartTime () {
-		this.jwtService.post('../api/public/test/saveStartTime', {id:this.test.id,startTime:this.test.startTime}).toPromise();
+		this.networkService.patch('test/saveStartTime', {id:this.test.id,startTime:this.test.startTime}).toPromise();
 	}
 
 	saveEndTime () {
-		this.jwtService.post('../api/public/test/saveEndTime', {id:this.test.id,endTime:this.test.endTime}).toPromise();
-	}
-
-	savePersonalQuestionName(id:number,name:string){
-		this.jwtService.post('../api/public/personalData/savePersonalQuestionText',{id:id,text:name}).toPromise();
-	}
-
-	savePersonalQuestionType(id:number,typeId:number){
-		this.jwtService.post('../api/public/personalData/savePersonalQuestionType',{id:id,typeId:typeId}).toPromise();
+		this.networkService.patch('test/saveEndTime', {id:this.test.id,endTime:this.test.endTime}).toPromise();
 	}
 
 	setId(id:number){
@@ -178,31 +135,30 @@ export class TestService{
 	}
 
 	trashTest (id:number){
-		return this.jwtService.post('../api/public/test/trashTest', {id: id}).toPromise();
+		return this.networkService.patch('test/trashTest', {id: id});
 	}
 
 	untrashTest (id:number){
-		return this.networkService.patch('../api/public/test/untrashTest', {id: id}).toPromise();
+		return this.networkService.patch('test/untrashTest', {id: id});
 	}
 
 	valuate(fillId:number){
-		return this.http.post('api/public/test/valuate', {fillId: fillId, test: this.test})
-		.toPromise()
-		.then(response => {
-				var result=response.json();
-				this.test.score=parseFloat(result.score);
-				this.test.totalScore=parseFloat(result.totalScore);
-				this.test.time = result.time;
-				for(let question of this.test.questions){
-					question.answers=question.answers.map(answer => {
-						for(let resultAnswer of result.answers){
-							if(answer.id === resultAnswer.id){
-								answer.score=resultAnswer.score;
-								return answer;
+		return this.networkService.patch('api/public/test/valuate', {fillId: fillId, test: this.test})
+		.pipe(
+			map((result:any) => {
+					this.test.score=parseFloat(result.score);
+					this.test.totalScore=parseFloat(result.totalScore);
+					this.test.time = result.time;
+					for(let question of this.test.questions){
+						question.answers=question.answers.map(answer => {
+							for(let resultAnswer of result.answers){
+								if(answer.id === resultAnswer.id){
+									answer.score=resultAnswer.score;
+									return answer;
+								}
 							}
-						}
-					})
-				}
-		})
+						})
+					}
+			}))
 	}
 }

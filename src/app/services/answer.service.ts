@@ -1,23 +1,18 @@
 import { Injectable } from '@angular/core'
-import { JwtService } from './jwt.service';
+
+
 import { Answer } from '../models/answer';
+import { Question } from '../models/question';
+
+import { NetworkService } from './network.service';
 
 @Injectable()
 export class AnswerService {
-    constructor(private jwtService:JwtService){}
+
+    constructor(private networkService:NetworkService){}
 
     addAnswer(questionId:number) {
-       /*return this.jwtService.post('../api/public/answer/addAnswer',{questionId: questionId})
-           .toPromise()
-           .then(response => {
-               let json = response.json();
-               let answer:Answer = {
-                    id: json.id,
-                    text: json.text,
-                    score: json.score
-               }
-               return answer;
-           })*/
+       return this.networkService.post('../api/public/answer/addAnswer',{questionId: questionId});
     }
 
     getAnswerIndexById(id:number, answers:Answer[]) {
@@ -29,6 +24,18 @@ export class AnswerService {
     }
 
     deleteAnswer(id: number) {
-        this.jwtService.post('../api/public/answer/deleteAnswer', {id: id}).toPromise();
+       return this.networkService.delete('answer/' + id);
     }
+
+    saveAnswers(fillId:number, questions:Question[]) {
+		return this.networkService.put('answer/saveAnswers', {fillId:fillId, questions:questions})
+	}
+
+    saveText(id:number, text:string){
+		return this.networkService.patch('answer/saveText',{id:id,text:text});
+	}
+
+	saveScore(id:number, score:number){
+		return this.networkService.patch('answer/saveScore',{id:id,score:score});
+	}
 }
