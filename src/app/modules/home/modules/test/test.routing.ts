@@ -5,6 +5,6 @@ import { TestComponent } from './components/test/test.component';
 import { UserGuard } from '../../../../services/user-guard';
 
 export const testRoutes:Routes = [
-    { path: 'tests', component: TestsComponent, canActivate: [UserGuard] },
-    { path: 'test/:id', component: TestComponent, canActivate: [UserGuard] }
+    { path: 'tests', component: TestsComponent, canActivate: [UserGuard], data: {roleId: 2} },
+    { path: 'test/:id', component: TestComponent, canActivate: [UserGuard], data: {roleId: 2} }
 ]

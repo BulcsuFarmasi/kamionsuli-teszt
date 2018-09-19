@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 import { TestModule } from './modules/test/test.module';
 import { HomeRoutingModule } from './modules/home-routing/home-routing.module';
@@ -12,7 +13,8 @@ import { UserModule } from '../user/user.module';
     CommonModule,
     TestModule,
     UserModule,
-    HomeRoutingModule
+    HomeRoutingModule,
+    RouterModule
   ],
   declarations: [
       HomeComponent

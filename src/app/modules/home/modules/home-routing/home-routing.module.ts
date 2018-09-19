@@ -17,7 +17,7 @@ const homeRoutes:Routes = [
       children: [
         ...testRoutes,
         ...userRoutes,
-        {path:'', redirectTo:'/tests', pathMatch:'full'},
+      {path:'', redirectTo:'/tests', pathMatch:'full'}  
       ] },
     
 ]

@@ -10,7 +10,8 @@ const adminRoutes: Routes = [
 	{ path: 'admin', component: AdminComponent, children:[
 		...userRoutes,
 		...testRoutes,
-		...fillRoutes
+		...fillRoutes,
+		{path:'', redirectTo:'/admin/tests', pathMatch:'full'}
 	]}
 	
 ]

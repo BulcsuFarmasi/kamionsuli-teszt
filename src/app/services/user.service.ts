@@ -45,6 +45,10 @@ export class UserService{
 				email: user.email,
 				accessFrom: new Date(user.accessFrom),
 				accessTo: new Date(user.accessTo),
+				role: {
+					id: user.role.id,
+					name: user.role.name
+				},
 				loggedIn: true
 			}
 			this.userSubject.next(this.user);

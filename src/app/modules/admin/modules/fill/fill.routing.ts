@@ -7,6 +7,6 @@ import { FillComponent } from './components/fill/fill.component'
 import { UserGuard } from '../../../../services/user-guard';
 
 export const fillRoutes:Routes = [
-    { path:'fills/:testId', component:FillsComponent, canActivate:[UserGuard]},
-    { path:'fill/:fillId', component:FillComponent, canActivate:[UserGuard]},
+    { path:'fills/:testId', component:FillsComponent, canActivate:[UserGuard], data: {roleId: 1}},
+    { path:'fill/:fillId', component:FillComponent, canActivate:[UserGuard], data: {roleId:1}},
 ]

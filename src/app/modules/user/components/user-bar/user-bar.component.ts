@@ -22,7 +22,7 @@ export class UserBarComponent implements OnInit {
 
   ngOnInit () {
     this.userSubscription = this.userService.getUser()
-                            .subscribe(user => {this.user = user});
+                            .subscribe(user => {this.user = user;console.log(user)});
   }
   
   ngOnDestroy () {
@@ -31,7 +31,15 @@ export class UserBarComponent implements OnInit {
 
   logOut () {
     this.userService.logOut();
-    this.router.navigate(['/user/log-in']) 
+
+    let route;
+    switch(this.user.role.id) {
+      case 1:
+        route = '/admin/user/log-in/1'; break;
+      case 2:
+        route = '/user/log-in/2'; break;
+    }
+    this.router.navigate([route]) 
   }
 
 }

@@ -1,4 +1,9 @@
 <div *ngIf="user.loggedIn">
-  <a routerLink="/user/profile">{{ user.name }}</a> - Érvényes {{ user.accessTo | date:'y.MM.dd' }}-ig
-  <button class="btn" (click)="logOut()">Kilépés</button>
+  <span *ngIf="user.role.id === 2; else admin">
+      <a routerLink="/user/profile">{{ user.name }}</a> - Érvényes {{ user.accessTo | date:'y.MM.dd' }}-ig
+  </span>
+  <ng-template #admin>
+    {{ user.name }}
+  </ng-template>
+  <button class="btn btn-delete" (click)="logOut()">Kilépés</button>
 </div>

@@ -29,9 +29,15 @@ export class TestsComponent implements OnInit, OnDestroy{
 
 	ngOnDestroy () {
 		this.testsSubscription.unsubscribe();
-		this.addSubscription.unsubscribe();
-		this.copySubscription.unsubscribe();
-		this.trashSubscription.unsubscribe();
+		if (this.addSubscription) {
+			this.addSubscription.unsubscribe();
+		}
+		if (this.copySubscription) {
+			this.copySubscription.unsubscribe();
+		}
+		if (this.trashSubscription) {
+			this.trashSubscription.unsubscribe();
+		}
 	}
 
 	addTest () {

@@ -29,14 +29,22 @@ export class JwtService{
         }
     }
 
-    isExpired():boolean{
+    isValid(/*roleId:number*/):boolean{
         this.getToken();
         if(this._token === null){
             return true;
         }
         var payload=this.decode();
-        return new Date().getDate() > payload.expire.getDate();
+        return this.isNotExpired(payload.expire) //&& this.isAccessible(payload.roleId, roleId);
     };
+
+    isNotExpired(expire:Date) {
+        return new Date().getDate() < expire.getDate()
+    }
+
+    isAccessible(payloadRoleId:number, roleId:number) {
+        return payloadRoleId === roleId;
+    }
 
     remove(){
         localStorage.removeItem(this.tokenName);
