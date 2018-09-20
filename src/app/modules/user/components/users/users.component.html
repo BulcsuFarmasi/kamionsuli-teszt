@@ -1,3 +1,30 @@
-<p>
-  users works!
-</p>
+<h2>Felhasználók</h2>
+<button (click)="checkAll()">Összes kijelölése</button>
+<button (click)="deleteChecked()">Kijelöltek törlése</button>
+{{ message }}
+<table>
+  <tr>
+    <th>Kijelölés</th>
+    <th>Azonosító</th>
+    <th>Név</th>
+    <th>Hozzáférés kezdete</th>
+    <th>Hozzárférés vége</th>
+  </tr>
+  <tr *ngFor="let user of users">
+    <td>
+      <input type="checkbox" [(ngModel)]="user.checked">
+    </td>
+    <td>
+      {{ user.id }}
+    </td>
+    <td>
+      {{ user.name }}
+    </td>
+    <td>
+      {{ user.accessFrom | date:'y.MM.dd' }}
+    </td>
+    <td>
+      {{ user.accessTo | date:'y.MM.dd' }}
+    </td>
+  </tr>
+</table>

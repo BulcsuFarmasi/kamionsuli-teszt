@@ -9,4 +9,5 @@ export interface User {
 	accessFrom?:Date;
 	accessTo?:Date;
 	loggedIn:boolean;
+	checked?:boolean;
 }

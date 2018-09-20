@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Subject, BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, throwError } from 'rxjs';
+import { tap, map } from 'rxjs/operators';
 
 
 import { User } from '../models/user'
@@ -59,5 +59,30 @@ export class UserService{
 		this.user.loggedIn=false;
 		this.jwtService.remove();
 		this.userSubject.next(this.user);
+	}
+
+	getUsers () {
+		return this.networkService.get('user/getUsers').pipe(
+			map((users:User[]) => {
+				users = users.map(user => {
+					user.accessFrom = new Date(user.accessFrom);
+					user.accessTo = new Date(user.accessTo)
+					return user;
+				})
+				return users;
+			})
+		)
+	}
+
+	deleteUser (id:number) {
+		return this.networkService.delete('user/' + id)
+			.pipe(
+				map((response:any) => {
+					if (response.errorCode) {
+						throwError(response);
+					}
+				}
+			)
+		)
 	}
 }
