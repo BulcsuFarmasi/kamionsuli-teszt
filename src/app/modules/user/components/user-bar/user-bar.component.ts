@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
@@ -11,7 +11,8 @@ import { UserService } from '../../../../services/user.service';
 @Component({
   selector: 'user-bar',
   templateUrl: './user-bar.component.html',
-  styleUrls: ['./user-bar.component.scss']
+  styleUrls: ['./user-bar.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class UserBarComponent implements OnInit {
 

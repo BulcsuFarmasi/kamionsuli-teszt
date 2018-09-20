@@ -1,0 +1,16 @@
+@import '~src/app/modules/admin/components/admin/variables';
+
+
+nav-bar {
+    width:33%;
+    display:block;
+    ul {
+        display: flex;
+        justify-content: space-around;
+        list-style-type: none;
+        a {
+            color: $color-bg-1;
+            text-decoration: none;
+        }
+    }
+}

@@ -16,7 +16,8 @@ export class JwtService{
 
         var payload:JwtPayload = {
             id: payloadJson.sub,
-            expire: new Date(0)
+            expire: new Date(0),
+            roleId: payloadJson.roleId
         };
         payload.expire.setUTCSeconds(payloadJson.exp);
 
@@ -32,7 +33,7 @@ export class JwtService{
     isValid(/*roleId:number*/):boolean{
         this.getToken();
         if(this._token === null){
-            return true;
+            return false;
         }
         var payload=this.decode();
         return this.isNotExpired(payload.expire) //&& this.isAccessible(payload.roleId, roleId);
