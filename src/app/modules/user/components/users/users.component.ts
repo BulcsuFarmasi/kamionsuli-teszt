@@ -23,6 +23,10 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  addUser () {
+    
+  }
+
   checkAll () {
     this.users = this.users.map(user => {
       user.checked = true;

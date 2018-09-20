@@ -9,6 +9,7 @@
     <th>Név</th>
     <th>Hozzáférés kezdete</th>
     <th>Hozzárférés vége</th>
+    <th>Szerkesztés</th>
   </tr>
   <tr *ngFor="let user of users">
     <td>
@@ -26,5 +27,9 @@
     <td>
       {{ user.accessTo | date:'y.MM.dd' }}
     </td>
+    <td>
+      <a [routerLink]="['/admin/user/edit', user.id]">Szerkesztés</a>
+    </td>
   </tr>
+  <button (click)="addUser()">Új felhasználó</button>
 </table>
