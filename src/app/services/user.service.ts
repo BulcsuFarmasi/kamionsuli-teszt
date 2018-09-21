@@ -32,7 +32,17 @@ export class UserService{
 	
 	}
 
-	getUser () {
+	getUser (id:number) {
+		return this.networkService.get(`user/${id}/getUser`).pipe(
+			map((user:User) => {
+				user.accessFrom = new Date(user.accessFrom);
+				user.accessTo = new Date(user.accessTo);
+				return user;
+			})
+		)
+	} 
+
+	getUserSubject () {
 		return this.userSubject;
 	}
 
@@ -67,6 +77,7 @@ export class UserService{
 				users = users.map(user => {
 					user.accessFrom = new Date(user.accessFrom);
 					user.accessTo = new Date(user.accessTo)
+					console.log(user);
 					return user;
 				})
 				return users;

@@ -53,7 +53,7 @@ export class LogInComponent implements OnInit, OnDestroy  {
     }
 
     private getUser () {
-      return this.userService.getUser();
+      return this.userService.getUserSubject();
     }
 
     private getRoute () {

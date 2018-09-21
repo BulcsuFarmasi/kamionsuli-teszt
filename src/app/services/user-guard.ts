@@ -14,7 +14,7 @@ export class UserGuard implements CanActivate {
 	constructor(private userService:UserService, private router:Router,private jwtService:JwtService, private route:ActivatedRoute){}
 
 	canActivate ():Observable<boolean>{
-        return this.userService.getUser().pipe(
+        return this.userService.getUserSubject().pipe(
             switchMap((user:User) => {
                 if(!user.loggedIn){
                     console.log(this.route);

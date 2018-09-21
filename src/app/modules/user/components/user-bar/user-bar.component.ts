@@ -22,7 +22,7 @@ export class UserBarComponent implements OnInit {
   constructor(private userService:UserService, private router:Router) {}
 
   ngOnInit () {
-    this.userSubscription = this.userService.getUser()
+    this.userSubscription = this.userService.getUserSubject()
                             .subscribe(user => {this.user = user;console.log(user)});
   }
   
