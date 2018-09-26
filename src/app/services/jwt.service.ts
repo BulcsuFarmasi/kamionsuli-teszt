@@ -19,7 +19,7 @@ export class JwtService{
             expire: new Date(0),
             roleId: payloadJson.roleId
         };
-        payload.expire.setUTCSeconds(payloadJson.exp);
+        payload.expire.setSeconds(payloadJson.exp);
 
         return payload;
     }
@@ -30,17 +30,18 @@ export class JwtService{
         }
     }
 
-    isValid(/*roleId:number*/):boolean{
+    isValid(roleId:number):boolean{
         this.getToken();
         if(this._token === null){
             return false;
         }
         var payload=this.decode();
-        return this.isNotExpired(payload.expire) //&& this.isAccessible(payload.roleId, roleId);
+        console.log(this.isNotExpired(payload.expire), this.isAccessible(payload.roleId, roleId));
+        return this.isNotExpired(payload.expire) && this.isAccessible(payload.roleId, roleId);
     };
 
     isNotExpired(expire:Date) {
-        return new Date().getDate() < expire.getDate()
+        return new Date().getTime() < expire.getTime()
     }
 
     isAccessible(payloadRoleId:number, roleId:number) {

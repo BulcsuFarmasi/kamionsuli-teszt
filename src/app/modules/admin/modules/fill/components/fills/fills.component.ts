@@ -5,7 +5,6 @@ import { Subscription } from 'rxjs';
 
 import { FillService } from '../../../../../../services/fill.service';
 import { Fill } from '../../../../../../models/fill';
-import { PersonalQuestion } from '../../../../../../models/personal-question';
 
 
 @Component({
@@ -15,8 +14,6 @@ import { PersonalQuestion } from '../../../../../../models/personal-question';
 export class FillsComponent implements OnInit, OnDestroy{
 	public testId:number;
 	public fills:Fill[];
-	public personalDataTypes:PersonalQuestion[];
-	private personalDataTypeNames:string[];
 	private getFillsSubscription:Subscription
 
 	constructor(private fillService:FillService, private router:Router, private route:ActivatedRoute){}
@@ -25,9 +22,8 @@ export class FillsComponent implements OnInit, OnDestroy{
 		let testId = +this.route.snapshot.paramMap.get('testId');
 		this.testId = testId;
 		this.getFillsSubscription = this.fillService.getFills(testId)
-			.subscribe(personalData => {
-				this.fills=personalData.fills;
-				this.personalDataTypes=personalData.types;
+			.subscribe((fills:Fill[]) => {
+				this.fills=fills;
 			});
 	}
 

@@ -1,7 +1,7 @@
-<h2>{{ user.name }}</h2>
+<h2><editable-input [value]="user.name" [inputType]="'text'" [type]="'name'" (onStopEditing)="saveName($event.value)"></editable-input></h2>
 <p>Azonosító: {{ user.id }}</p>
-<p>E-mail: {{ user.email }}</p>
-<p>Hozzáférés kezdete: {{ user.accessFrom | date:'y.MM.dd' }}</p>
-<p>Hozzáférés vége: {{ user.accessTo | date:'y.MM.dd' }}</p>
+<p>E-mail: <editable-input [value]="user.email" [inputType]="'email'" [type]="'email'" (onStopEditing)="saveEmail($event.value)"></editable-input></p>
+<p>Hozzáférés kezdete: <editable-date [value]="user.accessFrom"  [type]="'accessFrom'" (stopedit)="saveAccessFrom($event.value)"></editable-date></p>
+<p>Hozzáférés vége: <editable-date [value]="user.accessTo"  [type]="'accessTo'" (stopedit)="saveAccessTo($event.value)"></editable-date></p>
 <button (click)="sendNotificationEmail()">Értesítő e-mail kiküldése</button>
 <a routerLink="/admin/users">Vissza a felhasználókhoz</a>

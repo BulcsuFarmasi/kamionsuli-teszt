@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { User } from '../../../../models/user';
 import { UserService } from '../../../../services/user.service';
@@ -9,22 +10,32 @@ import { Subscription } from 'rxjs';
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
 
   users:User[]
-  userSubscription:Subscription;
   message:string;
+  private userSubscription:Subscription;
+  private addUserSubscription:Subscription;
   
-  constructor(private userService:UserService) { }
+  constructor(private userService:UserService, private router:Router) { }
 
-  ngOnInit() {
+  ngOnInit () {
     this.userSubscription = this.userService.getUsers().subscribe(users => {
       this.users = users;
     });
   }
 
+  ngOnDestroy () {
+    if (this.addUserSubscription) {
+      this.addUserSubscription.unsubscribe();
+    }
+    this.userSubscription.unsubscribe();
+  }
+
   addUser () {
-    
+    this.addUserSubscription = this.userService.addUser().subscribe((user:User) => {
+      this.router.navigate(['/admin/user/edit/', user.id]);
+    })
   }
 
   checkAll () {

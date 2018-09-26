@@ -1,4 +1,3 @@
-import { PersonalQuestion } from './personal-question';
 import { Question } from './question';
 
 export interface Test{
@@ -10,7 +9,6 @@ export interface Test{
 	endTime?:Date|number;
 	time?:string;
 	remainingSeconds?:number;
-	personalQuestions?: PersonalQuestion[]
 	questions?:Question[]
 	score?:number;
 	totalScore?:number;

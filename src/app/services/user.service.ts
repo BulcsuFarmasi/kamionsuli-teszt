@@ -19,6 +19,11 @@ export class UserService{
 		}
 		this.userSubject=new BehaviorSubject(this.user);
 	}
+
+	addUser () {
+		return this.networkService.post('user',{});
+	}
+
 	authenticate(creditentals){
 		return this.networkService.post('user/authenticate',creditentals)
 		.pipe(
@@ -95,5 +100,25 @@ export class UserService{
 				}
 			)
 		)
+	}
+
+	saveAccessFrom (id:number, accessFrom:Date) {
+		return this.networkService.patch(`user/${id}/saveAccessFrom`, {accessFrom})
+	}
+
+	saveAccessTo (id:number, accessTo:Date) {
+		return this.networkService.patch(`user/${id}/saveAccessTo`, {accessTo})
+	}
+
+	saveEmail (id:number, email) {
+		return this.networkService.patch(`user/${id}/saveEmail`, {email})
+	}
+
+	saveName (id:number, name:string) {
+		return this.networkService.patch(`user/${id}/saveName`, {name})
+	}
+
+	sendNotificationEmail (id:number) {
+		return this.networkService.patch(`user/${id}/sendNotificationEmail`,{})
 	}
 }

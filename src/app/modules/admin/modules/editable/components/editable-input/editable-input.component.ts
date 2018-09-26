@@ -23,12 +23,13 @@ export class EditableInputComponent{
 	}
 	stopEditing(){
 		this.editing=false;
-		var edited:Edited;
-		edited.type=this.type;
+		let edited:Edited = {
+			type:this.type,
+			value:this.value
+		};
 		if(!isNaN(this.id)){
 			edited.id=this.id
 		}
-		edited.value=this.value;
 		this.onStopEditing.emit(edited)
 	}
 }

@@ -1,5 +1,5 @@
 export interface Edited{
 	type:string;
-	id:number;
+	id?:number;
 	value:any;
 }

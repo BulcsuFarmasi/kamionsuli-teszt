@@ -11,6 +11,6 @@ import { UserGuard } from '../../services/user-guard';
 export const userRoutes:Routes = [
     { path: 'user/log-in/:roleId', component: LogInComponent  },
     { path: 'user/profile', component: ProfileComponent, canActivate: [UserGuard], data: {roleId: 2}  },
-    { path: 'users', component: UsersComponent, canActivate: [UserGuard], data: {roleId: 2}  },
-    { path: 'user/edit/:id', component: EditUserComponent, canActivate: [UserGuard], data: {roleId: 2}}
+    { path: 'users', component: UsersComponent, canActivate: [UserGuard], data: {roleId: 1}  },
+    { path: 'user/edit/:id', component: EditUserComponent, canActivate: [UserGuard], data: {roleId: 1}}
 ]

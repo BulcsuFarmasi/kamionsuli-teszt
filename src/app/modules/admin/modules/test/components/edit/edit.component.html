@@ -10,6 +10,5 @@
         <p class="setting"><span>Záró időpont:</span> <editable-date [value]="test.endTime"  [type]="'endTime'" (stopedit)="onStopEditing($event)"></editable-date></p>
     </article>
 </section>
-<personal-questions [personalQuestions]="test.personalQuestions" [testId]="test.id"></personal-questions>
 <questions [questions]="test.questions" [testId]="test.id"></questions>
 <go-to-top></go-to-top>

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router, CanActivate, ActivatedRoute } from '@angular/router';
+import { Router, CanActivate, ActivatedRoute, ActivatedRouteSnapshot } from '@angular/router';
 
 import { Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators'
@@ -11,20 +11,20 @@ import { JwtService } from './jwt.service';
 
 @Injectable()
 export class UserGuard implements CanActivate {
-	constructor(private userService:UserService, private router:Router,private jwtService:JwtService, private route:ActivatedRoute){}
+	constructor(private userService:UserService, private router:Router,private jwtService:JwtService){}
 
-	canActivate ():Observable<boolean>{
+	canActivate (route:ActivatedRouteSnapshot):Observable<boolean>{
         return this.userService.getUserSubject().pipe(
             switchMap((user:User) => {
                 if(!user.loggedIn){
-                    console.log(this.route);
-                   // let roleId = this.route.snapshot.data.roleId;
-                    if(this.jwtService.isValid()){
+                   let roleId = route.data.roleId;
+                   console.log(this.jwtService.isValid(roleId))
+                    if(this.jwtService.isValid(roleId)){
                         this.userService.logIn();
                         return of(true);
                     }else{
-                    //    let route = this.getRoute(roleId);
-                        this.router.navigate(['admin/user/log-in/1']);
+                        let route = this.getRoute(roleId);
+                        this.router.navigate([route]);
                         return of(false);
                     }
                 }else{

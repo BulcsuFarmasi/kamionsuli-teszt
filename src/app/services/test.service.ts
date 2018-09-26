@@ -4,7 +4,6 @@ import { Injectable } from '@angular/core';
 import { map, tap } from 'rxjs/operators';
 
 
-import { PersonalQuestion } from '../models/personal-question';
 import { Question } from '../models/question';
 import { Test } from '../models/test';
 
@@ -53,14 +52,6 @@ export class TestService{
 			return this.test;
 			})
 		)
-	}
-
-	getPersonalQuestionById(id:number,personalQuestions:PersonalQuestion[]){
-		for(let personalQuestion of personalQuestions){
-			if(personalQuestion.id == id){
-				return personalQuestion;
-			}
-		}
 	}
 
 	getTest () {
@@ -125,9 +116,6 @@ export class TestService{
 
 	setPageQuestionNumber(pageQuestionNumber){
 		this.test.pageQuestionNumber=pageQuestionNumber;
-	}
-	setPersonalQuestions(personalQuestions:PersonalQuestion[]){
-		this.test.personalQuestions=personalQuestions;
 	}
 
 	setQuestions(questions:Question[]){
