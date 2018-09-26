@@ -33,7 +33,7 @@ export class EditComponent implements OnInit, OnDestroy{
 		} 
 
 		this.testService.setId(this.test.id);
-		this.getStartDataSubscription = this.testService.getStartData(true)
+		this.getStartDataSubscription = this.testService.getStartData()
 		.pipe(
 			switchMap((test:Test) => {
 				this.test = test
@@ -52,7 +52,6 @@ export class EditComponent implements OnInit, OnDestroy{
 	}
 
 	onStopEditing(edited){
-		console.log(edited);
 		switch(edited.type){
 			case 'testName':
 				this.saveTestName(edited.value);break;
@@ -92,7 +91,6 @@ export class EditComponent implements OnInit, OnDestroy{
 	}
 
 	saveEndTime (endTime){
-		console.log(endTime)
 		this.testService.setEndTime(endTime);
 		this.testService.saveEndTime();
 	}

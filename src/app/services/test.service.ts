@@ -11,7 +11,7 @@ import { NetworkService } from './network.service';
 
 @Injectable()
 export class TestService{
-	public test:Test;
+	public test:Test = {};
 	public tests:Test[];
 	constructor(private networkService:NetworkService){}
 
@@ -39,7 +39,8 @@ export class TestService{
 		})
 	}
 
-	getStartData(admin:boolean = false){
+	getStartData(){
+		console.log(this.test.id);
 		return this.networkService.get(`test/${this.test.id}/getStartData`)
 		.pipe(
 			map((test:Test) => {
@@ -60,7 +61,6 @@ export class TestService{
 
 	getTests(trash:boolean){
 		this.tests=[];
-		console.log(trash, 'test/getTests/' + trash);
 		return this.networkService.get('test/getTests/' + trash)
 		.pipe(
 			tap((tests:Test[]) => {this.tests = tests})

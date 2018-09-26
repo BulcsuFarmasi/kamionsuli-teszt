@@ -30,10 +30,8 @@ export class GoToTopComponent {
     startCountDown () {
         let scrollTop = window.scrollY;;
         let distance = scrollTop - this.limit;
-        console.log(distance);
         let pxms = (distance / this.time) * -1;
         this.timer = setInterval(() => {
-            console.log(pxms);
             window.scrollBy(0, pxms);
             if (window.scrollY == 0) {
                 this.endCountDown();

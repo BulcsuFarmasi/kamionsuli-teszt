@@ -82,7 +82,6 @@ export class UserService{
 				users = users.map(user => {
 					user.accessFrom = new Date(user.accessFrom);
 					user.accessTo = new Date(user.accessTo)
-					console.log(user);
 					return user;
 				})
 				return users;

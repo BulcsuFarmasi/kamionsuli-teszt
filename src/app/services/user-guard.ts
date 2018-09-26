@@ -18,7 +18,6 @@ export class UserGuard implements CanActivate {
             switchMap((user:User) => {
                 if(!user.loggedIn){
                    let roleId = route.data.roleId;
-                   console.log(this.jwtService.isValid(roleId))
                     if(this.jwtService.isValid(roleId)){
                         this.userService.logIn();
                         return of(true);
@@ -36,7 +35,6 @@ export class UserGuard implements CanActivate {
 
     private getRoute (roleId) {
         let route;
-        console.log(roleId)
         switch (roleId) {
             case 1:
              route = '/admin/user/log-in/1'; break;

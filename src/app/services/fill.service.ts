@@ -48,11 +48,11 @@ export class FillService{
 
 	setConsent(consent) {
 		this.fill.consent = consent;
-		console.log(this.fill);
 	}
 
-	createFill (testId:number) {
-		return this.networkService.get(`api/public/fill/${testId}/createFill`)
+	createFill (testId:number, userId:number) {
+		console.log(testId, userId);
+		return this.networkService.post('fill', {testId, userId})
 			.pipe(
 				tap((fill:Fill) => {
 					this.fill.id = fill.id

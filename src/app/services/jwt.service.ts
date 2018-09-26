@@ -35,8 +35,7 @@ export class JwtService{
         if(this._token === null){
             return false;
         }
-        var payload=this.decode();
-        console.log(this.isNotExpired(payload.expire), this.isAccessible(payload.roleId, roleId));
+        let payload=this.decode();
         return this.isNotExpired(payload.expire) && this.isAccessible(payload.roleId, roleId);
     };
 

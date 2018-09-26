@@ -24,9 +24,7 @@ export class TestComponent implements OnInit{
 		this.currentState='start';
 	}
 	ngOnInit():void{
-		this.route.params.forEach((params:Params) => {
-			this.testService.setId(parseInt(params['testId']));
-		})
+		this.testService.setId(+this.route.snapshot.paramMap.get('id'));
 	}
 
 	onStartTest(){

@@ -3,8 +3,8 @@
 	<button (click)="addTest()" class="btn btn-new">Új teszt</button>
 	<div class="test" *ngFor="let test of tests">
 		<p>{{test.name}}
-			<a [routerLink]="['/edit',test.id]">Szerkesztés</a>
-			<a [routerLink]="['/fills',test.id]">Kitöltések</a>
+			<a [routerLink]="['/admin/edit',test.id]">Szerkesztés</a>
+			<a [routerLink]="['/admin/fills',test.id]">Kitöltések</a>
 			<button (click)="copyTest(test.id)" class="btn btn-new">Másolás</button>
 			<button (click)="trashTest(test.id)" class="btn btn-delete">Kukába</button>
 	</div>

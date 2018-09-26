@@ -59,7 +59,6 @@ export class LogInComponent implements OnInit, OnDestroy  {
     private getRoute () {
      return this.getUser().pipe(
           map(user => {
-            console.log(user);
             if (user.role) {
               let route;
               switch (user.role.id) {

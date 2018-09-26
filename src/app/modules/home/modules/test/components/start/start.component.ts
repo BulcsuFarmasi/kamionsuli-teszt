@@ -2,12 +2,14 @@ import { Component, OnInit, OnDestroy, Output, EventEmitter, ViewEncapsulation }
 
 
 import { Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
+
+import { Test } from "../../../../../../models/test";
 
 import { TestService } from '../../../../../../services/test.service';
 import { FillService } from "../../../../../../services/fill.service";
-import { Test } from "../../../../../../models/test";
-import { switchMap } from 'rxjs/operators';
+import { UserService } from '../../../../../../services/user.service';
 
 @Component({
 	selector:'start',
@@ -20,10 +22,10 @@ export class StartComponent implements OnInit, OnDestroy {
 	public test:Test;
 	@Output() onStartTest:EventEmitter<any>=new EventEmitter();
 	private getStartDataSubscription:Subscription;
-	private createFillSubscription:Subscription;
 
 	constructor(private testService:TestService,
-	private fillService:FillService){};
+				private fillService:FillService,
+				private userService:UserService){};
 
 	ngOnInit(){
 		this.getStartDataSubscription = this.testService.getStartData().subscribe((test:Test) => {this.test = test});
@@ -31,12 +33,18 @@ export class StartComponent implements OnInit, OnDestroy {
 
 	ngOnDestroy () {
 		this.getStartDataSubscription.unsubscribe();
-		this.createFillSubscription.unsubscribe();
 	}
 
 	startTest(){
 		let test = this.testService.getTest();
-		this.createFillSubscription = this.fillService.createFill(test.id)
+		this.userService.getUserSubject().pipe(
+			switchMap((user) => {
+				if (user.id) {
+					console.log(user);
+					return this.fillService.createFill(test.id, user.id)
+				}
+			})
+		)
 		.subscribe(() => {
 			return this.fillService.saveConsent();
 		})
