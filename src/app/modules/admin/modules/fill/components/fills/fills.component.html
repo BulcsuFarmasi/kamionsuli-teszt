@@ -21,8 +21,8 @@
 			<td>{{fill.score}}</td>
 			<td>{{fill.date}}</td>
 			<td>{{fill.time}}</td>
-			<td><a [routerLink]="['/fill', fill.id]">Megtekintés</a></td>
+			<td><a [routerLink]="['/admin/fill', fill.id]">Megtekintés</a></td>
 		</tr>
 	</table>
-	<a href="../api/public/fill/{{testId}}/getCsv">Export</a>
+	<a href="http://localhost/work-projects/kamionsuli/2018/kamionsuli-teszt-api/public/fill/{{testId}}/getCsv">Export</a>
 </section>

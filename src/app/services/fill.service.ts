@@ -34,7 +34,7 @@ export class FillService{
 	}
 
 	getFill(id:number){
-		return this.networkService.get(`../api/public/fill/${id}/getFill`)
+		return this.networkService.get(`fill/${id}`)
 	}
 
 	getId ():number {
