@@ -40,7 +40,6 @@ export class StartComponent implements OnInit, OnDestroy {
 		this.userService.getUserSubject().pipe(
 			switchMap((user) => {
 				if (user.id) {
-					console.log(user);
 					return this.fillService.createFill(test.id, user.id)
 				}
 			})

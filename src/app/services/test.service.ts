@@ -40,7 +40,6 @@ export class TestService{
 	}
 
 	getStartData(){
-		console.log(this.test.id);
 		return this.networkService.get(`test/${this.test.id}/getStartData`)
 		.pipe(
 			map((test:Test) => {
@@ -131,7 +130,7 @@ export class TestService{
 	}
 
 	valuate(fillId:number){
-		return this.networkService.patch('api/public/test/valuate', {fillId: fillId, test: this.test})
+		return this.networkService.patch('test/valuate', {fillId: fillId, test: this.test})
 		.pipe(
 			map((result:any) => {
 					this.test.score=parseFloat(result.score);

@@ -10,11 +10,11 @@ import { NetworkService } from './network.service';
 
 @Injectable()
 export class FillService{
-	public fill:Fill;
+	public fill:Fill = {};
 	constructor(private networkService:NetworkService){}
 
 	getFills(testId:number){
-		return this.networkService.get(`../api/public/fill/${testId}/getFills`)
+		return this.networkService.get(`fill/${testId}/getFills`)
 		.pipe(
 			map((response:any) => {
 				let fills = [];
@@ -51,7 +51,6 @@ export class FillService{
 	}
 
 	createFill (testId:number, userId:number) {
-		console.log(testId, userId);
 		return this.networkService.post('fill', {testId, userId})
 			.pipe(
 				tap((fill:Fill) => {

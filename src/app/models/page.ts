@@ -1,6 +1,6 @@
  import { Question } from './question'
 
-export class Page{
-	public questions:Question[];
-	public time:string;
+export interface Page{
+	questions:Question[];
+	time:string;
 }

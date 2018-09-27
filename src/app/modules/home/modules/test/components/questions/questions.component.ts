@@ -38,15 +38,16 @@ export class QuestionsComponent implements AfterViewInit, OnInit, OnDestroy {
 	
 	ngOnInit(){
 		let test = this.testService.getTest();
-		this.questionService.getQuestionsObject(test.id,false)
+		this.getQuestionsObjectSubscription = this.questionService.getQuestionsObject(test.id,false)
 		.subscribe((questions:any[]) => {
-			this.questionsObject=questions;
-			this.pageNumber=this.questionsObject.questions.length/this.questionsObject.pageQuestionNumber;
+			this.questionsObject = questions;
+			this.pageNumber = this.questionsObject.questions.length / this.questionsObject.pageQuestionNumber;
 			this.questionService.setQuestions(this.questionsObject.questions);
 			for(let i=0; i< this.questionsObject.questions.length; i+=this.questionsObject.pageQuestionNumber){
-				let page=new Page();
-				page.time = this.questionsObject.pageTime;
-				page.questions = [];
+				let page:Page = {
+					time: this.questionsObject.pageTime,
+					questions: []
+				}
 				page.questions.push(...this.questionsObject.questions.slice(i,i+this.questionsObject.pageQuestionNumber));
 				this.pages.push(page);
 			}

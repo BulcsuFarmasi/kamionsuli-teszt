@@ -5,7 +5,6 @@ import { QuestionsComponent } from '../questions/questions.component';
 import { StartComponent } from '../start/start.component';
 
 import { TestService } from '../../../../../../services/test.service';
-import { FillService } from "../../../../../../services/fill.service";
 
 
 @Component({
@@ -19,8 +18,7 @@ export class TestComponent implements OnInit{
 	private questionsComponent:QuestionsComponent;
 	@ViewChild(StartComponent)
 	private startComponent:StartComponent;
-	constructor(private route:ActivatedRoute,private testService:TestService,
-				private fillService:FillService){
+	constructor(private route:ActivatedRoute,private testService:TestService){
 		this.currentState='start';
 	}
 	ngOnInit():void{
@@ -29,6 +27,7 @@ export class TestComponent implements OnInit{
 
 	onStartTest(){
 		this.currentState="questions";
+		console.log(this.questionsComponent);
 		this.questionsComponent.nextPage();
 		this.startCountdown();
 	}
