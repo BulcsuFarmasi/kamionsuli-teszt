@@ -8,7 +8,7 @@ export interface Fill{
 	score?:number;
 	answers?:Answer[];
 	questions?:Question[];
-	user:User;
+	user?:User;
 	date?:string;
 	time?:string;
 }

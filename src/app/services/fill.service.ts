@@ -14,27 +14,10 @@ export class FillService{
 
 	getFills(testId:number){
 		return this.networkService.get(`fill/${testId}/getFills`)
-		.pipe(
-			map((responseFills:any) => {
-				let fills = [];
-				for(let responseFill of responseFills){
-					var fill:Fill = {
-						id:parseInt(responseFill.id),
-						score:parseFloat(responseFill.score),
-						date:responseFill.created_at,
-						time:responseFill.time
-					}
-					fills.push(fill);
-	
-				}
-	
-				return fills;
-			})
-		)
 	}
 
 	getFill(id:number){
-		return this.networkService.get(`fill/${id}`)
+		return this.networkService.get(`../api/public/fill/${id}/getFill`)
 	}
 
 	getId ():number {
