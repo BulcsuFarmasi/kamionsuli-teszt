@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 
+
 import { map, tap } from 'rxjs/operators';
 
-import { Answer } from '../models/answer';
+
 import { Fill } from  '../models/fill';
-import { JwtService } from './jwt.service'
-import { Question } from "../models/question";
 import { NetworkService } from './network.service';
 
 @Injectable()
