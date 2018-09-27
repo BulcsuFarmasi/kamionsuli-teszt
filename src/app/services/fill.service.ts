@@ -15,9 +15,9 @@ export class FillService{
 	getFills(testId:number){
 		return this.networkService.get(`fill/${testId}/getFills`)
 		.pipe(
-			map((response:any) => {
+			map((responseFills:any) => {
 				let fills = [];
-				for(let responseFill of response.fills){
+				for(let responseFill of responseFills){
 					var fill:Fill = {
 						id:parseInt(responseFill.id),
 						score:parseFloat(responseFill.score),
