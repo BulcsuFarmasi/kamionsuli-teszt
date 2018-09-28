@@ -17,7 +17,7 @@ export class FillService{
 	}
 
 	getFill(id:number){
-		return this.networkService.get(`../api/public/fill/${id}/getFill`)
+		return this.networkService.get('fill/' + id);
 	}
 
 	getId ():number {
@@ -26,10 +26,6 @@ export class FillService{
 
 	setId (id) {
 		this.fill.id = id;
-	}
-
-	setConsent(consent) {
-		this.fill.consent = consent;
 	}
 
 	createFill (testId:number, userId:number) {

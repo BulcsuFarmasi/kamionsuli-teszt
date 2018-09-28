@@ -12,6 +12,8 @@
 				<span (click)="orderDesc('score')">▼</span>
 				<span (click)="orderAsc('score')">▲</span>
 			</th>
+			<th>Kitöltő azonosítója</th>
+			<th>Kitöltő neve</th>
 			<th>Kitöltés időpontja</th>
 			<th>Kitöltési idő</th>
 			<th>Megtekintés</th>
@@ -19,6 +21,8 @@
 		<tr *ngFor="let fill of fills">
 			<td>{{fill.id}}</td>
 			<td>{{fill.score}}</td>
+			<td>{{fill.user.id}}</td>
+			<td>{{fill.user.name}}</td>
 			<td>{{fill.date}}</td>
 			<td>{{fill.time}}</td>
 			<td><a [routerLink]="['/admin/fill', fill.id]">Megtekintés</a></td>
