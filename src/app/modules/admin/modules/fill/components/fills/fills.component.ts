@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, Params, ActivatedRoute } from '@angular/router';
 
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { FillService } from '../../../../../../services/fill.service';
 import { Fill } from '../../../../../../models/fill';
@@ -14,17 +14,18 @@ import { Fill } from '../../../../../../models/fill';
 export class FillsComponent implements OnInit, OnDestroy{
 	public testId:number;
 	public fills:Fill[];
-	private getFillsSubscription:Subscription
+	private getFillsSubscription:Subscription;
 
 	constructor(private fillService:FillService, private router:Router, private route:ActivatedRoute){}
 
 	ngOnInit(){
-		let testId = +this.route.snapshot.paramMap.get('testId');
-		this.testId = testId;
-		this.getFillsSubscription = this.fillService.getFills(testId)
-			.subscribe((fills:Fill[]) => {
-				this.fills=fills;
-			});
+		if (this.route.snapshot.paramMap.get('testId')) {
+			this.testId = +this.route.snapshot.paramMap.get('testId');
+		}
+		let getFills =  (this.testId) ? this.fillService.getFills(this.testId) : this.fillService.getFills();
+		this.getFillsSubscription = getFills.subscribe((fills:Fill[]) => {
+			this.fills=fills;
+		});
 	}
 
 	ngOnDestroy () {

@@ -6,14 +6,15 @@ import { map, tap } from 'rxjs/operators';
 
 import { Fill } from  '../models/fill';
 import { NetworkService } from './network.service';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class FillService{
 	public fill:Fill = {};
 	constructor(private networkService:NetworkService){}
 
-	getFills(testId:number){
-		return this.networkService.get(`fill/${testId}/getFills`)
+	getFills(testId?:number){
+		return (testId) ? this.networkService.get(`fill/${testId}/getFills`) : this.networkService.get('fills');
 	}
 
 	getFill(id:number){

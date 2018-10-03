@@ -19,7 +19,6 @@ export class NetworkService {
   
   get (urlPart:string) {
     this.setAuthorizationHeader();
-    console.log(this.headers);
     return this.httpClient.get(this.url + urlPart, {headers: this.headers});
   }
 
