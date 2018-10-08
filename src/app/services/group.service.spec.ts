@@ -1,3 +1,5 @@
+import { empty } from 'rxjs';
+
 import { GroupService } from './group.service';
 import { NetworkService } from './network.service';
 
@@ -13,7 +15,7 @@ describe('GroupService', () => {
   describe('getGroups', () => {
     it ('should call networkService.get with groups param', () => {
       let param = 'groups';
-      let spy = spyOn(networkService, 'get');
+      let spy = spyOn(networkService, 'get').and.returnValue(empty());
 
       groupService.getGroups();
 

@@ -1,11 +1,14 @@
 import { TestBed, inject } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
+import { JwtService } from './jwt.service';
 import { NetworkService } from './network.service';
 
 describe('NetworkService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [NetworkService]
+      imports: [HttpClientTestingModule],
+      providers: [JwtService, NetworkService]
     });
   });
 

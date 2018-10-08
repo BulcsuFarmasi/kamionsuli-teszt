@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { TestsComponent } from './tests.component';
+import { TestService } from '../../../../../../services/test.service';
+import { NetworkService } from '../../../../../../services/network.service';
+import { JwtService } from '../../../../../../services/jwt.service';
 
 describe('TestsComponent', () => {
   let component: TestsComponent;
@@ -8,7 +13,9 @@ describe('TestsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ TestsComponent ]
+      imports: [ HttpClientTestingModule, RouterTestingModule.withRoutes([]) ],
+      declarations: [ TestsComponent ],
+      providers: [ TestService, NetworkService, JwtService ]
     })
     .compileComponents();
   }));
