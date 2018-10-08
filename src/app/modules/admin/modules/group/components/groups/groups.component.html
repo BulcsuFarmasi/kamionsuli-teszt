@@ -1,0 +1,17 @@
+<h2>Csoportok</h2>
+<table>
+  <tr>
+    <th>Azonosító</th>
+    <th>Név</th>
+    <th>Érvényesség kezdete</th>
+    <th>Érvényesség vége</th>
+    <th>Típus neve</th>
+  </tr>
+  <tr *ngFor="let group of groups">
+    <td class="group-id">{{ group.id }}</td>
+    <td class="group-name">{{ group.name }}</td>
+    <td class="group-access-from">{{ group.accessFrom | date:'y.MM.dd'  }}</td>
+    <td class="group-access-to">{{ group.accessTo | date:'y.MM.dd' }}</td>
+    <td class="group-type-name">{{ group.type.name }}</td>
+  </tr>
+</table>

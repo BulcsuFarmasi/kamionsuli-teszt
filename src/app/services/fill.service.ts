@@ -1,12 +1,11 @@
 import { Injectable } from '@angular/core';
 
 
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 
 
 import { Fill } from  '../models/fill';
 import { NetworkService } from './network.service';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class FillService{

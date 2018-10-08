@@ -5,12 +5,14 @@ import { AdminComponent } from '../../components/admin/admin.component';
 import { userRoutes } from '../../../user/user.routing';
 import { testRoutes } from '../test/test.routing';
 import { fillRoutes } from '../fill/fill.routing';
+import { groupRoutes } from '../group/group.routing';
 
 const adminRoutes: Routes = [
-	{ path: 'admin', component: AdminComponent, children:[
+	{ path: 'admin', component: AdminComponent, children: [
 		...userRoutes,
 		...testRoutes,
 		...fillRoutes,
+		...groupRoutes,
 		{path:'', redirectTo:'/admin/tests', pathMatch:'full'}
 	]}
 	
