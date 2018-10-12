@@ -18,7 +18,11 @@ export class GroupsComponent implements OnInit {
   constructor(private groupService:GroupService) { }
 
   ngOnInit() {
-    this.groupService.getGroups().subscribe(groups => this.groups = groups);
+    this.getGroupsSubscription = this.groupService.getGroups().subscribe(groups => this.groups = groups);
+  }
+
+  ngOnDestroy () {
+      this.getGroupsSubscription.unsubscribe();
   }
 
 }

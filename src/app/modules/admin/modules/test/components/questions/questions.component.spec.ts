@@ -25,7 +25,7 @@ describe('QuestionsComponent', () => {
                       ImageUploadComponent, 
                       QuestionComponent,
                       QuestionsComponent
-                     ]
+                     ],
       providers: [ NetworkService, JwtService, QuestionService ]
     })
     .compileComponents();

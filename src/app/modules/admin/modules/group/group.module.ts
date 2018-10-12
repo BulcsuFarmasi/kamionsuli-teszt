@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 
 import { components } from './group.declarations';
 import { GroupService } from '../../../../services/group.service';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   imports: [
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   declarations: [components],
   providers: [GroupService],

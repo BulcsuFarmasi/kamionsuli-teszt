@@ -1,7 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DatePipe } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { By } from '@angular/platform-browser';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { from } from 'rxjs';
 
@@ -21,7 +22,7 @@ describe('GroupsComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ GroupsComponent ],
-      imports: [ HttpClientModule ],
+      imports: [ HttpClientTestingModule, RouterTestingModule ],
       providers: [ GroupService, NetworkService, JwtService ]
     })
     .compileComponents();
@@ -78,4 +79,21 @@ describe('GroupsComponent', () => {
 
     expect(element.innerText).toBe(group.type.name);
   })
+
+  it('should have a link to see the users', () => {
+    let debugElement = fixture.debugElement.query(By.css('.users'));
+
+    expect(debugElement.properties.href).toBe('/admin/users/' + group.id );
+  })
+
+  it('should have a link to edit the group', () => {
+    let debugElement = fixture.debugElement.query(By.css('.edit-group'));
+    expect(debugElement.properties.href).toBe('/admin/group/edit/' + group.id);
+  })
+
+  it('should have a add group button', () => {
+    let debugElement = fixture.debugElement.query(By.css('button.add-group'));
+    expect(debugElement).toBeTruthy();
+  })
+});
 });
