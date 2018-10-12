@@ -96,4 +96,3 @@ describe('GroupsComponent', () => {
     expect(debugElement).toBeTruthy();
   })
 });
-});
