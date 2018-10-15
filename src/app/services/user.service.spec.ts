@@ -20,7 +20,7 @@ describe('UserService', () => {
 
             userService.sendResetPassword(email);
 
-            expect(spy).toHaveBeenCalledWith('user/send-reset-password', { email });
+            expect(spy).toHaveBeenCalledWith('user/sendResetPassword', { email });
         })
     });
 })

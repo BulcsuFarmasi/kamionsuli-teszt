@@ -122,6 +122,6 @@ export class UserService{
 	}
 
 	sendResetPassword (email:string) {
-		return this.networkService.post('user/send-reset-password', { email })
+		return this.networkService.post('user/sendResetPassword', { email })
 	}
 }
