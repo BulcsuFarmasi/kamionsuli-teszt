@@ -35,6 +35,6 @@ describe('LogInComponent', () => {
   it('should have a password reset link', () => {
     const debugElement = fixture.debugElement.query(By.css('.reset-password'));
 
-    expect(debugElement.attributes.routerLink).toBe('user/send-reset-password');
+    expect(debugElement.attributes.routerLink).toBe('/user/send-reset-password');
   })
 });

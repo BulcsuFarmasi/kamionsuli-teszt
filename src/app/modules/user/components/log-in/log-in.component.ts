@@ -26,9 +26,13 @@ export class LogInComponent implements OnInit, OnDestroy  {
     }
 
     ngOnDestroy () {
-      this.authenticateSubscription.unsubscribe();
       this.roleIdSubscription.unsubscribe();
-      this.getRoleSubscription.unsubscribe();
+      if (this.authenticateSubscription) {
+        this.authenticateSubscription.unsubscribe();
+      }
+      if (this.getRoleSubscription) {
+        this.getRoleSubscription.unsubscribe();
+      }
     }
   
     submit (form) {

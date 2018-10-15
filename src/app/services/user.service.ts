@@ -120,4 +120,8 @@ export class UserService{
 	sendNotificationEmail (id:number) {
 		return this.networkService.patch(`user/${id}/sendNotificationEmail`,{})
 	}
+
+	sendResetPassword (email:string) {
+		return this.networkService.post('user/send-reset-password', { email })
+	}
 }
