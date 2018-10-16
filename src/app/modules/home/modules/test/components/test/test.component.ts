@@ -27,7 +27,6 @@ export class TestComponent implements OnInit{
 
 	onStartTest(){
 		this.currentState="questions";
-		console.log(this.questionsComponent);
 		this.questionsComponent.nextPage();
 		this.startCountdown();
 	}

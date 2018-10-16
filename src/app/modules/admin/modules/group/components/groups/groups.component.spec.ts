@@ -50,7 +50,6 @@ describe('GroupsComponent', () => {
 
   it('should display group id', () => {
     let debugElement = fixture.debugElement.query(By.css('.group-id'));
-    console.log(debugElement);
     let element:HTMLElement = debugElement.nativeElement;
 
     expect(element.innerText).toBe(group.id.toString());
