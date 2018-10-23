@@ -4,6 +4,7 @@ import { QuestionsComponent } from './components/questions/questions.component';
 import { ResultQuestionComponent } from './components/result-question/result-question.component';
 import { StartComponent } from './components/start/start.component';
 import { TestsComponent } from './components/tests/tests.component';
+import { TimerComponent } from './components/timer/timer.component';
 import { TestComponent } from './components/test/test.component';
 import { ValuationComponent } from './components/valuation/valuation.component';
 
@@ -13,6 +14,7 @@ export var components=[
 	QuestionsComponent,
 	ResultQuestionComponent,
 	StartComponent,
+	TimerComponent,
 	TestComponent,
 	TestsComponent,
 	ValuationComponent

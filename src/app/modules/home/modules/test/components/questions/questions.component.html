@@ -1,4 +1,5 @@
 <p>{{ currentPage }}/{{ pageNumber }}</p>
+<timer></timer>
 <page *ngFor="let page of pages; let i=index" [page]="page" [hidden]="i + 1 != currentPage"
 	  (timeexpired)="timeExpired()"></page>
 <div class="buttons">

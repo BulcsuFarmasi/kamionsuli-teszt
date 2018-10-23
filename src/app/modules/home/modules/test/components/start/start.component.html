@@ -1,8 +1,5 @@
 <h1>{{test?.name}}</h1>
 <div [innerHTML]="test?.description" class="desc"></div>
-<div *ngIf="!test?.fillable">
-	A teszt jelenleg nem elérhető
-</div>
 <div class="buttons">
-	<button (click)="startTest()" class="btn" *ngIf="test?.fillable">A teszt indítása</button>
+	<button (click)="startTest()" class="btn">A teszt indítása</button>
 </div>
