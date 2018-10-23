@@ -2,5 +2,4 @@
 
 export interface Page{
 	questions:Question[];
-	time:string;
 }

@@ -78,10 +78,6 @@ export class TestService{
 		this.networkService.patch('test/savePageQuestionNumber',{id:this.test.id,pageQuestionNumber:this.test.pageQuestionNumber}).toPromise();
 	}
 
-	savePageTime () {
-		this.networkService.patch('test/savePageTime',{id:this.test.id,pageTime:'00:' + this.test.pageTime}).toPromise();
-	}
-
 	saveStartTime () {
 		this.networkService.patch('test/saveStartTime', {id:this.test.id,startTime:this.test.startTime}).toPromise();
 	}
@@ -99,10 +95,6 @@ export class TestService{
 
 	setDescription(description:string){
 		this.test.description=description;
-	}
-
-	setPageTime (pageTime:string) {
-		this.test.pageTime = pageTime;
 	}
 
 	setStartTime (startTime) {
