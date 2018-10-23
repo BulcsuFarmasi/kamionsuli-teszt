@@ -12,7 +12,7 @@ describe('userRoutes', () => {
     })
 
     it('should have a link for send reset password', () => {
-        const route:Route = { path: 'user/reset-password/:passwordRetreiverCode', component: ResetPasswordComponent }
+        const route:Route = { path: 'user/reset-password/:passwordRetrieverCode', component: ResetPasswordComponent }
 
         expect(userRoutes).toContain(route);
     })

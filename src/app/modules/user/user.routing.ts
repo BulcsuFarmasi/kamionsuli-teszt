@@ -15,5 +15,5 @@ export const userRoutes:Routes = [
     { path: 'users/:groupId', component: UsersComponent, canActivate: [UserGuard], data: {roleId: 1}  },
     { path: 'user/edit/:id', component: EditUserComponent, canActivate: [UserGuard], data: {roleId: 1}},
     { path: 'user/send-reset-password', component: SendResetPasswordComponent },
-    { path: 'user/reset-password/:passwordRetreiverCode', component: ResetPasswordComponent }
+    { path: 'user/reset-password/:passwordRetrieverCode', component: ResetPasswordComponent }
 ]

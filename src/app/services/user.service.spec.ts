@@ -23,4 +23,14 @@ describe('UserService', () => {
             expect(spy).toHaveBeenCalledWith('user/sendResetPassword', { email });
         })
     });
+    describe('sendResetPassword', () => {
+        it ('should call network service with user/getByPasswordRetrieverCode', () => {
+            const spy = spyOn(networkService, 'patch');
+            const passwordRetrieverCode = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+
+            userService.getByPasswordRetrieverCode(passwordRetrieverCode);
+
+            expect(spy).toHaveBeenCalledWith('user/getByPasswordRetrieverCode', { passwordRetrieverCode });
+        })
+    });
 })

@@ -124,4 +124,8 @@ export class UserService{
 	sendResetPassword (email:string) {
 		return this.networkService.post('user/sendResetPassword', { email })
 	}
+
+	getByPasswordRetrieverCode (passwordRetrieverCode:string) {
+		return this.networkService.patch('user/getByPasswordRetrieverCode', { passwordRetrieverCode })
+	}
 }

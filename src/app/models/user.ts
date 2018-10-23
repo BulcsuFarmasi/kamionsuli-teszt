@@ -8,6 +8,6 @@ export interface User {
 	role?:Role;
 	accessFrom?:Date;
 	accessTo?:Date;
-	loggedIn:boolean;
+	loggedIn?:boolean;
 	checked?:boolean;
 }
