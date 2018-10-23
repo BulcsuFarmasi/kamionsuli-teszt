@@ -10,4 +10,5 @@ export interface User {
 	accessTo?:Date;
 	loggedIn?:boolean;
 	checked?:boolean;
+	notFound?:boolean
 }

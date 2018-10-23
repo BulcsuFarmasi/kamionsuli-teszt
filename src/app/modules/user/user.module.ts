@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { components } from './user.declarations';
@@ -20,6 +20,7 @@ import { UserService } from '../../services/user.service';
     FormsModule,
     HttpClientModule,
     RouterModule,
+    ReactiveFormsModule,
     EditableModule
   ],
   providers: [

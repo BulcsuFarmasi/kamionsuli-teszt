@@ -4,16 +4,31 @@ import { SendResetPasswordComponent } from "./components/send-reset-password/sen
 import { ResetPasswordComponent } from "./components/reset-password/reset-password.component";
 import { userRoutes } from "./user.routing";
 
-describe('userRoutes', () => {
-    it('should have a link for send reset password', () => {
-        const route:Route = { path: 'user/send-reset-password', component: SendResetPasswordComponent }
+describe("userRoutes", () => {
+  it("should have a link for send reset password", () => {
+    const route: Route = {
+      path: "user/send-reset-password",
+      component: SendResetPasswordComponent
+    };
 
-        expect(userRoutes).toContain(route);
-    })
+    expect(userRoutes).toContain(route);
+  });
 
-    it('should have a link for send reset password', () => {
-        const route:Route = { path: 'user/reset-password/:passwordRetrieverCode', component: ResetPasswordComponent }
+  it("should have a link for send reset password", () => {
+    const route: Route = {
+      path: "user/reset-password/:passwordRetrieverCode",
+      component: ResetPasswordComponent
+    };
 
-        expect(userRoutes).toContain(route);
-    })
-})
+    expect(userRoutes).toContain(route);
+  });
+
+  it("should have a link for send change password", () => {
+    const route: Route = {
+      path: "user/reset-password",
+      component: ResetPasswordComponent
+    };
+
+    expect(userRoutes).toContain(route);
+  });
+});

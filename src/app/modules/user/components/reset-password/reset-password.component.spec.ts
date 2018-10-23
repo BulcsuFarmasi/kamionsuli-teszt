@@ -5,6 +5,10 @@ import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 
 import { ResetPasswordComponent } from './reset-password.component';
+import { UserService } from '../../../../services/user.service';
+import { NetworkService } from '../../../../services/network.service';
+import { JwtService } from '../../../../services/jwt.service';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 class ActivatedRouteStub {
   private subject = new Subject();
@@ -24,9 +28,13 @@ describe('ResetPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [ HttpClientTestingModule ],
       declarations: [ ResetPasswordComponent ],
       providers: [
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
+        JwtService,
+        NetworkService,
+        UserService
       ]
     })
     .compileComponents();

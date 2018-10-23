@@ -101,6 +101,10 @@ export class UserService{
 		)
 	}
 
+	resetPassword(id:number, password:string) {
+		return this.networkService.patch(`user/${id}/resetPassword`, { password })
+	}
+
 	saveAccessFrom (id:number, accessFrom:Date) {
 		return this.networkService.patch(`user/${id}/saveAccessFrom`, {accessFrom})
 	}
@@ -126,6 +130,6 @@ export class UserService{
 	}
 
 	getByPasswordRetrieverCode (passwordRetrieverCode:string) {
-		return this.networkService.patch('user/getByPasswordRetrieverCode', { passwordRetrieverCode })
+		return this.networkService.get('user/getByPasswordRetrieverCode/' + passwordRetrieverCode);
 	}
 }

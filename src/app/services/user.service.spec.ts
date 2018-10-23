@@ -2,7 +2,6 @@ import { HttpClient } from "@angular/common/http";
 
 import { UserService } from "./user.service";
 import { NetworkService } from "./network.service";
-import { JwtService } from "./jwt.service";
 
 describe('UserService', () => {
     let userService
@@ -25,12 +24,12 @@ describe('UserService', () => {
     });
     describe('sendResetPassword', () => {
         it ('should call network service with user/getByPasswordRetrieverCode', () => {
-            const spy = spyOn(networkService, 'patch');
+            const spy = spyOn(networkService, 'get');
             const passwordRetrieverCode = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
 
             userService.getByPasswordRetrieverCode(passwordRetrieverCode);
 
-            expect(spy).toHaveBeenCalledWith('user/getByPasswordRetrieverCode', { passwordRetrieverCode });
+            expect(spy).toHaveBeenCalledWith('user/getByPasswordRetrieverCode/' + passwordRetrieverCode);
         })
     });
 })

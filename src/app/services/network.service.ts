@@ -7,8 +7,8 @@ import { JwtService } from './jwt.service';
 @Injectable()
 export class NetworkService {
 
-  // private url = 'http://localhost/work-projects/kamionsuli/2018/kamionsuli-teszt-api/public/';
-  private url = 'https://kamionsuli-teszt.farmasibulcsu.hu/api/public/';
+  private url = 'http://localhost/work-projects/kamionsuli/2018/kamionsuli-teszt-api/public/';
+  //private url = 'https://kamionsuli-teszt.farmasibulcsu.hu/api/public/';
   private headers:HttpHeaders = new HttpHeaders();
   
   constructor(private httpClient:HttpClient, private jwtService:JwtService) {}
