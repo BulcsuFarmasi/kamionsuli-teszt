@@ -42,7 +42,6 @@ export class EditComponent implements OnInit, OnDestroy{
 		).subscribe(questions => {
 			this.test.questions = questions['questions'];
 			this.test.pageQuestionNumber = questions['pageQuestionNumber']
-			this.test.pageTime = questions['pageTime'].substring(3);
 		})
 
 	}
@@ -57,12 +56,6 @@ export class EditComponent implements OnInit, OnDestroy{
 				this.saveTestName(edited.value);break;
 			case 'testPageQuestionNumber':
 				this.savePageQuestionNumber(edited.value);break;
-			case 'testPageTime':
-				this.savePageTime(edited.value);break;
-			case 'startTime':
-				this.saveStartTime(edited.value);break;
-			case 'endTime':
-				this.saveEndTime(edited.value);break;
 		}
 	}
 	saveTestName(name:string){
@@ -78,21 +71,6 @@ export class EditComponent implements OnInit, OnDestroy{
 	savePageQuestionNumber(pageQuestionNumber:number){
 		this.testService.setPageQuestionNumber(pageQuestionNumber);
 		this.testService.savePageQuestionNumber();
-	}
-
-	savePageTime (pageTime:string){
-		this.testService.setPageTime(pageTime);
-		this.testService.savePageTime();
-	}
-
-	saveStartTime (startTime){
-		this.testService.setStartTime(startTime);
-		this.testService.saveStartTime();
-	}
-
-	saveEndTime (endTime){
-		this.testService.setEndTime(endTime);
-		this.testService.saveEndTime();
 	}
 	
 }

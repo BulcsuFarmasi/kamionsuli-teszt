@@ -5,9 +5,6 @@
     <article>
         <ckeditor [(ngModel)]="test.description" (blur)="saveTestDescription($event)"></ckeditor>
         <p class="setting"><span>Kérdések száma oldalanként:</span> <editable-input [value]="test.pageQuestionNumber" [inputType]="'number'" [type]="'testPageQuestionNumber'" (onStopEditing)="onStopEditing($event)"></editable-input></p>
-        <p class="setting"><span>Idő egy oldalra:</span> <editable-input [value]="test.pageTime" [inputType]="'text'" [type]="'testPageTime'" [placeholder]="'MM:SS'"  (onStopEditing)="onStopEditing($event)"></editable-input></p>
-        <p class="setting"><span>Kezdő időpont:</span> <editable-date [value]="test.startTime"  [type]="'startTime'"  (stopedit)="onStopEditing($event)"></editable-date></p>
-        <p class="setting"><span>Záró időpont:</span> <editable-date [value]="test.endTime"  [type]="'endTime'" (stopedit)="onStopEditing($event)"></editable-date></p>
     </article>
 </section>
 <questions [questions]="test.questions" [testId]="test.id"></questions>

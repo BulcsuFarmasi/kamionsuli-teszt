@@ -45,10 +45,6 @@ export class TestService{
 			map((test:Test) => {
 				this.test.name = test.name;
 				this.test.description = test.description;
-				this.test.fillable = test.fillable;
-				this.test.remainingSeconds = test.remainingSeconds;
-				this.test.startTime = new Date(<number>test.startTime * 1000);
-				this.test.endTime = new Date(<number>test.endTime * 1000);
 			return this.test;
 			})
 		)
@@ -78,14 +74,6 @@ export class TestService{
 		this.networkService.patch('test/savePageQuestionNumber',{id:this.test.id,pageQuestionNumber:this.test.pageQuestionNumber}).toPromise();
 	}
 
-	saveStartTime () {
-		this.networkService.patch('test/saveStartTime', {id:this.test.id,startTime:this.test.startTime}).toPromise();
-	}
-
-	saveEndTime () {
-		this.networkService.patch('test/saveEndTime', {id:this.test.id,endTime:this.test.endTime}).toPromise();
-	}
-
 	setId(id:number){
 		this.test.id=id;
 	}
@@ -95,14 +83,6 @@ export class TestService{
 
 	setDescription(description:string){
 		this.test.description=description;
-	}
-
-	setStartTime (startTime) {
-		this.test.startTime = startTime
-	}
-
-	setEndTime (endTime) {
-		this.test.endTime = endTime
 	}
 
 	setPageQuestionNumber(pageQuestionNumber){

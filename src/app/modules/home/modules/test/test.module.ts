@@ -12,12 +12,12 @@ import { JwtService } from '../../../../services/jwt.service'
 import { TestService } from '../../../../services/test.service';
 import { FillService } from '../../../../services/fill.service';
 import { NetworkService } from '../../../../services/network.service';
-import { TimerComponent } from './components/timer/timer.component';
+import { TimeService } from '../../../../services/time.service';
 
 @NgModule({
     imports:[ FormsModule, HttpClientModule, CommonModule, RouterModule ],
-    declarations:[...components, TimerComponent],
-    providers:[AnswerService,FillService, JwtService, NetworkService, TestService],
+    declarations:[...components],
+    providers:[AnswerService,FillService, JwtService, NetworkService, TestService, TimeService],
     exports:[...components]
 })
 

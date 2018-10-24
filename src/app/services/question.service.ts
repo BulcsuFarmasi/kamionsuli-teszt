@@ -33,7 +33,6 @@ export class QuestionService{
 			}
 			questionsObject['questions'] = questions;
 			questionsObject['pageQuestionNumber'] = response.pageQuestionNumber;
-			questionsObject['pageTime'] = response.pageTime;
 
 			return questionsObject;
 			})

@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter, AfterViewInit, ViewChildren, QueryList, OnDestroy } from '@angular/core';
+import {Component, OnInit, Output, EventEmitter, AfterViewInit, ViewChildren, QueryList, OnDestroy, ViewChild } from '@angular/core';
 
 
 import { Subscription } from 'rxjs';
@@ -10,6 +10,7 @@ import { FillService } from "../../../../../../services/fill.service";
 import { TestService } from '../../../../../../services/test.service';
 import { QuestionService } from '../../../../../../services/question.service';
 import { Page } from '../../../../../../models/page'
+import { TimerComponent } from '../timer/timer.component';
 
 @Component({
 	selector:'questions',
@@ -28,6 +29,8 @@ export class QuestionsComponent implements AfterViewInit, OnInit, OnDestroy {
 	@Output() onGoToValuation:EventEmitter<any>=new EventEmitter();
 	@ViewChildren(PageComponent)
 	private pageComponentList:QueryList<PageComponent>;
+	@ViewChild(TimerComponent)
+	timerComponent:TimerComponent;
 	private getQuestionsObjectSubscription:Subscription
 
 	constructor(private testService:TestService, private questionService:QuestionService,
@@ -45,7 +48,6 @@ export class QuestionsComponent implements AfterViewInit, OnInit, OnDestroy {
 			this.questionService.setQuestions(this.questionsObject.questions);
 			for(let i=0; i< this.questionsObject.questions.length; i+=this.questionsObject.pageQuestionNumber){
 				let page:Page = {
-					time: this.questionsObject.pageTime,
 					questions: []
 				}
 				page.questions.push(...this.questionsObject.questions.slice(i,i+this.questionsObject.pageQuestionNumber));
@@ -71,8 +73,7 @@ export class QuestionsComponent implements AfterViewInit, OnInit, OnDestroy {
 
 	goToValuation(){
 		this.testService.setQuestions(this.questionService.getQuestions());
-		this.pageComponents[this.currentPage - 1].saveAnswers(this.fillService.getId());
-		this.pageComponents[this.currentPage - 1].stopCountdown();
+		this.pageComponents[this.currentPage - 1].saveAnswers(this.fillService.getId());;
 		this.onGoToValuation.emit();
 	}
 
@@ -85,23 +86,20 @@ export class QuestionsComponent implements AfterViewInit, OnInit, OnDestroy {
 		this.startNextPage();
 	}
 
-	startCountdown () {
-		this.pageComponents[this.currentPage - 1].startCountdown();
-	}
-
 	startNextPage () {
+		if (this.currentPage == 0) {
+			this.timerComponent.startCountDown();
+		}
 		if (this.currentPage < this.pageNumber) {
 			this.currentPage++;
-			this.startCountdown();
 		}  else {
-				this.goToValuation();
+			this.goToValuation();
 		}
 	}
 
 	stopPreviousPage () {
 		if (this.currentPage > 0 && this.currentPage < this.pageNumber) {
 			this.pageComponents[this.currentPage - 1].saveAnswers(this.fillService.getId());
-			this.pageComponents[this.currentPage - 1].stopCountdown();
 		}
 	}
 

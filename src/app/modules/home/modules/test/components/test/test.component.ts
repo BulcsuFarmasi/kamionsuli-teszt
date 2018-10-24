@@ -28,7 +28,6 @@ export class TestComponent implements OnInit{
 	onStartTest(){
 		this.currentState="questions";
 		this.questionsComponent.nextPage();
-		this.startCountdown();
 	}
 
 	onBackToStart(){
@@ -43,15 +42,4 @@ export class TestComponent implements OnInit{
 		this.currentState="questions";
 	}
 
-	startCountdown () {
-		this.passedSeconds = 0;
-		var timer = setInterval(() => {
-			this.startComponent.test.remainingSeconds--;
-			this.passedSeconds++;
-			if (this.startComponent.test.remainingSeconds == 0){
-				this.onGoToValuation();
-				clearInterval(timer);
-			}
-		}, 1000)
-	}
 }
