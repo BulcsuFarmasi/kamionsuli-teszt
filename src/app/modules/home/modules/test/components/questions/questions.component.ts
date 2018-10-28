@@ -5,12 +5,12 @@ import { Subscription } from 'rxjs';
 
 
 import { PageComponent } from '../page/page.component';
-
+import { TimerComponent } from '../timer/timer.component';
 import { FillService } from "../../../../../../services/fill.service";
 import { TestService } from '../../../../../../services/test.service';
 import { QuestionService } from '../../../../../../services/question.service';
 import { Page } from '../../../../../../models/page'
-import { TimerComponent } from '../timer/timer.component';
+import { Test } from '../../../../../../models/test';
 
 @Component({
 	selector:'questions',
@@ -25,6 +25,8 @@ export class QuestionsComponent implements AfterViewInit, OnInit, OnDestroy {
 	public currentPage:number
 	public questionsObject:any;
 	public pageComponents:PageComponent[];
+	test:Test;
+	time:string;
 	@Output() onBackToStart:EventEmitter<any>=new EventEmitter();
 	@Output() onGoToValuation:EventEmitter<any>=new EventEmitter();
 	@ViewChildren(PageComponent)
@@ -40,10 +42,11 @@ export class QuestionsComponent implements AfterViewInit, OnInit, OnDestroy {
 	}
 	
 	ngOnInit(){
-		let test = this.testService.getTest();
-		this.getQuestionsObjectSubscription = this.questionService.getQuestionsObject(test.id,false)
+		this.test = this.testService.getTest();
+		this.getQuestionsObjectSubscription = this.questionService.getQuestionsObject(this.test.id,false)
 		.subscribe((questions:any[]) => {
 			this.questionsObject = questions;
+			this.time = this.questionsObject.time;
 			this.pageNumber = this.questionsObject.questions.length / this.questionsObject.pageQuestionNumber;
 			this.questionService.setQuestions(this.questionsObject.questions);
 			for(let i=0; i< this.questionsObject.questions.length; i+=this.questionsObject.pageQuestionNumber){

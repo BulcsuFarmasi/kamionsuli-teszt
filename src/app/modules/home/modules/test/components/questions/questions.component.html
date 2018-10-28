@@ -1,5 +1,5 @@
 <p>{{ currentPage }}/{{ pageNumber }}</p>
-<timer (timeexpired)="goToValuation()"></timer>
+<timer [time]="time" (timeexpired)="goToValuation()"></timer>
 <page *ngFor="let page of pages; let i=index" [page]="page" [hidden]="i + 1 != currentPage"></page>
 <div class="buttons">
 	<!--<button [hidden]="currentPage != 1" (click)="backToStart()" class="btn">Vissza a kezdőlapra</button>

@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, DoCheck, EventEmitter, Input, Output } from '@angular/core';
 
 import { TimeService } from '../../../../../../services/time.service';
 
@@ -7,21 +7,22 @@ import { TimeService } from '../../../../../../services/time.service';
   templateUrl: './timer.component.html',
   styleUrls: ['./timer.component.scss']
 })
-export class TimerComponent implements OnInit {
+export class TimerComponent implements DoCheck {
 
-  time:string;
-  private countDownSeconds
+  
+  private countDownSeconds:number;
+  @Input('time') time:string;
   @Output('timeexpired') timeexpired:EventEmitter<boolean> = new EventEmitter()
   
   constructor(private timeService:TimeService) { }
 
-  ngOnInit() {
-    this.time = '01:00';
+  ngDoCheck() {
     this.countDownSeconds=this.timeService.stringToSeconds(this.time);
   }
 
   startCountDown () {
     let timer = setInterval(() => {
+      console.log(this.countDownSeconds);
       this.countDownSeconds--;
 			if(this.countDownSeconds === 0){
 				clearInterval(timer);

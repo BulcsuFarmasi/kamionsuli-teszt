@@ -1,5 +1,9 @@
 export class TimeService{
     stringToSeconds(timeString:string) {
+        console.log(timeString);
+        if (!timeString) {
+            return;
+        }
         let seconds:number = 0;
         let timeParts:string[]=timeString.split(':');
         seconds += parseInt(timeParts[0]) * 60;
@@ -9,6 +13,7 @@ export class TimeService{
     }
 
     secondsToString(fullSeconds:number) {
+        console.log(fullSeconds);
         let minutes = Math.floor(fullSeconds / 60);
         let seconds = fullSeconds - minutes * 60;
 
