@@ -15,8 +15,8 @@ export class QuestionService{
 	getQuestions(){
 		return this.questions;
 	}
-	getQuestionsObject(testId:number,getScores:boolean) {
-		return this.networkService.get(`question/${testId}/getQuestions/${getScores}`)
+	getQuestionsObject(testId:number,getCorrects:boolean) {
+		return this.networkService.get(`question/${testId}/getQuestions/${getCorrects}`)
 		.pipe(
 			map((response:any) => {
 			let questionsObject = [];

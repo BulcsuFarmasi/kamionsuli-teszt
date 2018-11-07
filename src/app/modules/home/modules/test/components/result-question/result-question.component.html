@@ -4,4 +4,4 @@
 		<img [src]="image.path" [style.width.%]="image.size" [style.left.%]="image.position" />
 	</span>
 </p>
-<p class="answer" *ngFor="let answer of question.answers" [ngClass]="{marked:answer.marked, right:answer.score > 0, wrong: answer.marked && answer.score <= 0}">{{answer.text}} <span [hidden]="!marked || answer.score <= 0">{{answer.score}} pont</span></p>
+<p class="answer" *ngFor="let answer of question.answers" [ngClass]="{marked:answer.marked, right:answer.correct, wrong: answer.marked && !answer.correct }">{{answer.text}}</p>

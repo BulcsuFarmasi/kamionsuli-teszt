@@ -24,7 +24,7 @@ export class QuestionComponent implements OnDestroy {
 	saveTextSubscription:Subscription;
 	saveTypeSubscription:Subscription;
 	saveAnswerTextSubscription:Subscription;
-	saveAnswerScoreSubscription:Subscription;
+	saveAnswerCorrectSubscription:Subscription;
 	@Input() question:Question;
 
 	constructor(private answerService:AnswerService, private questionService:QuestionService){};
@@ -35,7 +35,7 @@ export class QuestionComponent implements OnDestroy {
 		this.saveTextSubscription.unsubscribe();
 		this.saveTypeSubscription.unsubscribe();
 		this.saveAnswerTextSubscription.unsubscribe();
-		this.saveAnswerScoreSubscription.unsubscribe();
+		this.saveAnswerCorrectSubscription.unsubscribe();
 	}
 
 	addAnswer() {
@@ -67,8 +67,8 @@ export class QuestionComponent implements OnDestroy {
 		this.answerService.saveText(this.question.answers[index].id, text).subscribe();
 	}
 
-	saveAnswerScore(score:number, index:number){
-		this.question.answers[index].score=score;
-		this.answerService.saveScore(this.question.answers[index].id, score).subscribe();
+	saveAnswerCorrect(correct:boolean, index:number){
+		this.question.answers[index].correct=correct;
+		this.answerService.saveCorrect(this.question.answers[index].id, correct).subscribe();
 	}
 }

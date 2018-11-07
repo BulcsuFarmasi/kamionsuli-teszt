@@ -112,7 +112,7 @@ export class TestService{
 						question.answers=question.answers.map(answer => {
 							for(let resultAnswer of result.answers){
 								if(answer.id === resultAnswer.id){
-									answer.score=resultAnswer.score;
+									answer.correct = resultAnswer.correct;
 									return answer;
 								}
 							}

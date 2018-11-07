@@ -35,7 +35,7 @@ export class AnswerService {
 		return this.networkService.patch('answer/saveText',{id:id,text:text});
 	}
 
-	saveScore(id:number, score:number){
-		return this.networkService.patch('answer/saveScore',{id:id,score:score});
+	saveCorrect(id:number, correct:boolean){
+		return this.networkService.patch('answer/saveCorrect',{id, correct});
 	}
 }
