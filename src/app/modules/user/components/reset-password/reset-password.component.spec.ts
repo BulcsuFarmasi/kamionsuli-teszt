@@ -1,4 +1,5 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 
@@ -28,7 +29,7 @@ describe('ResetPasswordComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [ HttpClientTestingModule ],
+      imports: [ HttpClientTestingModule, ReactiveFormsModule ],
       declarations: [ ResetPasswordComponent ],
       providers: [
         { provide: ActivatedRoute, useClass: ActivatedRouteStub },
@@ -74,6 +75,7 @@ describe('ResetPasswordComponent', () => {
 
     it ('should display code not valid message if codeNotValid is true', () => {
       component.codeNotValid = true;
+      component.gotUser = true;
       fixture.detectChanges();
       let debugElement = fixture.debugElement.query(By.css('.code-not-valid'));
 

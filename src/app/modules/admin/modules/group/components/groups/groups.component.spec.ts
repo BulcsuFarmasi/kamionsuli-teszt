@@ -52,31 +52,31 @@ describe('GroupsComponent', () => {
     let debugElement = fixture.debugElement.query(By.css('.group-id'));
     let element:HTMLElement = debugElement.nativeElement;
 
-    expect(element.innerText).toBe(group.id.toString());
+    expect(element.textContent).toBe(group.id.toString());
   })
   it('should display group name', () => {
     let debugElement = fixture.debugElement.query(By.css('.group-name'));
     let element:HTMLElement = debugElement.nativeElement;
 
-    expect(element.innerText).toBe(group.name);
+    expect(element.textContent).toBe(group.name);
   })
   it('should display group access from', () => {
     let debugElement = fixture.debugElement.query(By.css('.group-access-from'));
     let element:HTMLElement = debugElement.nativeElement;
 
-    expect(element.innerText).toBe(datePipe.transform(group.accessFrom, 'y.MM.dd'));
+    expect(element.textContent).toBe(datePipe.transform(group.accessFrom, 'y.MM.dd'));
   })
   it('should display group access to', () => {
     let debugElement = fixture.debugElement.query(By.css('.group-access-to'));
     let element:HTMLElement = debugElement.nativeElement;
 
-    expect(element.innerText).toBe(datePipe.transform(group.accessTo, 'y.MM.dd'));
+    expect(element.textContent).toBe(datePipe.transform(group.accessTo, 'y.MM.dd'));
   })
   it('should display group type name', () => {
     let debugElement = fixture.debugElement.query(By.css('.group-type-name'));
     let element:HTMLElement = debugElement.nativeElement;
 
-    expect(element.innerText).toBe(group.type.name);
+    expect(element.textContent).toBe(group.type.name);
   })
 
   it('should have a link to see the users', () => {

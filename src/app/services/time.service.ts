@@ -1,6 +1,5 @@
 export class TimeService{
     stringToSeconds(timeString:string) {
-        console.log(timeString);
         if (!timeString) {
             return;
         }
@@ -13,7 +12,6 @@ export class TimeService{
     }
 
     secondsToString(fullSeconds:number) {
-        console.log(fullSeconds);
         let minutes = Math.floor(fullSeconds / 60);
         let seconds = fullSeconds - minutes * 60;
 
