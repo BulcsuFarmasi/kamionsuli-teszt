@@ -1,6 +1,6 @@
 @import '~src/app/modules/home/components/home/variables';
 
-result-question{
+wrong-question{
 	.marked{
 		font-weight:bold;
 	}
@@ -24,7 +24,7 @@ result-question{
 }
 
 @media only screen and (max-width:1024px) {
-	result-question{
+	wrong-question{
 		.question{
 			line-height:30px;
 		}
@@ -36,7 +36,7 @@ result-question{
 }
 
 @media only screen and (max-width:480px) {
-	result-question{
+	wrong-question{
 		img{
 			left:0 !important;
 			width:100% !important;

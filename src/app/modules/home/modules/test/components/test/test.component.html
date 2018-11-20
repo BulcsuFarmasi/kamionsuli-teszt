@@ -1,3 +1,4 @@
 <start [hidden]="currentState != 'start'" (onStartTest)="onStartTest()"></start>
 <questions [hidden]="currentState != 'questions'" (onBackToStart)="onBackToStart()" (onGoToValuation)="onGoToValuation()"></questions>
-<valuation *ngIf="currentState == 'valuation'" (onBackToTest)="onBackToTest()"></valuation>
+<valuation *ngIf="currentState == 'valuation'" (onGoToWrongQuestions)="onGoToWrongQuestions($event)"></valuation>
+<wrong-questions *ngIf="currentState == 'wrong questions'"></wrong-questions>

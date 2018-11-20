@@ -22,7 +22,6 @@ export class TimerComponent implements DoCheck {
 
   startCountDown () {
     let timer = setInterval(() => {
-      console.log(this.countDownSeconds);
       this.countDownSeconds--;
 			if(this.countDownSeconds === 0){
 				clearInterval(timer);

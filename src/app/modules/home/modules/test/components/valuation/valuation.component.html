@@ -15,4 +15,7 @@
 		<result-question [question]="question"></result-question>
 	</div>
 </section>
-<!--<button (click)="backToTest()"[hidden]="valued" class="btn">Vissza a teszthez</button>-->
+<div class="buttons">
+	<!--<button (click)="backToTest()"[hidden]="valued" class="btn">Vissza a teszthez</button>-->
+	<button (click)="goToWrongQuestions()" *ngIf="valued" class="btn go-to-wrong-answers">Megnézem a rossz válaszaimat</button>
+</div>

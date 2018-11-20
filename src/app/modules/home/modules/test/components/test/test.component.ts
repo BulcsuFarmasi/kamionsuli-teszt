@@ -38,6 +38,10 @@ export class TestComponent implements OnInit{
 		this.currentState="valuation";
 	}
 
+	onGoToWrongQuestions (state:string) {
+		this.currentState = state;
+	}
+
 	onBackToTest(){
 		this.currentState="questions";
 	}

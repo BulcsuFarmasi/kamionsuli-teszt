@@ -48,6 +48,7 @@ export class QuestionsComponent implements AfterViewInit, OnInit, OnDestroy {
 			this.questionsObject = questions;
 			this.time = this.questionsObject.time;
 			this.pageNumber = this.questionsObject.questions.length / this.questionsObject.pageQuestionNumber;
+			this.questionsObject.questions = this.questionService.randomizeQuestions(this.questionsObject.questions);
 			this.questionService.setQuestions(this.questionsObject.questions);
 			for(let i=0; i< this.questionsObject.questions.length; i+=this.questionsObject.pageQuestionNumber){
 				let page:Page = {
@@ -67,9 +68,6 @@ export class QuestionsComponent implements AfterViewInit, OnInit, OnDestroy {
 		this.pageComponentList.changes.subscribe(() => {
 			if (this.pageComponentList.toArray().length == this.pageNumber){
 				this.pageComponents = this.pageComponentList.toArray();
-				if (this.currentPage > 1){
-					this.pageComponents[this.currentPage - 1].startCountdown();
-				}
 			}
 		})
 	}
@@ -78,6 +76,7 @@ export class QuestionsComponent implements AfterViewInit, OnInit, OnDestroy {
 		this.testService.setQuestions(this.questionService.getQuestions());
 		this.pageComponents[this.currentPage - 1].saveAnswers(this.fillService.getId());;
 		this.onGoToValuation.emit();
+		console.log('a');
 	}
 
 	prevPage(){

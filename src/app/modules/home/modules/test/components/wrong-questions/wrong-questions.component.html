@@ -1,0 +1,2 @@
+<h2>Rossz válaszok</h2>
+<wrong-question *ngFor="let question of questions | wrongQuestions; index as i" [index]="i" [question]="question"></wrong-question>

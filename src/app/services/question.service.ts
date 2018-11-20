@@ -15,6 +15,19 @@ export class QuestionService{
 	getQuestions(){
 		return this.questions;
 	}
+
+	findAnsweredCorrectly (questions:Question[]):Question[] {
+		return questions.map((question) => {
+			question.answeredCorrectly = false;
+			question.answers.forEach((answer) => {
+				if (answer.correct && answer.marked) {
+					question.answeredCorrectly = true;
+				}
+			})
+			return question;
+		})
+	} 
+
 	getQuestionsObject(testId:number,getCorrects:boolean) {
 		return this.networkService.get(`question/${testId}/getQuestions/${getCorrects}`)
 		.pipe(
@@ -91,6 +104,20 @@ export class QuestionService{
 
 	deleteQuestion(id:number){
 		return this.networkService.delete('question/' + id)
+	}
+
+	// Fisher-Yates
+	
+	randomizeQuestions (questions:Question[]):Question[] {
+		let randomizedQuestions:Question[] = [];
+
+		for (let i = questions.length - 1; i >= 0; i--) {
+			let randomIndex = Math.floor(Math.random() * i);
+			randomizedQuestions.push(questions[randomIndex]);
+			questions.splice(randomIndex, 1);
+		}
+		
+		return randomizedQuestions;
 	}
 
 	saveText(id:number, text:string){

@@ -1,5 +1,3 @@
-import { HttpClient } from "@angular/common/http";
-
 import { UserService } from "./user.service";
 import { NetworkService } from "./network.service";
 
@@ -21,8 +19,6 @@ describe('UserService', () => {
 
             expect(spy).toHaveBeenCalledWith('user/sendResetPassword', { email });
         })
-    });
-    describe('sendResetPassword', () => {
         it ('should call network service with user/getByPasswordRetrieverCode', () => {
             const spy = spyOn(networkService, 'get');
             const passwordRetrieverCode = 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'

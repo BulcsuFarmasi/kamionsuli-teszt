@@ -7,6 +7,9 @@ import { TestsComponent } from './components/tests/tests.component';
 import { TimerComponent } from './components/timer/timer.component';
 import { TestComponent } from './components/test/test.component';
 import { ValuationComponent } from './components/valuation/valuation.component';
+import { WrongQuestionComponent } from './components/wrong-question/wrong-question.component';
+import { WrongQuestionsComponent } from './components/wrong-questions/wrong-questions.component';
+import { WrongQuestionsPipe } from './pipes/wrong-questions.pipe';
 
 export var components=[
 	PageComponent,
@@ -17,5 +20,11 @@ export var components=[
 	TimerComponent,
 	TestComponent,
 	TestsComponent,
-	ValuationComponent
+	ValuationComponent,
+	WrongQuestionComponent,
+	WrongQuestionsComponent
+]
+
+export const pipes = [
+	WrongQuestionsPipe
 ]

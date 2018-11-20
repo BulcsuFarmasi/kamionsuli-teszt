@@ -7,4 +7,5 @@ export interface Question{
 	time?:string
 	type:string;
 	images:any;
+	answeredCorrectly?:boolean;
 }

@@ -27,10 +27,6 @@ export class PageComponent implements OnInit, OnDestroy{
 		this.saveAnswerSubscription.unsubscribe();
 	}
 
-	startCountdown(){
-		
-	}
-
 	saveAnswers(fillId) {
 		this.saveAnswerSubscription = this.answerService.saveAnswers(fillId, this.page.questions).subscribe();
 	}
