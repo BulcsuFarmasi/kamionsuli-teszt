@@ -6,7 +6,10 @@
 </div>
 <section class="result" [hidden]="!valued">
 	<h2>A teszten az alábbi pontszámot érted el:</h2>
-	<p class="scores">{{testService.test.score}} / {{testService.test.totalScore}}</p>
+	<p class="scores">
+		{{ testService.test.score }} / {{ testService.test.totalScore }}<br>
+		{{ testService.test.score / testService.test.totalScore | percent }}
+	</p>
 	<h2>És ennyi idő alatt töltötted ki:</h2>
 	<p>{{testService.test.time}}</p>
 	<h3>A kérdésekre adott helyes válaszok:</h3>
