@@ -9,6 +9,7 @@ import { TestComponent } from './components/test/test.component';
 import { ValuationComponent } from './components/valuation/valuation.component';
 import { WrongQuestionComponent } from './components/wrong-question/wrong-question.component';
 import { WrongQuestionsComponent } from './components/wrong-questions/wrong-questions.component';
+import { NotCopiableDirective } from './directives/not-copiable.directive';
 import { WrongQuestionsPipe } from './pipes/wrong-questions.pipe';
 
 export const components=[
@@ -23,6 +24,10 @@ export const components=[
 	ValuationComponent,
 	WrongQuestionComponent,
 	WrongQuestionsComponent
+]
+
+export const directives = [
+	NotCopiableDirective
 ]
 
 export const pipes = [

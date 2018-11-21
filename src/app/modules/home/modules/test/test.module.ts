@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 
-import { components, pipes } from './declarations'
+import { components, pipes, directives } from './declarations'
 
 import { AnswerService } from '../../../../services/answer.service';
 import { JwtService } from '../../../../services/jwt.service'
@@ -17,9 +17,9 @@ import { TimeService } from '../../../../services/time.service';
 
 @NgModule({
     imports:[ FormsModule, HttpClientModule, CommonModule, RouterModule ],
-    declarations:[...components, ...pipes],
+    declarations:[...components, ...directives, ...pipes],
     providers:[AnswerService,FillService, JwtService, NetworkService, QuestionService, TestService, TimeService],
-    exports:[...components, ...pipes]
+    exports:[...components,...directives, ...pipes]
 })
 
 export class TestModule{};

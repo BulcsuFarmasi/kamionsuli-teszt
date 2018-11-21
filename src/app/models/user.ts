@@ -1,4 +1,5 @@
 import { Role } from './role'
+import { Group } from './group';
 
 export interface User {
 	id?:number;
@@ -10,5 +11,6 @@ export interface User {
 	accessTo?:Date;
 	loggedIn?:boolean;
 	checked?:boolean;
-	notFound?:boolean
+	notFound?:boolean;
+	group:Group;
 }

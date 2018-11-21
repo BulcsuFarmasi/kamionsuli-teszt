@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Params } from '@angular/router';
 
 import { QuestionsComponent } from '../questions/questions.component';
@@ -8,7 +8,10 @@ import { TestService } from '../../../../../../services/test.service';
 
 
 @Component({
+	selector: 'test',
 	templateUrl:'./test.component.html',
+	styleUrls:['./test.component.scss'],
+	encapsulation: ViewEncapsulation.None
 })
 
 export class TestComponent implements OnInit{
