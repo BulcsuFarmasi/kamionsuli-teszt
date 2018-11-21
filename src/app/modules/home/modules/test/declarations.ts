@@ -11,7 +11,7 @@ import { WrongQuestionComponent } from './components/wrong-question/wrong-questi
 import { WrongQuestionsComponent } from './components/wrong-questions/wrong-questions.component';
 import { WrongQuestionsPipe } from './pipes/wrong-questions.pipe';
 
-export var components=[
+export const components=[
 	PageComponent,
 	QuestionComponent,
 	QuestionsComponent,

@@ -1,0 +1,4 @@
+<h2>Jegyzetek</h2>
+<p *ngFor="let note of notes | async">
+  <a [href]="note.path" target="_blank">{{ note.title }}</a>
+</p>
