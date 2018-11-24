@@ -25,4 +25,11 @@ export class GroupsComponent implements OnInit {
       this.getGroupsSubscription.unsubscribe();
   }
 
+  deleteGroup (group) {
+    this.groupService.deleteGroup(group.id).subscribe(() => {
+      const index = this.groups.indexOf(group);
+      this.groups.splice(index, 1);
+    })
+  }
+
 }

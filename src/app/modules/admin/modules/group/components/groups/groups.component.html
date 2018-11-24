@@ -14,7 +14,7 @@
     <td class="group-access-from">{{ group.accessFrom | date:'y.MM.dd'  }}</td>
     <td class="group-access-to">{{ group.accessTo | date:'y.MM.dd' }}</td>
     <td class="group-type-name">{{ group.type.name }}</td>
-    <td><a [routerLink]="['/admin/group/edit', group.id]" class="edit-group">Szerkesztés</a><a [routerLink]="['/admin/users', group.id]" class="users">Tanulók</a></td>
+    <td><a [routerLink]="['/admin/group/edit', group.id]" class="edit-group">Szerkesztés</a> <a [routerLink]="['/admin/users', group.id]" class="users">Tanulók</a> <button class="btn btn-delete" (click)="deleteGroup(group)">Csoport törlése</button></td>
   </tr>
 </table>
 <button class="add-group btn btn-new">Csoport hozzáadása</button>
