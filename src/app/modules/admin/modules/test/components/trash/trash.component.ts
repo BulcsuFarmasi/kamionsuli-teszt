@@ -20,15 +20,19 @@ export class TrashComponent implements OnInit, OnDestroy{
     constructor (private testService:TestService) {}
 
     ngOnInit(){
-        this.testsSubscription = this.testService.getTests(true).subscribe((tests:Test[]) => {
+        this.testsSubscription = this.testService.getTests(true, 0).subscribe((tests:Test[]) => {
             this.tests = tests;
         });
     }
 
     ngOnDestroy () {
         this.testsSubscription.unsubscribe();
-        this.deleteSubscription.unsubscribe();
-        this.untrashSubscription.unsubscribe();
+        if (this.deleteSubscription) {
+            this.deleteSubscription.unsubscribe();
+        }
+        if (this.untrashSubscription) {
+            this.untrashSubscription.unsubscribe();
+        }
     }
 
     deleteTest (test:Test) {

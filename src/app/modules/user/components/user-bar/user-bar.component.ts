@@ -23,7 +23,7 @@ export class UserBarComponent implements OnInit {
 
   ngOnInit () {
     this.userSubscription = this.userService.getUserSubject()
-                            .subscribe(user => {this.user = user;});
+                            .subscribe(user => {this.user = user});
   }
   
   ngOnDestroy () {

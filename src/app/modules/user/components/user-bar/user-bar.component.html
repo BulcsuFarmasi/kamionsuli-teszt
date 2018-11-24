@@ -1,6 +1,6 @@
 <div *ngIf="user.loggedIn">
   <span *ngIf="user.role.id === 2; else admin">
-      <a routerLink="/user/profile">{{ user.name }}</a> - Érvényes {{ user.accessTo | date:'y.MM.dd' }}-ig
+      <a routerLink="/user/profile">{{ user.name }}</a> - Érvényes {{ user.group.accessTo | date:'y.MM.dd' }}-ig
   </span>
   <ng-template #admin>
     {{ user.name }}

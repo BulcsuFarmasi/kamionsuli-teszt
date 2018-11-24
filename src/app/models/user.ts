@@ -12,5 +12,5 @@ export interface User {
 	loggedIn?:boolean;
 	checked?:boolean;
 	notFound?:boolean;
-	group:Group;
+	group?:Group;
 }

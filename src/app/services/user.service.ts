@@ -40,8 +40,8 @@ export class UserService{
 	getUser (id:number) {
 		return this.networkService.get(`user/${id}/getUser`).pipe(
 			map((user:User) => {
-				user.accessFrom = new Date(user.accessFrom);
-				user.accessTo = new Date(user.accessTo);
+				user.group.accessFrom = new Date(user.group.accessFrom);
+				user.group.accessTo = new Date(user.group.accessTo);
 				return user;
 			})
 		)
@@ -58,13 +58,24 @@ export class UserService{
 				id: user.id,
 				name: user.name,
 				email: user.email,
-				accessFrom: new Date(user.accessFrom),
-				accessTo: new Date(user.accessTo),
 				role: {
 					id: user.role.id,
 					name: user.role.name
 				},
 				loggedIn: true
+			}
+
+			if (user.group) {
+				this.user.group = {
+						id: user.group.id,
+						name: user.group.name,
+						accessFrom: user.group.accessFrom,
+						accessTo: user.group.accessTo,
+						type: {
+							id: user.group.type.id,
+							name: user.group.type.name
+					}
+				}
 			}
 			this.userSubject.next(this.user);
 		})
@@ -102,7 +113,7 @@ export class UserService{
 	}
 
 	resetPassword(id:number, password:string) {
-		return this.networkService.patch(`user/${id}/resetPassword`, { password })
+		return this.networkService.post(`user/${id}/resetPassword`, { password })
 	}
 
 	saveAccessFrom (id:number, accessFrom:Date) {

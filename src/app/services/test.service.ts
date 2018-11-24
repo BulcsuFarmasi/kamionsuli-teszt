@@ -8,6 +8,8 @@ import { Question } from '../models/question';
 import { Test } from '../models/test';
 
 import { NetworkService } from './network.service';
+import { Group } from '../models/group';
+import { Observable } from 'rxjs';
 
 @Injectable()
 export class TestService{
@@ -54,9 +56,9 @@ export class TestService{
 		return this.test;
 	}
 
-	getTests(trash:boolean){
+	getTests(trash:boolean, groupTypeId:number):Observable<Test[]>{
 		this.tests=[];
-		return this.networkService.get('test/getTests/' + trash)
+		return <Observable<Test[]>>this.networkService.get(`test/getTests/${trash}/${groupTypeId}`)
 		.pipe(
 			tap((tests:Test[]) => {this.tests = tests})
 		)

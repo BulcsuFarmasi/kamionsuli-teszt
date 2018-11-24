@@ -24,7 +24,7 @@ export class TestsComponent implements OnInit, OnDestroy{
 	constructor(private testService:TestService, private router:Router){}
 
 	ngOnInit(){
-		this.testsSubscription = this.testService.getTests(false).subscribe(tests => this.tests = tests);
+		this.testsSubscription = this.testService.getTests(false, 0).subscribe(tests => this.tests = tests);
 	}
 
 	ngOnDestroy () {
@@ -42,7 +42,7 @@ export class TestsComponent implements OnInit, OnDestroy{
 
 	addTest () {
 		this.addSubscription = this.testService.addTest().subscribe((test:Test)=> {
-			this.router.navigate(['edit', test.id]);
+			this.router.navigate(['/admin/edit', test.id]);
 		});
 	}
 

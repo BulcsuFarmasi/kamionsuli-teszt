@@ -5,5 +5,5 @@ export interface Group {
     name:string;
     accessFrom:Date;
     accessTo:Date;
-    type:GroupType;
+    type?:GroupType;
 }
