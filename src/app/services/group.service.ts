@@ -20,8 +20,8 @@ export class GroupService {
       }))
   }
 
-  addGroup () {
-    return this.networkService.post('groups', {});
+  addGroup ():Observable<Group> {
+    return <Observable<Group>>this.networkService.post('groups', {});
   }
 
   deleteGroup (id:number) {
