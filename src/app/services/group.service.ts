@@ -21,6 +21,6 @@ export class GroupService {
   }
 
   deleteGroup (id:number) {
-    return this.networkService.delete('groups/' + id);
+    return this.networkService.delete('group/' + id);
   }
 }
