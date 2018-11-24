@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
@@ -15,7 +16,7 @@ export class GroupsComponent implements OnInit {
   groups:Group[];
   getGroupsSubscription:Subscription;
   
-  constructor(private groupService:GroupService) { }
+  constructor(private groupService:GroupService, private router:Router) { }
 
   ngOnInit() {
     this.getGroupsSubscription = this.groupService.getGroups().subscribe(groups => this.groups = groups);
@@ -23,6 +24,12 @@ export class GroupsComponent implements OnInit {
 
   ngOnDestroy () {
       this.getGroupsSubscription.unsubscribe();
+  }
+
+  addGroup() {
+    this.groupService.addGroup().subscribe((group) => {
+        this.router.navigate(['/admin/group/edit', group.id]);
+    })
   }
 
   deleteGroup (group) {
