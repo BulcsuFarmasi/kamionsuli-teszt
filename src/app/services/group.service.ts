@@ -20,6 +20,10 @@ export class GroupService {
       }))
   }
 
+  addGroup () {
+    return this.networkService.post('groups', {});
+  }
+
   deleteGroup (id:number) {
     return this.networkService.delete('group/' + id);
   }
