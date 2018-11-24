@@ -19,4 +19,8 @@ export class GroupService {
         })
       }))
   }
+
+  deleteGroup (id:number) {
+    return this.networkService.delete('groups/' + id);
+  }
 }
