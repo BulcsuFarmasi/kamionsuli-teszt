@@ -12,6 +12,7 @@ import { NoteService } from 'src/app/services/note.service';
 })
 export class NotesComponent implements OnInit, OnDestroy {
 
+  message:string
   notes:Note[];
   private notesSubsciption:Subscription;
   
@@ -23,6 +24,33 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.notesSubsciption.unsubscribe();
+  }
+
+  checkAll () {
+    this.notes = this.notes.map(user => {
+      user.checked = true;
+      return user;
+    })
+  }
+
+  deleteChecked () {
+    this.notes.forEach((note, index) => {
+      if (note.checked){
+        this.notes.splice(index, 1);
+        this.noteService.deleteNote(note.id).subscribe(
+          () => {
+            this.message = `A ${note.title} című jegyzet törlése sikeres`
+          }, 
+          () => {
+            this.message = `A ${note.title} című jegyzet törlése sikertelen`;
+            this.notes.splice(index,  0, note)
+          }
+        )
+      }
+    })
+    setTimeout(() => {
+      this.message = '';
+    },10000)
   }
 
 }
