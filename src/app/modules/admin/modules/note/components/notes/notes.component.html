@@ -1,6 +1,7 @@
 <h2>Jegyzetek</h2>
 <button (click)="checkAll()">Összes kijelölése</button>
 <button (click)="deleteChecked()">Kijelöltek törlése</button>
+{{ message }}
 <table>
   <tr>
     <th>Kijelölés</th>
@@ -12,7 +13,7 @@
   </tr>
   <tr *ngFor="let note of notes">
     <td>
-      <input type="checkbox">
+      <input type="checkbox" [(ngModel)]="note.checked">
     </td>
     <td>
       {{ note.id }}
