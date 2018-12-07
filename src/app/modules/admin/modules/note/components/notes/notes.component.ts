@@ -1,4 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
@@ -18,7 +19,7 @@ export class NotesComponent implements OnInit, OnDestroy {
   private addNoteSubsciption:Subscription;
   private deleteNoteSubsciption:Subscription;
   
-  constructor(private noteService:NoteService) { }
+  constructor(private noteService:NoteService, private router:Router) { }
 
   ngOnInit() {
     this.notesSubsciption = this.noteService.getNotes(0).subscribe(notes => {this.notes = notes});
