@@ -11,6 +11,10 @@ export class NoteService {
 
   constructor(private networkService:NetworkService) {}
 
+  addUser () {
+		return this.networkService.post('note',{});
+	}
+
   deleteNote (id:number) {
 		return this.networkService.delete('note/' + id)
 			.pipe(
