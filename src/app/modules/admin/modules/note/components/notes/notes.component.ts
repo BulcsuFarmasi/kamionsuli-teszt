@@ -15,6 +15,8 @@ export class NotesComponent implements OnInit, OnDestroy {
   message:string
   notes:Note[];
   private notesSubsciption:Subscription;
+  private addNoteSubsciption:Subscription;
+  private deleteNoteSubsciption:Subscription;
   
   constructor(private noteService:NoteService) { }
 
@@ -24,6 +26,18 @@ export class NotesComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.notesSubsciption.unsubscribe();
+    if (this.addNoteSubsciption) {
+      this.addNoteSubsciption.unsubscribe();
+    }
+    if (this.deleteNoteSubsciption) {
+      this.deleteNoteSubsciption.unsubscribe();
+    }
+  }
+
+  addUser () {
+    this.addNoteSubscription = this.noteService.addNote().subscribe((note:Note) => {
+      this.router.navigate(['/admin/user/edit/', note.id]);
+    })
   }
 
   checkAll () {
@@ -37,7 +51,7 @@ export class NotesComponent implements OnInit, OnDestroy {
     this.notes.forEach((note, index) => {
       if (note.checked){
         this.notes.splice(index, 1);
-        this.noteService.deleteNote(note.id).subscribe(
+        this.deleteNoteSubsciption = this.noteService.deleteNote(note.id).subscribe(
           () => {
             this.message = `A ${note.title} című jegyzet törlése sikeres`
           }, 
