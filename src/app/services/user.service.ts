@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { BehaviorSubject, throwError } from 'rxjs';
+import { BehaviorSubject, throwError, Observable } from 'rxjs';
 import { tap, map } from 'rxjs/operators';
 
 
@@ -20,8 +20,8 @@ export class UserService{
 		this.userSubject=new BehaviorSubject(this.user);
 	}
 
-	addUser () {
-		return this.networkService.post('user',{});
+	addUser (groupId:number) {
+		return this.networkService.post(`user/${groupId}/addUser`,{});
 	}
 
 	authenticate(creditentals){
@@ -87,17 +87,8 @@ export class UserService{
 		this.userSubject.next(this.user);
 	}
 
-	getUsers () {
-		return this.networkService.get('user/getUsers').pipe(
-			map((users:User[]) => {
-				users = users.map(user => {
-					user.accessFrom = new Date(user.accessFrom);
-					user.accessTo = new Date(user.accessTo)
-					return user;
-				})
-				return users;
-			})
-		)
+	getUsers (groupId:number):Observable<User[]> {
+		return <Observable<User[]>>this.networkService.get(`user/${groupId}/getUsers`)
 	}
 
 	deleteUser (id:number) {

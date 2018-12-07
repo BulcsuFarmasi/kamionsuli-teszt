@@ -26,7 +26,7 @@ export class GroupsComponent implements OnInit {
       this.getGroupsSubscription.unsubscribe();
   }
 
-  addGroup() {
+  addGroup():void {
     this.groupService.addGroup().subscribe((group) => {
         this.router.navigate(['/admin/group/edit', group.id]);
     })

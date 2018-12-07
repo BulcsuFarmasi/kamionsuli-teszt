@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 import { User } from '../../../../models/user';
 import { UserService } from '../../../../services/user.service';
@@ -12,15 +12,18 @@ import { Subscription } from 'rxjs';
 })
 export class UsersComponent implements OnInit, OnDestroy {
 
-  users:User[]
   message:string;
-  private userSubscription:Subscription;
+  users:User[]
   private addUserSubscription:Subscription;
+  private groupId:number;
+  private userSubscription:Subscription;
+
   
-  constructor(private userService:UserService, private router:Router) { }
+  constructor(private userService:UserService, private router:Router, private route:ActivatedRoute) { }
 
   ngOnInit () {
-    this.userSubscription = this.userService.getUsers().subscribe(users => {
+    this.groupId = +this.route.snapshot.paramMap.get('groupId')
+    this.userSubscription = this.userService.getUsers(this.groupId).subscribe(users => {
       this.users = users;
     });
   }
@@ -33,7 +36,7 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   addUser () {
-    this.addUserSubscription = this.userService.addUser().subscribe((user:User) => {
+    this.addUserSubscription = this.userService.addUser(this.groupId).subscribe((user:User) => {
       this.router.navigate(['/admin/user/edit/', user.id]);
     })
   }
