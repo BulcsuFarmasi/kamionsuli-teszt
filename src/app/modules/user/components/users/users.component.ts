@@ -49,16 +49,16 @@ export class UsersComponent implements OnInit, OnDestroy {
   }
 
   deleteChecked () {
-    this.users.forEach((user, index, users) => {
+    this.users.forEach((user, index) => {
       if (user.checked){
-        users.splice(index, 1);
+        this.users.splice(index, 1);
         this.userService.deleteUser(user.id).subscribe(
           () => {
             this.message = `A ${user.name} nevű felhasználó törlése sikeres`
           }, 
           () => {
             this.message = `A ${user.name} nevű felhasználó törlése sikertelen`;
-            users.splice(index,  0, user)
+            this.users.splice(index,  0, user)
           }
         )
       }
