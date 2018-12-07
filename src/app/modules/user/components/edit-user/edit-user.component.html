@@ -1,7 +1,11 @@
-<h2><editable-input [value]="user?.name" [inputType]="'text'" [type]="'name'" (onStopEditing)="saveName($event.value)"></editable-input></h2>
+<h2>Felhasználó szerkesztése</h2>
 <p>Azonosító: {{ user?.id }}</p>
-<p>E-mail: <editable-input [value]="user?.email" [inputType]="'email'" [type]="'email'" (onStopEditing)="saveEmail($event.value)"></editable-input></p>
-<p>Hozzáférés kezdete: <editable-date [value]="user?.accessFrom"  [type]="'accessFrom'" (stopedit)="saveAccessFrom($event.value)"></editable-date></p>
-<p>Hozzáférés vége: <editable-date [value]="user?.accessTo"  [type]="'accessTo'" (stopedit)="saveAccessTo($event.value)"></editable-date></p>
-<button (click)="sendNotificationEmail()">Értesítő e-mail kiküldése</button>
+<form>
+    <p><label for="name">Név</label><br>
+    <input type="text" id="name" name="name" [(ngModel)]="user.name"></p>
+    <p><label for="name">Név</label><br>
+    <input type="email" id="email" name="email" [(ngModel)]="user.email"></p>
+    <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
+</form>
+<button (click)="sendNotificationEmail()">Értesítő e-mail kiküldése</button><br>
 <a routerLink="/admin/users">Vissza a felhasználókhoz</a>
