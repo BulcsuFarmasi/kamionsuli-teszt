@@ -11,7 +11,7 @@ export class NoteService {
 
   constructor(private networkService:NetworkService) {}
 
-  addUser () {
+  addNote () {
 		return this.networkService.post('note',{});
 	}
 

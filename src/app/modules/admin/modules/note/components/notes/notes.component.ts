@@ -35,9 +35,9 @@ export class NotesComponent implements OnInit, OnDestroy {
     }
   }
 
-  addUser () {
-    this.addNoteSubscription = this.noteService.addNote().subscribe((note:Note) => {
-      this.router.navigate(['/admin/user/edit/', note.id]);
+  addNote () {
+    this.addNoteSubsciption = this.noteService.addNote().subscribe((note:Note) => {
+      this.router.navigate(['/admin/note/edit/', note.id]);
     })
   }
 
