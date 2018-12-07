@@ -1,9 +1,32 @@
 <h2>Jegyzetek</h2>
 <table>
   <tr>
-
+    <th>Kijelölés</th>
+    <th>Azonosító</th>
+    <th>Cím</th>
+    <th>Fájl</th>
+    <th>Típus</th>
+    <th>Szerkesztés</th>
   </tr>
   <tr>
-    
+    <td>
+      <input type="checkbox">
+    </td>
+    <td>
+      {{ note.id }}
+    </td>
+    <td>
+      {{ note.title }}
+    </td>
+    <td>
+      <a [href]="note.path">{{ note.path }}</a>
+    </td>
+    <td>
+      {{ note.groupType.name }}
+    </td>
+    <td>
+      <a class="btn btn-edit" [routerLink]="['/admin/note/edit', note.id]">Szerkesztés</a>
+    </td>
   </tr>
 </table>
+<button class="btn btn-new" (click)="addNote()">Új Jegyzet</button>
