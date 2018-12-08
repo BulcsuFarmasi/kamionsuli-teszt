@@ -1,6 +1,7 @@
 <h2>Felhasználó szerkesztése</h2>
 <p>Azonosító: {{ user?.id }}</p>
 <form #form="ngForm" (ngSubmit)="saveUser(form)">
+    {{ message }}
     <p><label for="name">Név</label><br>
     <input type="text" id="name" name="name" [(ngModel)]="user.name"></p>
     <p><label for="name">Név</label><br>

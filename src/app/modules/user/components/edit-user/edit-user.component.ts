@@ -41,10 +41,10 @@ export class EditUserComponent implements OnInit, OnDestroy {
   saveUser () {
     this.saveUserSubscription = this.userService.saveUser(this.user).subscribe(
       () => {
-        this.router.navigate(['/admin/users', this.groupId]);
+        this.message = 'A tanuló mentése sikeres';
       }, 
       () => {
-        this.message = `A tanuló mentése sikertelen`;
+        this.message = 'A tanuló mentése sikertelen';
       }
     );
   }

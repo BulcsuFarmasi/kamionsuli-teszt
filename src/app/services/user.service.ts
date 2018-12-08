@@ -108,7 +108,16 @@ export class UserService{
 	}
 
 	saveUser(user:User) {
-		return this.networkService.patch('user/' + user.id, { user })
+		return this.networkService.patch(`user/${user.id}/saveUser`, { name: user.name, email: user.email  })
+		.pipe(
+			map((response:any) => {
+				if (response && response.errorCode) {
+					console.log(response.errorCode);
+					throwError(response);
+				}
+			}
+			)
+		)
 	}
 
 	sendNotificationEmail (id:number) {
