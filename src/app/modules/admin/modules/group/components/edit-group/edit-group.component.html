@@ -1,3 +1,22 @@
-<p>
-  edit-group works!
-</p>
+<h2>Csoport szerkesztése</h2>
+<p>Azonosító: {{ group.id }}</p>
+<form>
+  <p><label for="name">Név</label>
+  <input type="name" id="name" name="name" [(ngModel)]="group.name"></p>
+  <p>
+    <label for="name">Érvényesség kedzete</label>
+    <input type="name" id="access-from" name="accessFrom" [(ngModel)]="group.name">
+  </p>
+  <p>
+    <label for="name">Érvényesség vége</label>
+    <input type="name" id="access-to" name="access-to" [(ngModel)]="group.name">
+  </p>
+  <p>
+    <label for="name">Típus</label>
+    <select id="type" name="type" [(ngModel)]="group.type.id">
+
+    </select>
+  </p>
+  <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
+</form>
+<a routerLink="/admin/groups">Vissza csoportokhoz</a>
