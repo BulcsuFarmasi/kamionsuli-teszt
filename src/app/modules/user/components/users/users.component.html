@@ -20,7 +20,7 @@
       {{ user.name }}
     </td>
     <td>
-      <a [routerLink]="['/admin/user/edit', user.id]">Szerkesztés</a>
+      <a [routerLink]="['/admin/user/edit', groupId, user.id]">Szerkesztés</a>
     </td>
   </tr>
   <button class="btn btn-new" (click)="addUser()">Új felhasználó</button>

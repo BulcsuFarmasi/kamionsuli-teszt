@@ -107,20 +107,8 @@ export class UserService{
 		return this.networkService.post(`user/${id}/resetPassword`, { password })
 	}
 
-	saveAccessFrom (id:number, accessFrom:Date) {
-		return this.networkService.patch(`user/${id}/saveAccessFrom`, {accessFrom})
-	}
-
-	saveAccessTo (id:number, accessTo:Date) {
-		return this.networkService.patch(`user/${id}/saveAccessTo`, {accessTo})
-	}
-
-	saveEmail (id:number, email) {
-		return this.networkService.patch(`user/${id}/saveEmail`, {email})
-	}
-
-	saveName (id:number, name:string) {
-		return this.networkService.patch(`user/${id}/saveName`, {name})
+	saveUser(user:User) {
+		return this.networkService.patch('user/' + user.id, { user })
 	}
 
 	sendNotificationEmail (id:number) {

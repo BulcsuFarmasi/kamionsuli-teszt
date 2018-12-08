@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit, OnDestroy {
 
   addUser () {
     this.addUserSubscription = this.userService.addUser(this.groupId).subscribe((user:User) => {
-      this.router.navigate(['/admin/user/edit/', user.id]);
+      this.router.navigate(['/admin/user/edit/', this.groupId, user.id]);
     })
   }
 

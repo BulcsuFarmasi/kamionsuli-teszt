@@ -1,6 +1,6 @@
 <h2>Felhasználó szerkesztése</h2>
 <p>Azonosító: {{ user?.id }}</p>
-<form>
+<form #form="ngForm" (ngSubmit)="saveUser(form)">
     <p><label for="name">Név</label><br>
     <input type="text" id="name" name="name" [(ngModel)]="user.name"></p>
     <p><label for="name">Név</label><br>
@@ -8,4 +8,4 @@
     <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
 </form>
 <button (click)="sendNotificationEmail()">Értesítő e-mail kiküldése</button><br>
-<a routerLink="/admin/users">Vissza a felhasználókhoz</a>
+<a [routerLink]="['/admin/users', groupId]">Vissza a felhasználókhoz</a>

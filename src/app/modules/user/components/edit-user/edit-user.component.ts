@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 import { Subscription } from 'rxjs';
@@ -16,59 +16,37 @@ import { UserService } from '../../../../services/user.service';
 })
 export class EditUserComponent implements OnInit, OnDestroy {
 
+  groupId:number;
+  message:string;
   user:User;
-  private saveAccessFromSubscription:Subscription;
-  private saveAccessToSubscription:Subscription;
-  private saveEmailSubscription:Subscription;
-  private saveNameSubscription:Subscription;
-  private sendNotificationEmailSubscription:Subscription;
+  private saveUserSubscription:Subscription;
   private userSubscription:Subscription;
-  constructor(private route:ActivatedRoute, private userService:UserService) { }
+  constructor(private route:ActivatedRoute, private userService:UserService, private router:Router) { }
 
   ngOnInit() {
-    let id:number = +this.route.snapshot.paramMap.get('id')
+    this.groupId = +this.route.snapshot.paramMap.get('groupId');
+    let id:number = +this.route.snapshot.paramMap.get('id');
     this.userSubscription = this.userService.getUser(id).subscribe((user:User) => {
       this.user = user;
     });
   }
 
   ngOnDestroy () {
-    if (this.saveAccessFromSubscription) {
-      this.saveAccessFromSubscription.unsubscribe();
-    }
-    if (this.saveAccessToSubscription) {
-      this.saveAccessToSubscription.unsubscribe();
-    }
-    if (this.saveEmailSubscription) {
-      this.saveEmailSubscription.unsubscribe();
-    }
-    if (this.saveNameSubscription) {
-      this.saveNameSubscription.unsubscribe();
-    }
-    if (this.sendNotificationEmailSubscription) {
-      this.sendNotificationEmailSubscription.unsubscribe();
+    if (this.saveUserSubscription) {
+      this.saveUserSubscription.unsubscribe();
     }
     this.userSubscription.unsubscribe();
   } 
 
-  saveAccessFrom (accessFrom) {
-    this.saveAccessFromSubscription = this.userService.saveAccessFrom(this.user.id, accessFrom).subscribe();
-  }
-
-  saveAccessTo (accessTo) {
-    this.saveAccessToSubscription = this.userService.saveAccessTo(this.user.id, accessTo).subscribe();
-  }
-  
-  saveEmail (email) {
-    this.saveEmailSubscription = this.userService.saveEmail(this.user.id, email).subscribe();
-  }
-
-  saveName (name) {
-    this.saveNameSubscription = this.userService.saveName(this.user.id, name).subscribe();
-  }
-
-  sendNotificationEmail () {
-    this.sendNotificationEmailSubscription = this.userService.sendNotificationEmail(this.user.id).subscribe();
+  saveUser () {
+    this.saveUserSubscription = this.userService.saveUser(this.user).subscribe(
+      () => {
+        this.router.navigate(['/admin/users', this.groupId]);
+      }, 
+      () => {
+        this.message = `A tanuló mentése sikertelen`;
+      }
+    );
   }
 
 }

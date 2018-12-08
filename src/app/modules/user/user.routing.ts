@@ -23,7 +23,7 @@ export const userRoutes: Routes = [
     data: { roleId: 1 }
   },
   {
-    path: "user/edit/:id",
+    path: "user/edit/:groupId/:id",
     component: EditUserComponent,
     canActivate: [UserGuard],
     data: { roleId: 1 }
