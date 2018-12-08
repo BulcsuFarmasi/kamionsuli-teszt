@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs';
 
 import { Group } from 'src/app/models/group';
 import { GroupService } from 'src/app/services/group.service';
+import { GroupTypeService } from 'src/app/services/group-type.service';
+import { GroupType } from 'src/app/models/group-type';
 
 @Component({
   selector: 'app-edit-group',
@@ -14,16 +16,21 @@ import { GroupService } from 'src/app/services/group.service';
 export class EditGroupComponent implements OnInit, OnDestroy {
 
   group:Group;
+  groupTypes:GroupType[];
+  private groupTypesSubscription:Subscription;
   private groupSubscription:Subscription;
   
-  constructor(private groupService:GroupService, private route:ActivatedRoute) { }
+  constructor(private groupService:GroupService, private groupTypeService:GroupTypeService, private route:ActivatedRoute) { }
 
   ngOnInit() {
-    let id = +this.route.snapshot.paramMap.get('id')
+    let id = +this.route.snapshot.paramMap.get('id');
     this.groupSubscription = this.groupService.getGroup(id).subscribe((group:Group) => {
       this.group = group;
-      console.log(this.group);
     })
+    this.groupTypesSubscription = this.groupTypeService.getGroupTypes().subscribe((groupTypes:GroupType[]) => {
+      this.groupTypes = groupTypes;
+    })
+
   }
 
   ngOnDestroy() {

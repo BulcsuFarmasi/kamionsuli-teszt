@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 
 import { components } from './group.declarations';
 import { GroupService } from '../../../../services/group.service';
+import { GroupTypeService } from 'src/app/services/group-type.service';
 
 @NgModule({
   imports: [
@@ -13,7 +14,7 @@ import { GroupService } from '../../../../services/group.service';
     RouterModule
   ],
   declarations: [components],
-  providers: [GroupService],
+  providers: [GroupService, GroupTypeService],
   exports: [components]
 })
 export class GroupModule { }

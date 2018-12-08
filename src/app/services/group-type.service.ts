@@ -9,7 +9,7 @@ export class GroupTypeService {
 
   constructor(private networkService) { }
 
-  getGroupTypes () {
-    return <Observable<GroupType>> this.networkService.get('groupTypes')
+  getGroupTypes ():Observable<GroupType[]> {
+    return <Observable<GroupType[]>> this.networkService.get('groupTypes');
   }
 }
