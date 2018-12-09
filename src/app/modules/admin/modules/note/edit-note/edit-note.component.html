@@ -1,3 +1,21 @@
-<p>
-  edit-note works!
-</p>
+<h2>Jegyzet szerkesztése</h2>
+<p>Azonosító: {{ note.id }}</p>
+<form>
+  {{ message }}
+  <p>
+    <label for="title">Cím</label>
+    <br>
+    <input type="text" id="title" name="title" [(ngModel)]="note.title">
+  </p>
+  <p>
+    <label for="path">Fájl</label>
+    <br>
+    <input type="file" id="path" name="path">
+  </p>
+  <p>
+    <label for="type">Típus</label>
+    <br>
+    <select name="type" id="type"></select>
+  </p>
+  <p><input type="submit" class="btn btn-edit"></p>
+</form>
