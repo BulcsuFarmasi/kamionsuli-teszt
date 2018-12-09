@@ -4,6 +4,7 @@ import { RouterModule } from '@angular/router';
 
 import { NotesComponent } from './components/notes/notes.component';
 import { FormsModule } from '@angular/forms';
+import { EditNoteComponent } from './edit-note/edit-note.component';
 
 @NgModule({
   imports: [
@@ -11,6 +12,6 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
     RouterModule
   ],
-  declarations: [NotesComponent]
+  declarations: [NotesComponent, EditNoteComponent]
 })
 export class NoteModule { }
