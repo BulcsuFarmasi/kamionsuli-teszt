@@ -25,18 +25,25 @@ export class NoteService {
 				}
 			)
 		)
-	}
+  }
+  
+  getNote (id:number):Observable<Note> {
+    return <Observable<Note>> this.networkService.get('note/' + id)
+    .pipe(map(this.transformNote));
+  }
   
   getNotes (groupTypeId:number):Observable<Note[]> {
     return <Observable<Note[]>> this.networkService.get('notes/' + groupTypeId)
            .pipe(map((notes:Note[]) => {
-                  notes.map((note:any) => {
-                    note.groupType = note.group_type;
-                    delete note.group_type;
-                    return note;
-                  })
+                  notes.map(this.transformNote);
                   return notes;
                 }));
+  }
+
+  private transformNote (note:any) {
+      note.groupType = note.group_type;
+      delete note.group_type;
+      return note;
   }
 
 
