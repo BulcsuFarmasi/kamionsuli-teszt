@@ -124,7 +124,4 @@ export class QuestionService{
 		return this.networkService.patch('question/saveText',{id:id,text:text})
 	}
 
-	saveType(id:number, type:string){
-		return this.networkService.patch('question/saveType',{id:id,type:type})
-	}
 }

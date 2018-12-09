@@ -29,8 +29,10 @@ export class EditComponent implements OnInit, OnDestroy{
 
 	ngOnInit(){
 		this.test = {
-			id: parseInt(this.route.snapshot.paramMap.get('id'))
-		} 
+			id: +this.route.snapshot.paramMap.get('id')
+		}
+		
+		console.log(this.test);
 
 		this.testService.setId(this.test.id);
 		this.getStartDataSubscription = this.testService.getStartData()

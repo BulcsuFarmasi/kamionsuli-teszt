@@ -9,5 +9,5 @@ import { UserGuard } from '../../../../services/user-guard';
 export const testRoutes:Routes = [
     { path:'tests', component:TestsComponent, canActivate:[UserGuard], data: {roleId: 1}},
     { path:'trash', component:TrashComponent, canActivate:[UserGuard], data: {roleId: 1}},
-    { path:'edit/:testId', component:EditComponent, canActivate:[UserGuard], data: {roleId: 1}}
+    { path:'edit/:id', component:EditComponent, canActivate:[UserGuard], data: {roleId: 1}}
 ]
