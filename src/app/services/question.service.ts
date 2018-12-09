@@ -39,7 +39,6 @@ export class QuestionService{
 					id: responseQuestion.id,
 					text : responseQuestion.text,
 					images : responseQuestion.images,
-					type : responseQuestion.type,
 					answers : responseQuestion.answers
 				};
 				questions.push(question);
@@ -61,9 +60,6 @@ export class QuestionService{
 			if(question.id === questionId){
 				for(let answer of question.answers){
 					if(answer.id === answerId){
-						if(question.type === "checkbox"){
-							answer.marked=(answer.marked) ? false : true;
-						}else if(question.type === "radio"){
 							question.answers=question.answers.map(function(answer){
 								answer.marked=false;
 								return answer;
@@ -73,8 +69,7 @@ export class QuestionService{
 					}
 				}
 			}
-		}
-	}
+		}	
 
 	addQuestion(testId:number) {
 		return this.networkService.post('../api/public/question/addQuestion', {testId: testId})
