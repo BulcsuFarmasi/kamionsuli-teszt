@@ -14,7 +14,7 @@
   <p>
     <label for="name">Típus</label>
     <select id="type" name="type" [(ngModel)]="group.type.id">
-
+      <option *ngFor="let groupType of groupTypes" [value]="groupType.id">{{ groupType.name }}</option>
     </select>
   </p>
   <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
