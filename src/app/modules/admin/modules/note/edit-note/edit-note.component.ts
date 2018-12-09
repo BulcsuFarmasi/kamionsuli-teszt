@@ -22,6 +22,7 @@ export class EditNoteComponent implements OnInit, OnDestroy {
     let id = +this.route.snapshot.paramMap.get('id');
     this.noteSubscription = this.noteService.getNote(id).subscribe(note => {
       this.note = note;
+      console.log(this.note);
     })
   }
 
