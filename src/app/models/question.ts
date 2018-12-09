@@ -5,7 +5,6 @@ export interface Question{
 	text:string;
 	answers?:Answer[];
 	time?:string
-	type:string;
 	images:any;
 	answeredCorrectly?:boolean;
 }

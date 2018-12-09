@@ -4,12 +4,6 @@
 	</h3>
 	<images [images]="question.images"></images>
 	<image-upload></image-upload>
-	<p>Típus:<br />
-		<select [(ngModel)]="question.type" (ngModelChange)="saveType(question.type)">
-			<option value="radio" [selected]="question.type=='radio'">Egyválasztós</option>
-			<option value="checkbox" [selected]="question.type=='checkbox'">Többválasztós</option>
-		</select>
-	</p>
 	<h4>Válaszok</h4>
 	<p *ngFor="let answer of question.answers;let i=index" class="answer">
 		<b><editable-input [value]="answer.text" [inputType]="'text'" [type]="'answerText'" [id]="answer.id" (onStopEditing)="onStopEditing($event.value,i)"></editable-input></b><br />

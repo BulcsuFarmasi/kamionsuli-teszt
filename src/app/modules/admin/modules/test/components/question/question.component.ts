@@ -57,11 +57,6 @@ export class QuestionComponent implements OnDestroy {
 		this.questionService.saveText(this.question.id, text).subscribe();
 	}
 
-	saveType(type:string){
-		this.question.type=type;
-		this.questionService.saveType(this.question.id,type).subscribe();
-	}
-
 	saveAnswerText(text:string, index:number){
 		this.question.answers[index].text=text;
 		this.answerService.saveText(this.question.answers[index].id, text).subscribe();
