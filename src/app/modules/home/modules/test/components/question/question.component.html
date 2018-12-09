@@ -5,5 +5,5 @@
 	</span>
 </p>
 <p *ngFor="let answer of question.answers">
-	<label [htmlFor]="'question'+question.id"><input [type]="question.type" [name]="'question'+question.id" (change)="changeAnswer(question.id,answer.id)" /><span class="answer">{{answer.text}}</span></label>
+	<label [htmlFor]="'question'+question.id"><input type="radio" [name]="'question'+question.id" (change)="changeAnswer(question.id,answer.id)" /><span class="answer">{{answer.text}}</span></label>
 </p> 
