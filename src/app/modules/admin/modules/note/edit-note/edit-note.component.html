@@ -10,7 +10,7 @@
   <p>
     <label for="path">Fájl</label>
     <br>
-    <input type="file" id="path" name="path">
+    <input type="file" id="path" name="path" (change)="onFileChanged($event)">
   </p>
   <p>
     <label for="type">Típus</label>

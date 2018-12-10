@@ -40,6 +40,15 @@ export class NoteService {
                 }));
   }
 
+  saveNote (note:Note) {
+    return this.networkService.patch('note/' + note.id, { title: note.title, groupTypeId: note.groupType })
+      .pipe(map((response:any) => {
+        if (response && response.errorCode) {
+          throwError(response);
+        }
+      }))
+  }
+
   private transformNote (note:any) {
       note.groupType = note.group_type;
       delete note.group_type;

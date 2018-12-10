@@ -18,6 +18,7 @@ export class EditNoteComponent implements OnInit, OnDestroy {
   groupTypes:GroupType[];
   message:string;
   note:Note;
+  selectedFile:File;
   private groupTypeSubscription:Subscription; 
   private noteSubscription:Subscription;
   
@@ -39,9 +40,19 @@ export class EditNoteComponent implements OnInit, OnDestroy {
     this.groupTypeSubscription.unsubscribe()
   }
 
+  onSelectedFile (event) {
+    this.selectedFile = <File> event.target.files[0];
+  }
+
   submit(form) {
     this.noteService.saveNote(this.note).subscribe(
-      () => { this.message = 'A jegyzet mentése sikeres' },
+      () => { 
+        this.message = 'A jegyzet mentése sikeres';
+        this.noteService.uploadNoteFile(this.note.id, this.selectedFile).subscribe(
+          () => { this.message = 'A fájl mentése sikeres' },
+          () => { this.message = 'A fájl mentése sikertelen' }
+        )
+      },
       () => { this.message = 'A jegyzet mentése sikertelen' }
       )
   }
