@@ -1,8 +1,10 @@
 import { Injectable } from '@angular/core';
-import { NetworkService } from './network.service';
-import { Observable } from 'rxjs';
-import { Group } from '../models/group';
+
+import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
+
+import { Group } from '../models/group';
+import { NetworkService } from './network.service';
 
 @Injectable()
 export class GroupService {
@@ -29,7 +31,18 @@ export class GroupService {
       }))
   }
 
-  transfromGroup (group:Group) {
+  saveGroup (group:Group) {
+    return this.networkService.patch('group/' + group.id, { name: group.name, typeId: group.typeId })
+      .pipe(map((response:any) => {
+        if (response && response.errorCode) {
+          throwError(response);
+        } else {
+          return response;
+        }
+      }))
+  }
+
+  private transfromGroup (group:Group) {
     group.accessFrom = new Date(group.accessFrom);
     group.accessTo = new Date(group.accessTo);
     return group;

@@ -6,4 +6,5 @@ export interface Group {
     accessFrom:Date;
     accessTo:Date;
     type?:GroupType;
+    typeId?:number;
 }

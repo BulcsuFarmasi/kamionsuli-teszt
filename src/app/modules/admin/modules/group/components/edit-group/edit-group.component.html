@@ -3,17 +3,21 @@
   <p>Azonosító: {{ group.id }}</p>
   <form #form="ngForm" (ngSubmit)="submit(form)">
     {{ message }}
-    <p><label for="name">Név</label>
+    <p><label for="name">Név</label><br>
     <input type="name" id="name" name="name" [(ngModel)]="group.name"></p>
     <p>
       <label for="name">Érvényesség kedzete</label><br>
-      <input type="name" id="access-from" name="accessFrom" [(ngModel)]="group.accessFrom">
+      <input type="name" id="access-from" name="accessFrom" [(ngModel)]="group.accessFrom" [matDatepicker]="accessFromDatePicker">
+      <mat-datepicker-toggle [for]="accessFromDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #accessFromDatePicker></mat-datepicker>
     </p>
     <p>
       <label for="name">Érvényesség vége</label><br>
-      <input type="name" id="access-to" name="access-to" [(ngModel)]="group.accessTo">
+      <input type="name" id="access-to" name="access-to" [(ngModel)]="group.accessTo" [matDatepicker]="accessToDatePicker">
+      <mat-datepicker-toggle [for]="accessToDatePicker"></mat-datepicker-toggle>
+      <mat-datepicker #accessToDatePicker></mat-datepicker>
     </p>
-    <group-type-select [selectedId]="group.type.id" (groupTypeChange)="onGroupTypeChange($event)"></group-type-select>
+    <group-type-select [selectedId]="group.type.id" (groupTypeChange)="onTypeChange($event)"></group-type-select>
     <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
   </form>
   <a routerLink="/admin/groups">Vissza csoportokhoz</a>

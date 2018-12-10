@@ -33,6 +33,10 @@ export class EditGroupComponent implements OnInit, OnDestroy {
     this.groupSubscription.unsubscribe();
   }
 
+  onTypeChange (event) {
+    this.group.typeId = event;
+  }
+
   submit (form) {
     this.groupService.saveGroup(this.group).subscribe(
       () => {
