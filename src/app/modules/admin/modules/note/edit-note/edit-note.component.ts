@@ -40,7 +40,7 @@ export class EditNoteComponent implements OnInit, OnDestroy {
     this.groupTypeSubscription.unsubscribe()
   }
 
-  onSelectedFile (event) {
+  onFileChanged (event) {
     this.selectedFile = <File> event.target.files[0];
   }
 

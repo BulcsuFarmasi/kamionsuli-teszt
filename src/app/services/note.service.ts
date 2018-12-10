@@ -49,6 +49,20 @@ export class NoteService {
       }))
   }
 
+  uploadNoteFile (id: number, file: File) {
+    const formData = new FormData();
+    formData.append('note', file, file.name);
+
+    console.log(formData);
+
+    return this.networkService.post(`note/${id}/uploadFile`, formData)
+    .pipe(map((response:any) => {
+      if (response && response.errorCode) {
+        throwError(response);
+      }
+    }));
+  }
+
   private transformNote (note:any) {
       note.groupType = note.group_type;
       delete note.group_type;
