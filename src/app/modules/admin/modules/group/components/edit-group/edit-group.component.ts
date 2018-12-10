@@ -16,25 +16,32 @@ import { GroupType } from 'src/app/models/group-type';
 export class EditGroupComponent implements OnInit, OnDestroy {
 
   group:Group;
-  groupTypes:GroupType[];
-  private groupTypesSubscription:Subscription;
+  message:string;
   private groupSubscription:Subscription;
   
-  constructor(private groupService:GroupService, private groupTypeService:GroupTypeService, private route:ActivatedRoute) { }
+  constructor(private groupService:GroupService, private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get('id');
     this.groupSubscription = this.groupService.getGroup(id).subscribe((group:Group) => {
       this.group = group;
     })
-    this.groupTypesSubscription = this.groupTypeService.getGroupTypes().subscribe((groupTypes:GroupType[]) => {
-      this.groupTypes = groupTypes;
-    })
 
   }
 
   ngOnDestroy() {
     this.groupSubscription.unsubscribe();
+  }
+
+  submit (form) {
+    this.groupService.saveGroup(this.group).subscribe(
+      () => {
+        this.router.navigate(['/admin/groups'])
+      },
+      () => {
+        this.message = 'A csoport mentése sikertelen';
+      }
+    )
   }
 
 }

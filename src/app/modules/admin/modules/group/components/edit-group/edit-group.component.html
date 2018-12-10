@@ -1,16 +1,17 @@
 <h2>Csoport szerkesztése</h2>
 <div *ngIf="group">
   <p>Azonosító: {{ group.id }}</p>
-  <form>
+  <form #form="ngForm" (ngSubmit)="submit(form)">
+    {{ message }}
     <p><label for="name">Név</label>
     <input type="name" id="name" name="name" [(ngModel)]="group.name"></p>
     <p>
       <label for="name">Érvényesség kedzete</label><br>
-      <input type="name" id="access-from" name="accessFrom" [(ngModel)]="group.name">
+      <input type="name" id="access-from" name="accessFrom" [(ngModel)]="group.accessFrom">
     </p>
     <p>
       <label for="name">Érvényesség vége</label><br>
-      <input type="name" id="access-to" name="access-to" [(ngModel)]="group.name">
+      <input type="name" id="access-to" name="access-to" [(ngModel)]="group.accessTo">
     </p>
     <group-type-select [selectedId]="group.type.id" (groupTypeChange)="onGroupTypeChange($event)"></group-type-select>
     <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
