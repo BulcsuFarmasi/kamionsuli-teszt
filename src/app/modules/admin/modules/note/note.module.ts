@@ -5,12 +5,14 @@ import { RouterModule } from '@angular/router';
 import { NotesComponent } from './components/notes/notes.component';
 import { FormsModule } from '@angular/forms';
 import { EditNoteComponent } from './edit-note/edit-note.component';
+import { GroupTypeModule } from '../group-type/group-type.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
-    RouterModule
+    RouterModule,
+    GroupTypeModule
   ],
   declarations: [NotesComponent, EditNoteComponent]
 })

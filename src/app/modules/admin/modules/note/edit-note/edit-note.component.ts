@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
-import { GroupTypeService } from 'src/app/services/group-type.service';
 import { GroupType } from 'src/app/models/group-type';
 import { FileError } from 'src/app/models/file-error';
 import { Note } from 'src/app/models/note';
@@ -25,16 +24,12 @@ export class EditNoteComponent implements OnInit, OnDestroy {
   private groupTypeSubscription:Subscription; 
   private noteSubscription:Subscription;
   
-  constructor(private noteService:NoteService, private groupTypeService:GroupTypeService, private route:ActivatedRoute, private router:Router) { }
+  constructor(private noteService:NoteService, private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get('id');
     this.noteSubscription = this.noteService.getNote(id).subscribe(note => {
       this.note = note;
-      console.log(this.note);
-    })
-    this.groupTypeSubscription = this.groupTypeService.getGroupTypes().subscribe(groupTypes => {
-      this.groupTypes = groupTypes
     })
   }
 

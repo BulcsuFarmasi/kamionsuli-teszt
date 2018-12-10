@@ -1,0 +1,7 @@
+<p>
+    <label for="type">Típus</label>
+    <br>
+    <select name="type" id="type" [(ngModel)]="selectedId" (change)="onChange($event)">
+      <option *ngFor="let groupType of groupTypes" [value]="groupType.id">{{ groupType.name }}</option>
+    </select>
+  </p>
