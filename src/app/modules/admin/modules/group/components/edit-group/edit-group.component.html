@@ -1,22 +1,19 @@
 <h2>Csoport szerkesztése</h2>
-<p>Azonosító: {{ group.id }}</p>
-<form>
-  <p><label for="name">Név</label>
-  <input type="name" id="name" name="name" [(ngModel)]="group.name"></p>
-  <p>
-    <label for="name">Érvényesség kedzete</label>
-    <input type="name" id="access-from" name="accessFrom" [(ngModel)]="group.name">
-  </p>
-  <p>
-    <label for="name">Érvényesség vége</label>
-    <input type="name" id="access-to" name="access-to" [(ngModel)]="group.name">
-  </p>
-  <p>
-    <label for="name">Típus</label>
-    <select id="type" name="type" [(ngModel)]="group.type.id">
-      <option *ngFor="let groupType of groupTypes" [value]="groupType.id">{{ groupType.name }}</option>
-    </select>
-  </p>
-  <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
-</form>
-<a routerLink="/admin/groups">Vissza csoportokhoz</a>
+<div *ngIf="group">
+  <p>Azonosító: {{ group.id }}</p>
+  <form>
+    <p><label for="name">Név</label>
+    <input type="name" id="name" name="name" [(ngModel)]="group.name"></p>
+    <p>
+      <label for="name">Érvényesség kedzete</label><br>
+      <input type="name" id="access-from" name="accessFrom" [(ngModel)]="group.name">
+    </p>
+    <p>
+      <label for="name">Érvényesség vége</label><br>
+      <input type="name" id="access-to" name="access-to" [(ngModel)]="group.name">
+    </p>
+    <group-type-select [selectedId]="group.type.id" (groupTypeChange)="onGroupTypeChange($event)"></group-type-select>
+    <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
+  </form>
+  <a routerLink="/admin/groups">Vissza csoportokhoz</a>
+</div>

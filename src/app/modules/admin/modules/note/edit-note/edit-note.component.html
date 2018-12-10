@@ -1,26 +1,28 @@
 <h2>Jegyzet szerkesztése</h2>
-<p>Azonosító: {{ note.id }}</p>
-<form  #form="ngForm" (ngSubmit)="submit(form)">
-  <p>{{ message }}</p>
-  <p>
-    <label for="title">Cím</label>
-    <br>
-    <input type="text" id="title" name="title" [(ngModel)]="note.title">
-  </p>
-  <p *ngIf="note.path">
-    <a [href]="note.path" target="_blank">{{ note.path }}</a>
-  </p>
-  <p *ngIf="!fileError.valid">
-    <span *ngIf="fileError.size">A fájl túl nagy.</span><br>
-    <span *ngIf="fileError.type">A fájl nem megfelelő típusú</span>
-  </p>
-  <p>
-    <label for="path">Fájl</label>
-    <br>
-    <input type="file" id="path" name="path" (change)="onFileChanged($event)"><br>
-    <small>A fájlnak maximum {{ fileSize}} MB mértűnek és doc, docx vagy pdf kiterjesztésűnek kell lennie</small>
-  </p>
-  <group-type-select [selectedId]="note.groupTypeId" (groupTypeChange)="onGroupTypeChange($event)"></group-type-select>
-  <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
-</form>
-<a routerLink="/admin/notes">Vissza a jegyzetekhez</a>
+<div *ngIf="note">
+  <p>Azonosító: {{ note.id }}</p>
+  <form  #form="ngForm" (ngSubmit)="submit(form)">
+    <p>{{ message }}</p>
+    <p>
+      <label for="title">Cím</label>
+      <br>
+      <input type="text" id="title" name="title" [(ngModel)]="note.title">
+    </p>
+    <p *ngIf="note.path">
+      <a [href]="note.path" target="_blank">{{ note.path }}</a>
+    </p>
+    <p *ngIf="!fileError.valid">
+      <span *ngIf="fileError.size">A fájl túl nagy.</span><br>
+      <span *ngIf="fileError.type">A fájl nem megfelelő típusú</span>
+    </p>
+    <p>
+      <label for="path">Fájl</label>
+      <br>
+      <input type="file" id="path" name="path" (change)="onFileChanged($event)"><br>
+      <small>A fájlnak maximum {{ fileSize}} MB mértűnek és doc, docx vagy pdf kiterjesztésűnek kell lennie</small>
+    </p>
+    <group-type-select [selectedId]="note.groupTypeId" (groupTypeChange)="onGroupTypeChange($event)"></group-type-select>
+    <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
+  </form>
+  <a routerLink="/admin/notes">Vissza a jegyzetekhez</a>
+</div>
