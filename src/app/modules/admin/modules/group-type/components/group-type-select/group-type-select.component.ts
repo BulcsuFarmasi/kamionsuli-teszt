@@ -1,9 +1,8 @@
-import { Component, OnInit, Input, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnDestroy, Output, EventEmitter } from '@angular/core';
 
 import { GroupType } from 'src/app/models/group-type';
 import { GroupTypeService } from 'src/app/services/group-type.service';
 import { Subscription } from 'rxjs';
-
 @Component({
   selector: 'group-type-select',
   templateUrl: './group-type-select.component.html',
@@ -14,6 +13,7 @@ export class GroupTypeSelectComponent implements OnInit, OnDestroy {
   groupTypes:GroupType[];
   groupTypesSubscription:Subscription;
   @Input('selectedId') selectedId:number;
+  @Output('groupTypeChange') change:EventEmitter<number> = new EventEmitter();
 
   constructor(private groupTypeService:GroupTypeService) { }
 
@@ -29,7 +29,7 @@ export class GroupTypeSelectComponent implements OnInit, OnDestroy {
   }
 
   onChange (event) {
-    console.log(this.selectedId);
+    this.change.emit(this.selectedId);
   }
 
 }

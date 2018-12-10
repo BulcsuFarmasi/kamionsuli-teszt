@@ -20,7 +20,7 @@
     <input type="file" id="path" name="path" (change)="onFileChanged($event)"><br>
     <small>A fájlnak maximum {{ fileSize}} MB mértűnek és doc, docx vagy pdf kiterjesztésűnek kell lennie</small>
   </p>
-  <group-type-select [selectedId]="note.groupTypeId"></group-type-select>
+  <group-type-select [selectedId]="note.groupTypeId" (groupTypeChange)="onGroupTypeChange($event)"></group-type-select>
   <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
 </form>
 <a routerLink="/admin/notes">Vissza a jegyzetekhez</a>

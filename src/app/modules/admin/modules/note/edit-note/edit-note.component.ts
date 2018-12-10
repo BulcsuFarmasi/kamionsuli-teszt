@@ -21,7 +21,6 @@ export class EditNoteComponent implements OnInit, OnDestroy {
   message:string;
   note:Note;
   selectedFile:File;
-  private groupTypeSubscription:Subscription; 
   private noteSubscription:Subscription;
   
   constructor(private noteService:NoteService, private route:ActivatedRoute, private router:Router) { }
@@ -35,7 +34,6 @@ export class EditNoteComponent implements OnInit, OnDestroy {
 
   ngOnDestroy () {
     this.noteSubscription.unsubscribe();
-    this.groupTypeSubscription.unsubscribe()
   }
 
   checkFileSize () {
@@ -66,6 +64,11 @@ export class EditNoteComponent implements OnInit, OnDestroy {
   onFileChanged (event) {
     this.selectedFile = <File> event.target.files[0];
     this.checkFileValidity();
+  }
+
+  onGroupTypeChange (event) {
+    console.log(event)
+    this.note.groupTypeId = event;
   }
 
   submit(form) {
