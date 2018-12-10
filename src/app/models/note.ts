@@ -5,5 +5,6 @@ export interface Note {
     title:string;
     path:string;
     groupType:GroupType;
+    groupTypeId:number;
     checked:boolean;
 }

@@ -41,7 +41,7 @@ export class NoteService {
   }
 
   saveNote (note:Note) {
-    return this.networkService.patch('note/' + note.id, { title: note.title, groupTypeId: note.groupType })
+    return this.networkService.patch('note/' + note.id, { title: note.title, groupTypeId: note.groupTypeId })
       .pipe(map((response:any) => {
         if (response && response.errorCode) {
           throwError(response);
