@@ -7,10 +7,18 @@
     <br>
     <input type="text" id="title" name="title" [(ngModel)]="note.title">
   </p>
+  <p *ngIf="note.path">
+    <a [href]="note.path" target="_blank">{{ note.path }}</a>
+  </p>
+  <p *ngIf="!fileError.valid">
+    <span *ngIf="fileError.size">A fájl túl nagy.</span><br>
+    <span *ngIf="fileError.type">A fájl nem megfelelő típusú</span>
+  </p>
   <p>
     <label for="path">Fájl</label>
     <br>
-    <input type="file" id="path" name="path" (change)="onFileChanged($event)">
+    <input type="file" id="path" name="path" (change)="onFileChanged($event)"><br>
+    <small>A fájlnak maximum {{ fileSize}} MB mértűnek és doc, docx vagy pdf kiterjesztésűnek kell lennie</small>
   </p>
   <p>
     <label for="type">Típus</label>

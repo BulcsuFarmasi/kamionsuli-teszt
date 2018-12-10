@@ -45,6 +45,8 @@ export class NoteService {
       .pipe(map((response:any) => {
         if (response && response.errorCode) {
           throwError(response);
+        } else {
+          return response;
         }
       }))
   }
