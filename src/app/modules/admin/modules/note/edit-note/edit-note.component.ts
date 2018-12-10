@@ -16,6 +16,7 @@ import { GroupType } from 'src/app/models/group-type';
 export class EditNoteComponent implements OnInit, OnDestroy {
 
   groupTypes:GroupType[];
+  message:string;
   note:Note;
   private groupTypeSubscription:Subscription; 
   private noteSubscription:Subscription;
@@ -30,11 +31,19 @@ export class EditNoteComponent implements OnInit, OnDestroy {
     })
     this.groupTypeSubscription = this.groupTypeService.getGroupTypes().subscribe(groupTypes => {
       this.groupTypes = groupTypes
-      })
+    })
   }
 
   ngOnDestroy () {
     this.noteSubscription.unsubscribe();
+    this.groupTypeSubscription.unsubscribe()
+  }
+
+  submit(form) {
+    this.noteService.saveNote(this.note).subscribe(
+      () => { this.message = 'A jegyzet mentése sikeres' },
+      () => { this.message = 'A jegyzet mentése sikertelen' }
+      )
   }
 
 }

@@ -1,7 +1,7 @@
 <h2>Jegyzet szerkesztése</h2>
 <p>Azonosító: {{ note.id }}</p>
-<form>
-  {{ message }}
+<form  #form="ngForm" (ngSubmit)="submit(form)">
+  <p>{{ message }}</p>
   <p>
     <label for="title">Cím</label>
     <br>
@@ -16,8 +16,8 @@
     <label for="type">Típus</label>
     <br>
     <select name="type" id="type" [(ngModel)]="note.groupType">
-      <option *ngFor="let groupType of groupTypes" [value]="groupType.id">{{ groupType.name }}</option>
+      <option *ngFor="let groupType of groupTypes" [value]="groupType.id" [attr.selected]="groupType.id === note.groupType.id">{{ groupType.name }}</option>
     </select>
   </p>
-  <p><input type="submit" class="btn btn-edit"></p>
+  <p><input type="submit" class="btn btn-edit" value="Mentés"></p>
 </form>
