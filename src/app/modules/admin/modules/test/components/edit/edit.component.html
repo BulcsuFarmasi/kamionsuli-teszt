@@ -6,6 +6,7 @@
     <article>
         <ckeditor [(ngModel)]="test.description" (blur)="saveTestDescription($event)"></ckeditor>
         <p class="setting"><span>Kérdések száma oldalanként:</span> <editable-input [value]="test.pageQuestionNumber" [inputType]="'number'" [type]="'testPageQuestionNumber'" (onStopEditing)="onStopEditing($event)"></editable-input></p>
+        <p class="setting"><span>Típus: </span> <editable-group-type-select></editable-group-type-select></p>
     </article>
 </section>
 <questions [questions]="test.questions" [testId]="test.id"></questions>

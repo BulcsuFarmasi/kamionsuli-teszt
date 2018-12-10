@@ -4,11 +4,13 @@ import { FormsModule } from '@angular/forms';
 
 
 import { editableComponents } from './editable.declarations';
+import { GroupTypeModule } from '../group-type/group-type.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    FormsModule
+    FormsModule,
+    GroupTypeModule
   ],
   declarations: [...editableComponents],
   exports: [...editableComponents]
