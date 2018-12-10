@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
 
@@ -25,7 +25,7 @@ export class EditNoteComponent implements OnInit, OnDestroy {
   private groupTypeSubscription:Subscription; 
   private noteSubscription:Subscription;
   
-  constructor(private noteService:NoteService, private groupTypeService:GroupTypeService, private route:ActivatedRoute) { }
+  constructor(private noteService:NoteService, private groupTypeService:GroupTypeService, private route:ActivatedRoute, private router:Router) { }
 
   ngOnInit() {
     let id = +this.route.snapshot.paramMap.get('id');
@@ -51,7 +51,9 @@ export class EditNoteComponent implements OnInit, OnDestroy {
   }
 
   checkFileType () {
-    const allowedFileTypes = ['application/pdf', 'application/msword', '	application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    const allowedFileTypes = ['application/pdf', 'application/msword', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document'];
+    
+    console.log(this.selectedFile.type)
     
     if (!allowedFileTypes.includes(this.selectedFile.type)) {
       this.fileError.type = true;
@@ -78,8 +80,7 @@ export class EditNoteComponent implements OnInit, OnDestroy {
         if (this.selectedFile && this.fileError.valid) {
           this.noteService.uploadNoteFile(this.note.id, this.selectedFile).subscribe(
             (response:any) => { 
-              this.message = 'A fájl mentése sikeres';
-              this.note.path = response.path; 
+              this.router.navigate(['/admin/notes'])
             },
             () => { this.message = 'A fájl mentése sikertelen' }
           )
