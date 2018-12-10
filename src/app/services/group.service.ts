@@ -32,7 +32,15 @@ export class GroupService {
   }
 
   saveGroup (group:Group) {
-    return this.networkService.patch('group/' + group.id, { name: group.name, typeId: group.typeId })
+    const sendedAccessFrom = 
+      group.accessFrom.getFullYear() + "-" + 
+      ('0' + (group.accessFrom.getMonth() + 1)).slice(-2) + "-" + 
+      ('0' + group.accessFrom.getDate()).slice(-2);
+    const sendedAccessTo = 
+      group.accessTo.getFullYear() + "-" + 
+      ('0' + (group.accessTo.getMonth() + 1)).slice(-2) + "-" + 
+      ('0' + group.accessTo.getDate()).slice(-2);
+    return this.networkService.patch('group/' + group.id, { name: group.name, typeId: group.typeId, accessFrom: sendedAccessFrom, accessTo: sendedAccessTo })
       .pipe(map((response:any) => {
         if (response && response.errorCode) {
           throwError(response);
